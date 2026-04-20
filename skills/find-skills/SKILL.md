@@ -98,10 +98,12 @@ Learn more: https://skills.sh/vercel-labs/agent-skills/react-best-practices
 If the user wants to proceed, you can install the skill for them:
 
 ```bash
-npx skills add <owner/repo@skill> -g -y
+npx skills add <owner/repo@skill> -g
 ```
 
-The `-g` flag installs globally (user-level) and `-y` skips confirmation prompts.
+The `-g` flag installs globally (user-level). Do NOT pass `-y`; the user should
+see and approve the CLI's install prompt so they can review what's being
+pulled in from a third-party source.
 
 ## Common Skill Categories
 
