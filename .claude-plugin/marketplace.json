@@ -50,6 +50,15 @@
       "skills": [
         "./skills/claude-api"
       ]
+    },
+    {
+      "name": "find-skills",
+      "description": "Helps users discover and install agent skills from the open ecosystem via the npx skills CLI",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/find-skills"
+      ]
     }
   ]
 }
