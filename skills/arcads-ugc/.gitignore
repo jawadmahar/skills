@@ -1,0 +1,5 @@
+.env
+videos/*.mp4
+briefs/*.local.*
+scripts_out/*.local.*
+__pycache__/
