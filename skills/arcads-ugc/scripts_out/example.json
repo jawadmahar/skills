@@ -1,0 +1,17 @@
+{
+  "title": "Example UGC ad — replace me",
+  "score": 9.6,
+  "hook": "I tried [product] for 30 days. Here's what happened.",
+  "body": "Day 1 — skeptical. Day 7 — noticed real results. Day 30 — wouldn't go back. Three reasons: [reason 1], [reason 2], [reason 3].",
+  "cta": "Tap the link to try it risk-free.",
+  "actor": "spokesperson-female-30s",
+  "duration_seconds": 30,
+  "aspect_ratio": "9:16",
+  "scoring_notes": {
+    "hook": 2.0,
+    "clarity": 2.0,
+    "cta": 1.8,
+    "brand_fit": 1.9,
+    "pacing": 1.9
+  }
+}
