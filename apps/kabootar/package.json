@@ -1,0 +1,17 @@
+{
+  "name": "kabootar",
+  "version": "0.1.0",
+  "description": "QR form -> approval -> receipt printer. Customers scan a QR code, fill a form; staff approve on any phone; a ticket prints at the till.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "test": "node test/smoke.js"
+  },
+  "engines": {
+    "node": ">=22.5"
+  },
+  "dependencies": {
+    "qrcode": "^1.5.4"
+  },
+  "license": "MIT"
+}
