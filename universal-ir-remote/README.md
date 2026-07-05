@@ -1,8 +1,22 @@
 # Universal IR Remote
 
-An Android app that turns a phone with an **IR blaster** into a universal
-remote control for TVs, set-top boxes, air conditioners, audio gear — anything
-driven by an infrared remote.
+A universal remote control for TVs, set-top boxes, air conditioners, audio
+gear — anything driven by an infrared remote. Two deployment targets:
+
+- **Android app** (this directory) — for phones that have a built-in IR
+  blaster (many Xiaomi/Redmi/Poco, Huawei/Honor, some TCL). Uses the standard
+  `ConsumerIrManager` API.
+- **£5–£10 hardware version** ([`esp32/`](esp32/)) — an ESP32 or ESP8266
+  board plus an IR LED, both cheap on Amazon/eBay. The board serves the same
+  remote as a web app over Wi-Fi, so it works from **any** phone's browser
+  (Android or iPhone) with nothing to install. See `esp32/README.md` for the
+  exact shopping list, wiring, and flashing steps.
+
+Note that generic USB-C / headphone-jack "IR dongle" listings are locked to
+their vendors' apps — Android's IR API only talks to built-in blasters — so
+the ESP32 route is the recommended cheap option.
+
+## The Android app
 
 ## How it achieves "works with all remotes"
 
