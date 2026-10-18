@@ -1,0 +1,85 @@
+{
+  "name": "Explorazone",
+  "website": "explorazone.co.uk",
+  "palette": {
+    "navy": "#16223f",
+    "navyMid": "#213152",
+    "red": "#ef4720",
+    "cream": "#fbf5e8",
+    "lime": "#b6f542",
+    "teal": "#00ddb4",
+    "gold": "#e9b949",
+    "ink": "#14203a",
+    "royal": "#1a34bf",
+    "yellow": "#ffe14d",
+    "burnt": "#c2542f",
+    "white": "#ffffff"
+  },
+  "roles": {
+    "accent": "lime",
+    "light": "cream",
+    "ink": "ink",
+    "cta": "red",
+    "ctaText": "#fff",
+    "dark": "navy",
+    "paper": "#f5efe2"
+  },
+  "fonts": {
+    "head": "\"Bricolage Grotesque\", \"Arial Black\", Inter, sans-serif",
+    "body": "Inter, system-ui, \"Segoe UI\", Arial, sans-serif",
+    "hand": "Caveat, \"Comic Sans MS\", cursive",
+    "google": [
+      "Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800",
+      "Caveat:wght@600;700",
+      "Inter:ital,wght@0,500;0,600;0,700;0,800;1,500"
+    ],
+    "preload": [
+      "800 100px \"Bricolage Grotesque\"",
+      "700 100px \"Bricolage Grotesque\"",
+      "700 80px Caveat",
+      "500 40px Inter",
+      "600 40px Inter",
+      "700 40px Inter",
+      "800 40px Inter",
+      "italic 500 40px Inter"
+    ]
+  },
+  "copy": {
+    "loc": "BOWTHORPE · NORWICH",
+    "formerly": "Formerly Exploring Science"
+  },
+  "labels": {
+    "laser_room": "LASER ROOM",
+    "roses": "GARDEN OF LIGHT",
+    "sky_maze": "SKY MAZE",
+    "dodeca": "INFINITY LIGHTS",
+    "floor2": "LIGHT-UP FLOOR",
+    "heat": "HEAT VISION",
+    "sandbox": "AR SANDBOX",
+    "robot2": "ROBOT WAITERS",
+    "tunnel": "SPACE-TIME TUNNEL",
+    "jungle2": "LASER JUNGLE",
+    "mirror": "MIRROR MAZE",
+    "racing": "VR RACING SIMS",
+    "found_room": "GARDEN OF LIGHT",
+    "tubes": "LIGHT FOREST",
+    "typewriters": "TYPEWRITERS",
+    "phones": "ROTARY PHONES",
+    "lab3": "SCIENCE LAB",
+    "astro": "SPACE ZONE"
+  },
+  "photoPool": [
+    "laser_room",
+    "roses",
+    "sky_maze",
+    "dodeca",
+    "floor2",
+    "heat",
+    "sandbox",
+    "robot2",
+    "tunnel",
+    "found_room",
+    "jungle2",
+    "tubes"
+  ]
+}
