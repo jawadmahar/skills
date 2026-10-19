@@ -1,7 +1,7 @@
 {
- "_readme": "How the Explorazone venue photos were made, so they can be rebuilt without storing brand photos in this repository. Each photo is a full-width crop of a 1080x1920 Story ad image from the Explorazone ad account. To rebuild: list the account's ad images (Meta Ads connector, ads_get_ad_images), find the image whose URL contains source_ad_image, download it, crop x, y, w, h, save as assets/photos/<key>.jpg (JPEG quality 90). Older small crops (lab, lab2, vr, jungle, mirror, floor, tunnel, racing, tubes, infinity, plasma, foliage, lasers_green, tubes_purple) came from square and 4:5 ads; recrop them by eye if needed, or prefer the large photos below.",
+ "_readme": "How the Explorazone venue photos were made, so they can be rebuilt without storing brand photos in this repository. Each photo is a full-width crop of a 1080x1920 Story ad image from the Explorazone ad account. To rebuild: list the account's ad images (Meta Ads connector, ads_get_ad_images), find the image whose URL contains source_ad_image, download it, crop x, y, w, h, save as assets/photos/<key>.jpg (JPEG quality 90). Older small crops (lab, lab2, vr, jungle, mirror, floor, tunnel, racing, tubes, infinity, plasma, foliage, lasers_green, tubes_purple) came from square and 4:5 ads; recrop them by eye if needed, or prefer the large photos below. Added 19 Oct 2026: 18 more photos from the October half-term static ads (Explorazone_ht_NN_*_9x16.png); in those ads the photo sits under the logo, so crop from y 272 to 864.",
  "logo": {
-  "note": "Red and white EXPLORAZONE wordmark cropped from a live ad; replace with the master logo file from the brand owner when available."
+  "note": "Current lockup \"EXPLORAZONE / SCIENCE DISCOVERY LAB\" (red box, white text), cropped from the half-term static ads of 17 Oct 2026 (ad image Explorazone_ht_10_mixed_ages_9x16.png, url contains 851925329_122145766971157697): crop x 47, y 159, w 305, h 75, then upscaled 2x with Lanczos. Replace with the master logo file when the brand owner supplies it."
  },
  "photos": {
   "astro": {
@@ -190,6 +190,222 @@
     "w": 1080,
     "h": 835
    }
+  },
+  "infinity_floor": {
+   "label": "INFINITY FLOOR",
+   "source_ad_image": "852028555_122145767637157697_9181199379274426535_n.png",
+   "source_label": "ht_01_ten_days",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "flags_crystals": {
+   "label": "ROCKS & CRYSTALS",
+   "source_ad_image": "851339607_122145766875157697_7811869043378702628_n.png",
+   "source_label": "ht_02_do_the_maths",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "sky_maze2": {
+   "label": "SKY MAZE",
+   "source_ad_image": "852679662_122145768147157697_6202149244550877411_n.png",
+   "source_label": "ht_03_third_never_pays",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "light_pillars": {
+   "label": "LIGHT FOREST",
+   "source_ad_image": "852516312_122145767655157697_4736897841918294922_n.png",
+   "source_label": "ht_04_rain",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "starfield": {
+   "label": "STAR ROOM (unconfirmed name)",
+   "source_ad_image": "851986172_122145768165157697_7433302582897086285_n.png",
+   "source_label": "ht_05_clocks_back",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "uv_room": {
+   "label": "UV ROOM (unconfirmed name)",
+   "source_ad_image": "854338524_122145767823157697_8503571411912329937_n.png",
+   "source_label": "ht_07_halloween",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "radios": {
+   "label": "RETRO RADIOS",
+   "source_ad_image": "852101230_122145767577157697_4235955562577828886_n.png",
+   "source_label": "ht_08_grandparents",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "test_tubes": {
+   "label": "SCIENCE LAB",
+   "source_ad_image": "851925329_122145766971157697_4318332823322774656_n.png",
+   "source_label": "ht_10_mixed_ages",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "red_lasers": {
+   "label": "SKY MAZE (red light)",
+   "source_ad_image": "852221292_122145768129157697_3506743899466217794_n.png",
+   "source_label": "ht_11_screens",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "lava_lamp": {
+   "label": "LAVA LAMPS",
+   "source_ad_image": "855166455_122145766677157697_4810920126538214355_n.png",
+   "source_label": "ht_12_whats_inside",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "sandbox2": {
+   "label": "AR SANDBOX",
+   "source_ad_image": "851844283_122145767871157697_908653585595710968_n.png",
+   "source_label": "ht_13_sleep_well",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "microscope": {
+   "label": "MICROSCOPES",
+   "source_ad_image": "854627429_122145767403157697_6941911646268565918_n.png",
+   "source_label": "ht_14_back_monday",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "crystals": {
+   "label": "ROCKS & CRYSTALS",
+   "source_ad_image": "852660954_122145767211157697_6338995679365358187_n.png",
+   "source_label": "ht_15_any_three",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "fossils": {
+   "label": "FOSSILS",
+   "source_ad_image": "852644941_122145767559157697_3812111879472032049_n.png",
+   "source_label": "ht_16_twelve_each",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "cameras": {
+   "label": "VINTAGE CAMERAS",
+   "source_ad_image": "854627420_122145767955157697_3499963308506374792_n.png",
+   "source_label": "ht_17_not_the_shops",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "telephones": {
+   "label": "OLD TELEPHONES",
+   "source_ad_image": "852221300_122145767895157697_4051010385735096781_n.png",
+   "source_label": "ht_18_bowthorpe",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "tunnel": {
+   "label": "SPACE-TIME TUNNEL",
+   "source_ad_image": "851503962_122145768111157697_622851633243956798_n.png",
+   "source_label": "ht_19_the_photo",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "plasma": {
+   "label": "PLASMA BALL",
+   "source_ad_image": "852101230_122145766659157697_5652443346721787412_n.png",
+   "source_label": "ht_20_sign_up_now",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
   }
  }
 }

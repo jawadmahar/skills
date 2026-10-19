@@ -93,7 +93,7 @@ def main():
     rows = []
     for r in load(a.insights):
         name = str(pick(r, 'ad_name') or '')
-        m = re.search(r'(?:^|[_\-\s])(V\d{2,3})(?:[_\-\s]|$)', name)
+        m = re.search(r'(?:^|[_\-\s])([A-Z]\d{2,3})(?:[_\-\s]|$)', name)
         x = {k: num(pick(r, k)) for k in ALIASES if k != 'ad_name'}
         x.update(ad_name=name, id=m.group(1) if m else '')
         i, v3 = x['impressions'], x['video_3s']

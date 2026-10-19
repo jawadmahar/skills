@@ -37,3 +37,33 @@ What: Put everything in one zip, or a few, ready to send on; fewer is better. Th
 Applies to: delivery
 Meaning: one-click delivery for the team; the workflow is worth keeping
 Outcome: promoted to rule G8; skill version 1.0.0 created
+
+### 2026-10-19 · Explorazone · winter 2026-27 · passive · Meta data
+What: Half-term videos (EXZ_HT26) not live yet, so nothing to score. Last 90 days: the August B2G3 leads campaign is still the cheapest lead source; lead-campaign frequency above 3 (static ads seen repeatedly); awareness campaigns buy cheap reach with very low click-through.
+Applies to: planning the winter set
+Meaning: fresh video is needed for the lead campaigns; awareness is for the proven few
+Outcome: logged only (score EXZ_HT26 after 5+ days, then compare video with static)
+
+### 2026-10-19 · Explorazone · winter 2026-27 · active · director
+What: Same price and terms, but the offer is not universal: the customer must sign up or ask at reception, and follow us on Instagram and Facebook. Keep the terms concise, no end date or early-end clause inside the terms line, end with "T&Cs apply". Claim steps in small print only.
+Applies to: terms on every end card and primary text
+Meaning: confirm the claim mechanism, not just the price, at every interview; keep legal lines short
+Outcome: supports rule G5 (now covers claim steps); promoted to rule G11
+
+### 2026-10-19 · Explorazone · winter 2026-27 · active · director
+What: Mostly new concepts rather than more rain and notebook; parents 25 to 44 first; Christmas run-up, Christmas holidays and back to school in January only (no Bonfire Night or Black Friday); focus on sales from November to 10 January, with another batch after January; all 50 delivered at once to upload as fast as possible.
+Applies to: the winter set (W01 to W50)
+Meaning: the director wants breadth and speed; seasonal scope is narrower than the calendar suggests
+Outcome: promoted to rule G9 (ask which seasonal moments matter; do not assume every calendar date)
+
+### 2026-10-19 · Explorazone · winter 2026-27 · active · director
+What: Reuse the best half-term tracks where they fit rather than a new track for every video.
+Applies to: music for W01 to W50 (19 half-term tracks reused, 31 new, still one track per video)
+Meaning: G3's "no repeats within a batch" stands; reusing across campaigns is fine when the mood fits
+Outcome: G3 reworded
+
+### 2026-10-19 · Explorazone · winter 2026-27 · passive · QA
+What: Three scripts (make_adcopy, make_pack, score_ads) only recognised V-numbered ids, so W-numbered files would have been dropped from the pack and ad copy without an error.
+Applies to: any campaign that uses a new id letter
+Meaning: id handling must not assume a letter
+Outcome: fixed in the scripts (any capital letter plus digits); logged only

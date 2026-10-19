@@ -99,14 +99,37 @@ function photo(img, x, y, w, h, o = {}) {
   const z = o.zoom ?? 1, fx = o.fx ?? 0.5, fy = o.fy ?? 0.5;
   const s = Math.max(w / img.width, h / img.height) * z, iw = img.width * s, ih = img.height * s;
   ctx.save(); ctx.globalAlpha = o.alpha ?? 1;
-  if (o.shadow) { ctx.save(); ctx.shadowColor = o.shadow; ctx.shadowBlur = 50; ctx.shadowOffsetY = 18; ctx.fillStyle = '#000'; rr(ctx, x, y, w, h, o.radius ?? 0); ctx.fill(); ctx.restore(); }
+  if (o.shadow) { const sp = shadowSprite(w, h, o.radius ?? 0, o.shadow); ctx.drawImage(sp, x - SHADOW_PAD, y - SHADOW_PAD, w + SHADOW_PAD * 2, h + SHADOW_PAD * 2 + 18); }
   rr(ctx, x, y, w, h, o.radius ?? 0); ctx.clip();
   if (o.filter) ctx.filter = o.filter;
   ctx.drawImage(img, x + (w - iw) * fx, y + (h - ih) * fy, iw, ih);
   ctx.filter = 'none'; ctx.restore();
   if (o.border) { ctx.save(); ctx.globalAlpha = o.alpha ?? 1; ctx.lineWidth = o.border; ctx.strokeStyle = o.borderColor ?? '#fff'; rr(ctx, x, y, w, h, o.radius ?? 0); ctx.stroke(); ctx.restore(); }
 }
-function bgPhoto(img, o = {}) { photo(img, -60, -60, W + 120, H + 120, { zoom: o.zoom ?? 1, filter: o.filter ?? 'blur(36px) brightness(0.55) saturate(1.2)', alpha: o.alpha }); }
+// Blurs and soft shadows are the slowest things to rasterise in software, so both are drawn once and cached.
+// The caches are pure (same inputs, same pixels), so frames stay a function of t only.
+const SHADOW_PAD = 110, SHADOWS = new Map(), BLURS = new WeakMap();
+function shadowSprite(w, h, r, color) {
+  const key = `${Math.round(w)}x${Math.round(h)}x${Math.round(r)}|${color}`; let c = SHADOWS.get(key);
+  if (!c) {
+    if (SHADOWS.size > 300) SHADOWS.clear();
+    c = makeCanvas(Math.round(w) + SHADOW_PAD * 2, Math.round(h) + SHADOW_PAD * 2 + 18); const g = c.getContext('2d');
+    g.shadowColor = color; g.shadowBlur = 50; g.shadowOffsetY = 18; g.fillStyle = '#000'; rr(g, SHADOW_PAD, SHADOW_PAD, Math.round(w), Math.round(h), r); g.fill(); SHADOWS.set(key, c);
+  }
+  return c;
+}
+function bgPhoto(img, o = {}) {
+  const filter = o.filter ?? 'blur(36px) brightness(0.55) saturate(1.2)', zoom = o.zoom ?? 1, key = filter + '|' + zoom;
+  if (!/blur\(/.test(filter)) { photo(img, -60, -60, W + 120, H + 120, { zoom, filter, alpha: o.alpha }); return; }
+  let m = BLURS.get(img); if (!m) { m = new Map(); BLURS.set(img, m); }
+  let c = m.get(key);
+  if (!c) {  // blur a quarter-size copy (blur radius scaled to match), then scale it up: the result looks the same and costs a fraction
+    const q = 4, cw = Math.round((W + 120) / q), ch = Math.round((H + 120) / q); c = makeCanvas(cw, ch); const g = c.getContext('2d');
+    const s = Math.max(cw / img.width, ch / img.height) * zoom, iw = img.width * s, ih = img.height * s;
+    g.filter = filter.replace(/blur\(([\d.]+)px\)/, (_, n) => `blur(${n / q}px)`); g.drawImage(img, (cw - iw) / 2, (ch - ih) / 2, iw, ih); m.set(key, c);
+  }
+  ctx.save(); ctx.globalAlpha = o.alpha ?? 1; ctx.imageSmoothingQuality = 'high'; ctx.drawImage(c, -60, -60, W + 120, H + 120); ctx.restore();
+}
 function logo(cx, y, w, alpha = 1, o = {}) {
   const L = IMG.logo; const h = w * L.height / L.width; const x = o.align === 'left' ? cx : cx - w / 2;
   ctx.save(); ctx.globalAlpha = alpha;

@@ -136,7 +136,7 @@ def main():
             if ch in text:
                 line = next((ln.strip() for ln in text.splitlines() if ch in ln), '')[:90]
                 problems.append(f'{label} in {name}: "{line}" (house style: use a hyphen, comma or full stop)')
-    ids = re.findall(r"defineSpot\(\{\s*id:\s*'(\w+)'", code)
+    ids = re.findall(r"(?:defineSpot|spot)\(\{\s*id:\s*'(\w+)'", code)
     dupes = sorted({i for i in ids if ids.count(i) > 1})
     if dupes:
         problems.append(f'duplicate spot ids: {dupes}')

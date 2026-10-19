@@ -1,0 +1,206 @@
+{
+  "brand": "../../../brands/explorazone/brand.json",
+  "name": "Explorazone winter 2026-27: buy 2, get the 3rd free",
+  "slug": "explorazone-winter",
+  "adPrefix": "EXZ_WIN27",
+  "dates": {
+    "start": "2026-11-02",
+    "end": "2027-01-10"
+  },
+  "assets": "assets",
+  "libs": [
+    "weather",
+    "paper",
+    "fx3d"
+  ],
+  "spots": [
+    "spots/00-kit.js",
+    "spots/01-weather.js",
+    "spots/02-notebook.js",
+    "spots/03-screens.js",
+    "spots/04-seasonal.js",
+    "spots/05-classic.js"
+  ],
+  "copy": {
+    "offer": "Buy 2, get the 3rd free",
+    "maths": [
+      "3 for £36",
+      "6 for £72",
+      "9 for £108"
+    ],
+    "dates": "Ends Fri 12 Feb 2027",
+    "terms": "£18 tickets. New customers only. Sign up at explorazone.co.uk or ask at reception, and follow us on Instagram and Facebook. Max 9 per group. T&Cs apply.",
+    "cta": "Claim your free 3rd ticket",
+    "ticker": "BUY 2, GET THE 3RD FREE · 3 FOR £36 · 6 FOR £72 · 9 FOR £108 · ALL INDOORS · BOWTHORPE, NORWICH · ",
+    "ticket": {
+      "price": "£18",
+      "label": "Winter",
+      "freeLine": "The 3rd walks in free"
+    }
+  },
+  "labels": {
+    "laser_room": "LASER ROOM",
+    "roses": "GARDEN OF LIGHT",
+    "found_room": "GARDEN OF LIGHT",
+    "sky_maze": "SKY MAZE",
+    "sky_maze2": "SKY MAZE",
+    "red_lasers": "SKY MAZE",
+    "dodeca": "INFINITY LIGHTS",
+    "floor2": "LIGHT-UP FLOOR",
+    "infinity_floor": "INFINITY FLOOR",
+    "heat": "HEAT VISION",
+    "sandbox": "AR SANDBOX",
+    "sandbox2": "AR SANDBOX",
+    "robot2": "ROBOT WAITERS",
+    "robots": "ROBOT WAITERS",
+    "jungle2": "LASER JUNGLE",
+    "tunnel": "SPACE-TIME TUNNEL",
+    "light_pillars": "LIGHT FOREST",
+    "lab3": "SCIENCE LAB",
+    "test_tubes": "SCIENCE LAB",
+    "astro": "SPACE ZONE",
+    "typewriters": "TYPEWRITERS",
+    "phones": "ROTARY PHONES",
+    "telephones": "OLD TELEPHONES",
+    "radios": "RETRO RADIOS",
+    "cameras": "VINTAGE CAMERAS",
+    "crystals": "ROCKS & CRYSTALS",
+    "flags_crystals": "ROCKS & CRYSTALS",
+    "fossils": "FOSSILS",
+    "microscope": "MICROSCOPES",
+    "plasma": "PLASMA BALL",
+    "lava_lamp": "LAVA LAMPS",
+    "science": "SCIENCE LAB",
+    "cafe": "CAFE",
+    "uv_room": "UV ROOM",
+    "starfield": "STAR ROOM"
+  },
+  "photoPool": [
+    "laser_room",
+    "infinity_floor",
+    "roses",
+    "sky_maze2",
+    "dodeca",
+    "heat",
+    "tunnel",
+    "floor2",
+    "plasma",
+    "jungle2",
+    "light_pillars",
+    "robot2",
+    "crystals",
+    "found_room"
+  ],
+  "fonts": {
+    "google": [
+      "Dancing+Script:wght@700",
+      "Kalam:wght@700",
+      "Patrick+Hand",
+      "Permanent+Marker",
+      "Special+Elite",
+      "Courier+Prime:wght@400;700"
+    ],
+    "preload": [
+      "700 80px \"Dancing Script\"",
+      "700 80px Kalam",
+      "400 80px \"Patrick Hand\"",
+      "400 80px \"Permanent Marker\"",
+      "400 80px \"Special Elite\"",
+      "400 60px \"Courier Prime\"",
+      "700 60px \"Courier Prime\""
+    ]
+  },
+  "studio": {
+    "title": "Winter Video Studio",
+    "eyebrow": "Winter 2026-27 · Buy 2, get the 3rd free",
+    "description": "Explorazone winter Reels and Stories videos for the buy 2, get the 3rd free offer, Nov 2026 to Jan 2027."
+  },
+  "series": {
+    "1 November (run 2 to 29 Nov)": [
+      "W01",
+      "W02",
+      "W03",
+      "W04",
+      "W05",
+      "W06",
+      "W07",
+      "W08",
+      "W09",
+      "W10",
+      "W11",
+      "W12",
+      "W13",
+      "W14",
+      "W15",
+      "W16",
+      "W17",
+      "W18"
+    ],
+    "2 Christmas run-up (run 30 Nov to 20 Dec)": [
+      "W19",
+      "W20",
+      "W21",
+      "W22",
+      "W23",
+      "W24",
+      "W25",
+      "W26",
+      "W27",
+      "W28",
+      "W29",
+      "W30",
+      "W31",
+      "W32",
+      "W33",
+      "W34"
+    ],
+    "3 Christmas holidays (run 19 Dec to 4 Jan)": [
+      "W35",
+      "W37",
+      "W38",
+      "W39",
+      "W40",
+      "W41",
+      "W42"
+    ],
+    "4 New Year and back to school (run 1 to 10 Jan)": [
+      "W36",
+      "W43",
+      "W44",
+      "W45",
+      "W46",
+      "W47",
+      "W48",
+      "W49",
+      "W50"
+    ]
+  },
+  "slugs": {},
+  "pack": {
+    "eyebrow": "Explorazone · Bowthorpe, Norwich",
+    "title": "Winter 2026-27: 50 videos for Reels and Stories",
+    "subtitle": "Buy 2, get the 3rd free · Mon 2 Nov 2026 to Sun 10 Jan 2027 · 9:16 with licensed music",
+    "intro": [
+      "50 new 9:16 videos with licensed music, grouped by when to run them: November (18), Christmas run-up (16), Christmas holidays (7) and New Year and back to school (9).",
+      "Offer on every end card: Buy 2, get the 3rd free. 3 for £36, 6 for £72, 9 for £108. Ends Fri 12 Feb 2027.",
+      "Terms on every end card and in every primary text: £18 tickets. New customers only. Sign up at explorazone.co.uk or ask at reception, and follow us on Instagram and Facebook. Max 9 per group. T&Cs apply.",
+      "Every primary text also says: We reserve the right to end this offer sooner. If the offer is ever ended early, honour claims already made and announce the new end date in advance (CAP Code rule 8.2).",
+      "No Christmas or New Year opening dates appear anywhere. Check opening times before running holiday videos on days the centre is closed."
+    ],
+    "insights": [
+      "Last 90 days: the B2G3 leads campaign from 24 August is still the cheapest source of sign-ups, so put these videos into lead campaigns first.",
+      "People in the lead campaigns are now seeing the same static ads more than three times each. Fresh video should bring results back up.",
+      "Awareness campaigns buy cheap reach but very few clicks. Use them only for the strongest 5 to 8 videos, after a week of lead data.",
+      "Parents 25 to 44 lead this set (28 videos). 16 videos speak to grandparents and three generations, who drove most attributed purchases in the static-ad data.",
+      "The half-term videos (EXZ_HT26) start on Fri 23 Oct. Their results will shape the next batch, from 11 Jan."
+    ],
+    "launch": [
+      "Upload each video as its own ad, using the ad name from the sheet exactly (for example EXZ_WIN27_W07_saturday-sorted), so results trace back to the creative.",
+      "Use one ad set per group, with broad targeting and Advantage+ placements (Reels and Stories on). Switch each group on and off on its dates.",
+      "Dates: November, 2 to 29 Nov. Christmas run-up, 30 Nov to 20 Dec. Christmas holidays, 19 Dec to 4 Jan (W35, W38 and W39 from 26 Dec). New Year and back to school, 1 to 10 Jan.",
+      "Leave each group 5 to 7 days before judging. Pause clear losers (weak hook rate and no results) and keep the winners running.",
+      "The lead form and landing page must show the same offer and terms as the videos.",
+      "After a week, send the results or ask Claude for \"smvm feedback\" so the next batch learns from them."
+    ]
+  }
+}

@@ -10,6 +10,7 @@
 7. Commands
 8. Rules that keep renders correct
 9. Pitfalls we have hit
+10. Big sets: the kit pattern
 
 ## 1. How it works
 
@@ -167,3 +168,15 @@ Rendering runs at about 1 to 3 minutes per 12-second spot under software WebGL; 
 - Stretching an offscreen canvas for a ripple: draw slices directly instead (`rippleRect` in V15).
 - Headless MediaRecorder output is WebM with drifting timing: always render frames with `render.mjs`, never record for delivery.
 - Text placed for one font looked wrong when the font failed to load: preload every face and check the first stills.
+
+## 10. Big sets: the kit pattern
+
+For more than about 15 videos, write each look once as a format function and make every video a short config (rule G10). The winter 2026-27 campaign is the worked example (`campaigns/explorazone/2026-11-winter/spots/`):
+
+- `00-kit.js` holds what every video shares: `primary(lead, more)` builds the Meta primary text with the offer, end wording and terms; `RUN` and `PERIOD` hold each run window; `spot(meta, format, config)` calls `defineSpot` and puts the run dates into `meta.start`, `meta.end` and `meta.period` (the ad copy sheet and pack read them); `endScene(t, E, headline, kind)` wraps `endCard` with backgrounds (`snow`, `navy`, `rain`, `red`, `green`, `royal`, `cream`, `photo`); plus `snow()`, `card()`, `labelPill()`, `dropStack()`, `mosaic()`, `heroPhoto()`, `shade()` and `hook()`.
+- A format is `function nameFmt(c) { return { setup() {...}, frame(t) {...} }; }`. It reads everything from `c` (copy lines, photo keys, timings, `c.dur`) and ends with `endScene`, so the end card starts at `endAt(dur)` (3.6 seconds before the end).
+- `noteFmt` (`02-notebook.js`) is a generic page player: a paper kind (`lined`, `santa`, `diary`, `squared`, `notepad`, `planner`, `report`, `postcard`, `card`, `fridge`) plus a timed list of items (`w` handwriting, `strike`, `circle`, `tick`, `pol`, `corners`, `star`, `heart`, `stamp`, `sticky`, `magnet`, `card`, `pic`, `print`) and optional `flip` with a `front` drawer.
+- `build_studio.py` counts `spot({ id: ... })` calls as well as `defineSpot`, so the duplicate-id check still works.
+- Before a long render, seek every frame once to catch runtime errors: an exception at an unsampled moment otherwise shows up only as a failed render after an hour.
+
+Group the campaign's `series` by when the videos run (for example one group per month) when the person posting needs a schedule; each spot keeps its creative series in its own `series` field, and the ad copy sheet shows both (Group and Series columns).

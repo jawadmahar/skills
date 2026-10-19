@@ -58,3 +58,45 @@ Use this to avoid repeats and to find a proven mood quickly. Add every new track
 | 1057 | Cupcakes | Michael Ramir C. | Folk Pop, Happy, Carefree, Acoustic Guitar | V20 The fridge plan |
 
 Mood shortcuts from this set: playful and silly (2, 9, 10, 670), happy acoustic (8, 12, 1057, 1072, 1076, 813), dreamy or hopeful (988, 1037, 682), funky and bold (849, 1029), electronic (82, 175), light corporate (480, 729), folk walking pace (529).
+
+### Added in the Explorazone winter set (Oct 2026)
+
+The director asked to reuse the best half-term tracks where the mood fits, so 19 half-term tracks were reused (one per video) and 31 were new. Festive tracks were used only in the Christmas run-up videos (W19 to W34).
+
+| Id | Title | Artist | Used in (Explorazone, winter 2026-27) |
+|---|---|---|---|
+| 504 | Cold Day | Diego Nava | W01 |
+| 7 | Fun Times | Ahjay Stelino | W04 |
+| 1073 | Our Journey | Michael Ramir C. | W05 |
+| 587 | Discover | Eugenio Mininni | W10 |
+| 644 | Upbeat Jazz | Francisco Alvear | W11 |
+| 474 | What About Action? | Diego Nava | W14 |
+| 621 | BRIDGE N° 98 | Eugenio Mininni | W18 |
+| 862 | Christmas Gifts | Michael Ramir C. | W19 |
+| 867 | December Treats | Michael Ramir C. | W20 |
+| 916 | See You Next Christmas | Michael Ramir C. | W21 |
+| 896 | A Christmas Carol | Michael Ramir C. | W22 |
+| 503 | Christmas Jazz | Diego Nava | W23 |
+| 691 | Holidays 2 | Grigoriy Nuzhny | W24 |
+| 981 | A Rockin' Holiday! | Michael Ramir C. | W25 |
+| 866 | Christmas Stars | Michael Ramir C. | W26 |
+| 1021 | Christmas Jokes | Michael Ramir C. | W27 |
+| 911 | Let's All Dance This Christmas | Michael Ramir C. | W28 |
+| 984 | Christmas Laughs | Michael Ramir C. | W29 |
+| 510 | Holiday / Seasonal 3 | Diego Nava | W30 |
+| 1015 | A Christmas Hero | Michael Ramir C. | W31 |
+| 93 | Tinsel and Mistletoe | Ahjay Stelino | W32 |
+| 944 | Christmas Is For Kids! | Michael Ramir C. | W34 |
+| 1183 | Karma | Michael Ramir C. | W37 |
+| 786 | Kids | Michael Ramir C. | W39 |
+| 1069 | My Pride and Joy | Michael Ramir C. | W40 |
+| 514 | Happy and All That | Diego Nava | W44 |
+| 532 | A Happy Child | Diego Nava | W46 |
+| 801 | Happy Home | Michael Ramir C. | W47 |
+| 15 | Keep Smiling | Ahjay Stelino | W48 |
+| 834 | It's Love | Michael Ramir C. | W49 |
+| 688 | Classical vibes 5 | Grigoriy Nuzhny | W50 |
+
+Reused from half term: 10 (W42), 1029 (W45), 1037 (W33), 1057 (W07), 1072 (W06), 1076 (W36), 12 (W41), 175 (W17), 2 (W38), 480 (W03), 670 (W16), 682 (W08), 729 (W09), 8 (W43), 813 (W35), 82 (W13), 849 (W12), 9 (W15), 988 (W02).
+
+Mood shortcuts added: festive and bright (862, 867, 911, 981, 984, 1021), festive and gentle (93, 691, 896, 916, 866), winter but not festive (504, 532, 1073, 587, 621), jazzy (503, 644), pop and dance (474, 834, 1183, 688).

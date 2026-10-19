@@ -37,12 +37,12 @@ def main():
     files = {}
     if a.files:
         for p in Path(a.files).glob('*.mp4'):
-            m = re.search(r'-(V\d+)-', p.name) or re.match(r'(V\d+)-', p.name)
+            m = re.search(r'-([A-Z]\d+)-', p.name) or re.match(r'([A-Z]\d+)-', p.name)
             if m:
                 files[m.group(1)] = p.name
     prefix = camp.get('adPrefix', camp.get('slug', 'AD').upper())
     dates = camp.get('dates', {})
-    cols = ['Ad name', 'File', 'Series', 'Title', 'Length (s)', 'Audience', 'Angle', 'Hook', 'Headline', 'Primary text',
+    cols = ['Ad name', 'File', 'Group', 'Series', 'Title', 'Length (s)', 'Audience', 'Angle', 'Hook', 'Headline', 'Primary text',
             'Button', 'Music', 'Start', 'End']
     with open(a.out, 'w', newline='', encoding='utf-8') as fh:
         w = csv.writer(fh, delimiter='\t', quoting=csv.QUOTE_MINIMAL, lineterminator='\n')
@@ -54,9 +54,9 @@ def main():
             c = credits.get(track, {})
             music = f"{c.get('title', '?')} by {c.get('author', '?')} ({c.get('source', 'Mixkit')} #{track})" if track else ''
             meta = s.get('meta', {})
-            w.writerow([f'{prefix}_{sid}_{slug}', files.get(sid, ''), series.get(sid, s.get('series', '')), s['title'], s['dur'],
+            w.writerow([f'{prefix}_{sid}_{slug}', files.get(sid, ''), series.get(sid, ''), s.get('series') or series.get(sid, ''), s['title'], s['dur'],
                         s.get('persona', ''), s.get('angle', ''), s.get('hook', ''), meta.get('headline', ''), meta.get('primary', ''),
-                        meta.get('button', camp.get('button', 'Sign up')), music, dates.get('start', ''), dates.get('end', '')])
+                        meta.get('button', camp.get('button', 'Sign up')), music, meta.get('start', dates.get('start', '')), meta.get('end', dates.get('end', ''))])
     print(f'{a.out}: {len(spots)} rows')
 
 

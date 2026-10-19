@@ -27,7 +27,7 @@ const C = { dark: role('dark', '#16223f'), accent: role('accent', '#b6f542'), ct
 const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 const slugify = (s) => s.toLowerCase().replace(/&/g, 'and').replace(/£/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 const files = {};
-if (args.files && fs.existsSync(args.files)) for (const f of fs.readdirSync(args.files)) { const m = f.match(/(V\d+)-/); if (m && f.endsWith('.mp4')) files[m[1]] = f; }
+if (args.files && fs.existsSync(args.files)) for (const f of fs.readdirSync(args.files)) { const m = f.match(/-?([A-Z]\d+)-/); if (m && f.endsWith('.mp4')) files[m[1]] = f; }
 const thumb = (id) => { const p = args.thumbs && path.join(args.thumbs, id + '.jpg'); return p && fs.existsSync(p) ? 'data:image/jpeg;base64,' + fs.readFileSync(p).toString('base64') : ''; };
 const P = camp.pack || {};
 const copy = camp.copy || {};
@@ -49,7 +49,7 @@ const card = (s) => {
     <h3><span>${s.id}</span> ${esc(s.title)} <em>${s.dur}s</em></h3>
     <dl><dt>Audience</dt><dd>${esc(s.persona)}</dd><dt>Angle</dt><dd>${esc(s.angle)}</dd><dt>Hook</dt><dd>${esc(s.hook)}</dd>
     <dt>Music</dt><dd>${t ? `${esc(c.title || '?')} by ${esc(c.author || '?')} (${esc(c.source || 'Mixkit')} #${esc(t)})` : 'None'}</dd>
-    <dt>Headline</dt><dd><strong>${esc(s.meta?.headline)}</strong></dd></dl>
+    <dt>Headline</dt><dd><strong>${esc(s.meta?.headline)}</strong></dd>${s.meta?.start ? `<dt>Run</dt><dd>${esc(s.meta.start)} to ${esc(s.meta.end)}${s.meta.period ? ` (${esc(s.meta.period)})` : ''}</dd>` : ''}</dl>
     <p class="primary">${esc(s.meta?.primary)}</p>
     <p class="file">Ad name: ${esc(`${prefix}_${s.id}_${slug}`)}${files[s.id] ? ` · File: ${esc(files[s.id])}` : ''}</p></div></article>`;
 };
