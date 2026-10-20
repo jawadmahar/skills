@@ -16,13 +16,37 @@ function houseRow(g, y, lit, seed, o = {}) {
     x += w + 20 + r() * 30;
   }
 }
-function makeOutside(dark) {
+function makeTraffic() {
+  const c = makeCanvas(W, H), g = c.getContext('2d'), r = rng(19);
+  const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, '#0e1830'); gr.addColorStop(0.6, '#24324f'); gr.addColorStop(1, '#151a24'); g.fillStyle = gr; g.fillRect(0, 0, W, H);
+  houseRow(g, 1250, (v) => v < 0.55, 33, { fill: '#0b101c' });
+  [[160, 640], [560, 600], [960, 660]].forEach(([x, y]) => { const lg = g.createRadialGradient(x, y, 0, x, y, 260); lg.addColorStop(0, 'rgba(255,196,120,0.5)'); lg.addColorStop(1, 'rgba(255,196,120,0)'); g.fillStyle = lg; g.fillRect(x - 260, y - 260, 520, 520); });
+  g.fillStyle = '#161b24'; g.fillRect(0, 1250, W, H - 1250);
+  for (let row = 0; row < 7; row++) {
+    const y = 1290 + row * 95, sc = 0.45 + row * 0.12;
+    for (let k = 0; k < 4; k++) {
+      const x = 90 + k * 270 + (row % 2) * 60 + r() * 30, gap = 120 * sc;
+      [x, x + gap].forEach((lx) => { const rg = g.createRadialGradient(lx, y, 0, lx, y, 70 * sc); rg.addColorStop(0, 'rgba(255,60,50,0.95)'); rg.addColorStop(0.3, 'rgba(255,40,40,0.55)'); rg.addColorStop(1, 'rgba(255,40,40,0)'); g.fillStyle = rg; g.fillRect(lx - 70 * sc, y - 70 * sc, 140 * sc, 140 * sc); });
+    }
+  }
+  return c;
+}
+function makeMist(seed) {
+  const c = makeCanvas(W, H), g = c.getContext('2d'), r = rng(seed);
+  g.fillStyle = 'rgba(190,200,210,0.5)'; g.fillRect(0, 0, W, H);
+  for (let i = 0; i < 2600; i++) { const x = r() * W, y = r() * H, rad = 1.5 + r() * r() * 9; g.fillStyle = 'rgba(40,50,60,0.18)'; g.beginPath(); g.arc(x, y, rad, 0, Math.PI * 2); g.fill(); g.fillStyle = 'rgba(255,255,255,0.35)'; g.beginPath(); g.arc(x - rad * 0.3, y - rad * 0.3, rad * 0.4, 0, Math.PI * 2); g.fill(); }
+  g.strokeStyle = 'rgba(120,135,150,0.25)'; g.lineCap = 'round'; for (let i = 0; i < 22; i++) { const x = r() * W, y = r() * H * 0.7, l = 80 + r() * 260; g.lineWidth = 3 + r() * 5; g.beginPath(); g.moveTo(x, y); g.lineTo(x + (r() - 0.5) * 10, y + l); g.stroke(); }
+  return c;
+}
+function makeOutside(kind) {
+  if (kind === 'traffic') return makeTraffic();
+  const dark = kind === 'dark';
   const c = makeCanvas(W, H), g = c.getContext('2d');
   const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, dark ? '#1b2a4a' : '#aab6c4'); gr.addColorStop(0.7, dark ? '#2b3a58' : '#6d7a8a'); gr.addColorStop(1, '#2a3340'); g.fillStyle = gr; g.fillRect(0, 0, W, H);
   if (dark) { const lg = g.createRadialGradient(820, 1050, 0, 820, 1050, 380); lg.addColorStop(0, 'rgba(255,190,110,0.55)'); lg.addColorStop(1, 'rgba(255,190,110,0)'); g.fillStyle = lg; g.fillRect(0, 0, W, H); }
   [[150, 1500, 900, 4], [470, 1560, 700, 5], [900, 1520, 1000, 6]].forEach(([x, b, h, s]) => bareTree(g, x, b, h, s));
   houseRow(g, 1700, (v) => dark && v < 0.5, 12);
-  g.fillStyle = '#d9e2ea'; g.fillRect(0, 1700, W, H - 1700);
+  g.fillStyle = '#39424d'; g.fillRect(0, 1700, W, H - 1700);
   return c;
 }
 function makeFrost(seed) {
@@ -39,14 +63,17 @@ function makeFrost(seed) {
 function frostFmt(c) {
   let out = null, fr = null, fc = null;
   return {
-    setup() { out = makeOutside(c.dark); fr = makeFrost(c.seed ?? 3); fc = makeCanvas(W, H); },
+    setup() { out = makeOutside(c.scene ?? (c.dark ? 'dark' : 'grey')); fr = c.texture === 'mist' ? makeMist(c.seed ?? 3) : makeFrost(c.seed ?? 3); fc = makeCanvas(W, H); },
     frame(t) {
       const E = endAt(c.dur), A = c.wipeAt ?? 3.9, B = A + 1.6;
       if (t < E + 0.4) {
         if (t < A) {
           ctx.drawImage(out, 0, 0); ctx.save(); ctx.globalAlpha = 0.2 + 0.8 * easeOutCubic(prog(t, 0, 1.3)); ctx.drawImage(fr, 0, 0); ctx.restore();
           shade(0.85, 0.0, 0.5);
-          T(c.temp, 540, 900, { size: 210, w: 800, fam: HEAD, color: '#fff', alpha: easeOutCubic(prog(t, 0.3, 0.8)) * (1 - prog(t, A - 0.3, A)), shadow: 'rgba(20,40,70,0.5)' });
+          const ta = easeOutCubic(prog(t, 0.3, 0.8)) * (1 - prog(t, A - 0.3, A));
+          if (c.temp) T(c.temp, 540, 900, { size: 210, w: 800, fam: HEAD, color: '#fff', alpha: ta, shadow: 'rgba(20,40,70,0.5)' });
+          if (c.sub) T(c.sub, 540, 1000, { size: 56, w: 700, color: '#e5ecf3', alpha: ta, shadow: 'rgba(20,40,70,0.6)' });
+          if (c.badge) pill(540, 900, c.badge, { size: 54, bg: '#ef4444', fg: '#fff', alpha: ta, scale: easeOutBack(prog(t, 0.4, 0.8)) });
           if (t < 2.1) hook(c.hook, 430, 104, 0.1, t, { hl: P.teal, alpha: 1 - prog(t, 1.85, 2.1) });
           else hook(c.hook2, 430, 104, 2.1, t, { hl: P.teal });
         } else if (t < B + 0.2) {
@@ -71,16 +98,16 @@ function frostFmt(c) {
     },
   };
 }
-spot({ id: 'W01', title: 'Frosty window', slug: 'frosty-window', dur: 12, run: 'nov', series: 'Rain and winter weather', music: 504,
-  persona: 'Parents 25 to 44, cold weekends', angle: 'Frozen outside, glowing inside: wipe the frost and see Explorazone', style: 'Frost creeps over a window, a hand wipes it clear to reveal the laser room',
-  hook: '"Minus one. Again." over a frosted window',
-  meta: { headline: 'Too cold for the park?', primary: primary('Minus one. Again. Too cold for the park, and the children are already climbing the walls.', 'Wipe the frost off your plans: the laser room, the infinity floor and heat vision, all indoors in Bowthorpe, Norwich.') } },
-  frostFmt, { temp: '-1°C', hook: ['Minus one.', '_Again._'], hook2: ['Park?', '_Frozen solid._'], mid: ['Frozen out.', '_Glowing in._'], reveal: 'laser_room', cards: ['infinity_floor', 'heat', 'sky_maze2'], end: ['Too cold out?', '_Come inside._'], strip: ['laser_room', 'infinity_floor', 'heat', 'sky_maze2', 'dodeca', 'roses'] });
-spot({ id: 'W46', title: 'Ice scraper', slug: 'ice-scraper', dur: 12, run: 'jan', series: 'Rain and winter weather', music: 532,
-  persona: 'Parents 25 to 44, January school-run mornings', angle: 'The weekday ice scrape earns a warm, bright weekend', style: 'Dark January windscreen covered in ice, scraped clear row by row to reveal the infinity floor',
-  hook: '"7:45am. Ice scraper." on a frozen windscreen',
-  meta: { headline: 'Scraped the car all week?', primary: primary('7:45am. Ice scraper. Back to school in the dark.', 'You have earned a warm weekend: the infinity floor, the space-time tunnel and the light forest, all indoors in Bowthorpe, Norwich.') } },
-  frostFmt, { dark: true, scrape: true, seed: 8, temp: '7:45', hook: ['7:45am.', '_Ice scraper._'], hook2: ['School run.', '_In the dark._'], mid: ['Weekend:', '_scraped clear._'], reveal: 'infinity_floor', cards: ['tunnel', 'light_pillars', 'plasma'], beat: 'stack', end: ['You earned', '_a warm weekend._'], endKind: 'navy', strip: ['infinity_floor', 'tunnel', 'light_pillars', 'plasma', 'laser_room', 'heat'] });
+spot({ id: 'W01', title: 'Grey again', slug: 'grey-again', dur: 12, run: 'nov', series: 'Rain and winter weather', music: 504, ring: true,
+  persona: 'Parents 25 to 44, grey weekends', angle: 'Grey outside, glowing inside: wipe the misty window and see Explorazone', style: 'Condensation on a window over a grey street; a hand wipes it clear to reveal the laser room',
+  hook: '"Grey. Again." over a misty window, 8°C and overcast',
+  meta: { headline: 'Grey outside? Glowing inside', primary: primary('Grey. Again. The park is soggy and the children are already climbing the walls.', 'Wipe the window: the laser room, the infinity floor, heat vision and the sky maze, all indoors in Bowthorpe, Norwich.') } },
+  frostFmt, { texture: 'mist', scene: 'grey', temp: '8°C', sub: 'Overcast', hook: ['Grey.', '_Again._'], hook2: ['Park?', '_Soggy._'], mid: ['Grey out.', '_Glowing in._'], reveal: 'laser_room', cards: ['infinity_floor', 'heat', 'sky_maze2'], end: ['Grey outside?', '_Glowing inside._'], endKind: 'navy', strip: ['laser_room', 'infinity_floor', 'heat', 'sky_maze2', 'dodeca', 'roses'] });
+spot({ id: 'W46', title: 'Skip the city centre', slug: 'skip-the-city-centre', dur: 12, run: 'jan', series: 'Rain and winter weather', music: 532, ring: true,
+  persona: 'Parents 25 to 44, January weekends', angle: 'January-sales traffic in the city centre; Explorazone is outside the ring road', style: 'Misty windscreen in a dark traffic jam full of tail lights, wiped clear to reveal the infinity floor',
+  hook: '"City centre? Gridlocked." in a traffic jam',
+  meta: { headline: 'Skip the city-centre traffic', primary: primary('City centre? Gridlocked. January-sales crowds? No thanks.', 'Head the other way: the infinity floor, the space-time tunnel, the light forest and the plasma ball, all indoors in Bowthorpe, Norwich.') } },
+  frostFmt, { scene: 'traffic', texture: 'mist', scrape: true, seed: 8, badge: 'HEAVY TRAFFIC', hook: ['City centre?', '_Gridlocked._'], hook2: ['January sales?', '_No thanks._'], mid: ['Outside the', '_ring road._'], reveal: 'infinity_floor', cards: ['tunnel', 'light_pillars', 'plasma'], beat: 'stack', end: ['Skip the', '_city centre._'], endKind: 'navy', strip: ['infinity_floor', 'tunnel', 'light_pillars', 'plasma', 'laser_room', 'heat'] });
 
 // W02 Dark by 4pm ---------------------------------------------------------
 function duskFmt(c) {
@@ -118,7 +145,7 @@ function duskFmt(c) {
     },
   };
 }
-spot({ id: 'W02', title: 'Dark by 4pm', slug: 'dark-by-4pm', dur: 12, run: 'nov', series: 'Rain and winter weather', music: 988,
+spot({ id: 'W02', title: 'Dark by 4pm', slug: 'dark-by-4pm', dur: 12, run: 'nov', series: 'Rain and winter weather', music: 988, ring: true,
   persona: 'Parents 25 to 44, after the clocks go back', angle: 'Dark by four outside, lights on all day inside', style: 'Sunset time-lapse to night with a ticking clock, then rooms switch on one by one',
   hook: 'Clock ticks to 16:00 as the sky goes black: "4pm. Pitch black."',
   meta: { headline: 'Dark by 4pm? Lights on inside', primary: primary('4pm and it is pitch black already. The clocks went back and so did the fun.', 'Inside Explorazone the lights stay on: the space-time tunnel, the light forest and the garden of light, in Bowthorpe, Norwich.') } },
@@ -291,7 +318,7 @@ function snowPlanFmt(c) {
       const E = endAt(c.dur), A = c.photosAt ?? 5.4;
       if (t < E + 0.4) {
         if (t < A) {
-          vgrad([[0, '#0f1d3d'], [1, '#2a4170']]); snow(t, { n: 170, scale: 1.2 });
+          if (c.grey) rainScene(ctx, t, { alpha: 0.9 }); else { vgrad([[0, '#0f1d3d'], [1, '#2a4170']]); snow(t, { n: 170, scale: 1.2 }); }
           ctx.save(); ctx.fillStyle = '#f4efe6'; ctx.fillRect(0, 0, W, 90); ctx.fillRect(0, H - 120, W, 120); ctx.fillRect(0, 0, 60, H); ctx.fillRect(W - 60, 0, 60, H); ctx.fillRect(520, 0, 40, H); ctx.fillRect(0, 1240, W, 36); ctx.restore();
           hook(c.hook, 430, 104, 0.1, t, { hl: '#9cd8ff' });
           const pk = easeOutBack(prog(t, 0.9, 1.3)); ctx.save(); ctx.translate(540, 900); ctx.scale(pk, pk); ctx.rotate(-0.02); ctx.fillStyle = '#fffdf4'; ctx.shadowColor = 'rgba(0,0,0,0.35)'; ctx.shadowBlur = 30; rr(ctx, -420, -260, 840, 520, 20); ctx.fill(); ctx.restore();
@@ -303,7 +330,7 @@ function snowPlanFmt(c) {
             if (mark === 'v') tickMark(box - 4, y - 22, 52, prog(t, a + 0.5, a + 0.75), '#1f9d55');
           });
         } else {
-          heroPhoto(c.cards[0], t, A, E, {}); snow(t, { n: 80, alpha: 0.7 });
+          heroPhoto(c.cards[0], t, A, E, {}); if (!c.grey) snow(t, { n: 80, alpha: 0.7 });
           c.cards.slice(1).forEach((k, i) => { const a = A + 0.7 + i * 0.9; if (t > a) { const p = easeOutBack(prog(t, a, a + 0.4)); polaroidAt(IMG[k], 300 + i * 480, 960 + i * 30, 400, (i ? 0.06 : -0.05), LABEL[k] && LABEL[k].toLowerCase(), p, { fam: KALAM }); } });
           ctx.save(); ctx.globalAlpha = prog(t, A, A + 0.3); shade(0.7, 0, 0.36); ctx.restore();
           labelPill(c.cards[0], 70, 620, { alpha: prog(t, A + 0.3, A + 0.6) });
@@ -311,15 +338,15 @@ function snowPlanFmt(c) {
         }
         brandTop();
       }
-      endScene(t, E, c.end, 'snow', { accent: '#9cd8ff', stripKeys: c.strip });
+      endScene(t, E, c.end, c.endKind ?? 'snow', { accent: '#9cd8ff', stripKeys: c.strip });
     },
   };
 }
-spot({ id: 'W26', title: 'Snow day plan', slug: 'snow-day-plan', dur: 12, run: 'xmas', series: 'Rain and winter weather', music: 866,
-  persona: 'Parents 25 to 44, December weekends', angle: 'Snow or no snow, the plan is the same: Explorazone', style: 'Snow falling past a window, a handwritten plan ticked and crossed, then snowy photos',
-  hook: '"If it snows: plan A." over falling snow',
-  meta: { headline: 'Snow or no snow, sorted', primary: primary('If it snows, we have a plan. If it does not snow, same plan.', 'The sky maze, the light forest and the infinity floor, all indoors in Bowthorpe, Norwich, whatever December does.') } },
-  snowPlanFmt, { hook: ['If it snows:', '_plan A._'], list: [['Sledging (no hill)', 'x'], ['Snowman (no snow)', 'x'], ['Explorazone', 'v']], mid: ['Snow or no snow:', '_same plan._'], cards: ['sky_maze2', 'light_pillars', 'infinity_floor'], end: ['Snow or no snow,', '_sorted._'], strip: ['sky_maze2', 'light_pillars', 'infinity_floor', 'roses', 'dodeca', 'laser_room'] });
+spot({ id: 'W26', title: 'White Christmas? In Norwich?', slug: 'white-christmas-norwich', dur: 12, run: 'xmas', series: 'Rain and winter weather', music: 866, ring: true,
+  persona: 'Parents 25 to 44, December weekends', angle: 'Norwich does grey, not white: the plan for a grey Christmas', style: 'Drizzle on a window, a handwritten plan with two crosses and a tick, then photos',
+  hook: '"White Christmas? In Norwich?" over drizzle on the window',
+  meta: { headline: 'Grey Christmas? Sorted.', primary: primary('White Christmas? In Norwich? Probably grey, like most years.', 'The plan that works anyway: the sky maze, the light forest and the infinity floor, all indoors in Bowthorpe, Norwich.') } },
+  snowPlanFmt, { grey: true, hook: ['White Christmas?', '_In Norwich?_'], list: [['Snowman (no snow)', 'x'], ['Sledging (no hill)', 'x'], ['Explorazone', 'v']], mid: ['Grey outside:', '_glowing inside._'], cards: ['sky_maze2', 'light_pillars', 'infinity_floor'], end: ['Grey Christmas?', '_Sorted._'], endKind: 'rain', strip: ['sky_maze2', 'light_pillars', 'infinity_floor', 'roses', 'dodeca', 'laser_room'] });
 
 // W32 Fairy lights ------------------------------------------------------------------
 function fairyFmt(c) {
@@ -345,7 +372,7 @@ function fairyFmt(c) {
           BK.forEach((b) => { const a = 0.18 + 0.12 * Math.sin(t * 2 + b.ph); const g = ctx.createRadialGradient(b.x, b.y, 0, b.x, b.y, b.r); g.addColorStop(0, `rgba(${b.c},${a})`); g.addColorStop(1, `rgba(${b.c},0)`); ctx.fillStyle = g; ctx.fillRect(b.x - b.r, b.y - b.r, b.r * 2, b.r * 2); });
           ctx.save(); ctx.globalAlpha = prog(t, A, A + 0.4); shade(0.7, 0, 0.36); ctx.restore();
           hook(c.mid, 430, 104, A + 0.1, t, { hl: P.yellow });
-          c.cards.slice(1).forEach((k, i) => { const a = A + 1.0 + i * 0.8; if (t > a) card(k, 90 + i * 470, 820 + (i % 2) * 70, 430, 520, { alpha: easeOutCubic(prog(t, a, a + 0.35)), zoom: 1.08 }); });
+          c.cards.slice(1).forEach((k, i) => { const a = A + 1.0 + i * 0.8; if (t > a) card(k, 90 + i * 470, 700 + (i % 2) * 60, 430, 480, { alpha: easeOutCubic(prog(t, a, a + 0.35)), zoom: 1.08 }); });
           labelPill(c.cards[0], 70, 680, { alpha: prog(t, A + 0.4, A + 0.7) });
         }
         brandTop();
@@ -382,7 +409,7 @@ function raceFmt(c) {
         brandTop();
         if (t < 2.2) hook(c.hook, 430, 92, 0.1, t, { hl: P.teal, alpha: 1 - prog(t, 2.0, 2.2) }); else hook(c.hook2, 430, 100, 2.2, t, { hl: P.teal });
       } else if (t < E + 0.4) {
-        if (t < A + 1.4) { fogWipe(fg, t, A, A + 1.4, IMG[c.reveal]); }
+        if (t < A + 1.4) { fogWipe(fg, t, A, A + 1.4, IMG[c.reveal], { under: () => heroPhoto(c.reveal, t, A, A + 3) }); }
         else cardSeq(t, c.cards.map((k, i) => { const s = (E - A - 1.4) / c.cards.length; return { k, a: A + 1.4 + i * s, b: A + 1.4 + (i + 1) * s }; }), 600, 980, 640);
         ctx.save(); ctx.globalAlpha = prog(t, A + 0.4, A + 0.8); shade(0.75, 0, 0.4); ctx.restore();
         hook(c.mid, 430, 100, A + 0.5, t, { hl: P.lime }); brandTop();

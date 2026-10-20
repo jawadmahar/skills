@@ -29,7 +29,7 @@ function polaroid(img, cx, cy, rot, label, k) {
   ctx.restore();
   ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot); const s2 = lerp(1.35, 1, easeOutCubic(k)); ctx.scale(s2, s2); ctx.globalAlpha = clamp(k * 1.6);
   ctx.beginPath(); ctx.rect(-w / 2 + 16, -h / 2 + 16, w - 32, w - 40); ctx.clip();
-  const iw = w - 32, ih = w - 40, sc = Math.max(iw / img.width, ih / img.height); ctx.drawImage(img, -img.width * sc / 2, -h / 2 + 16 + ih / 2 - img.height * sc / 2, img.width * sc, img.height * sc);
+  const iw = w - 32, ih = w - 40, sc = Math.max(iw / img.width, ih / img.height), [fx, fy] = focusOf(img); ctx.drawImage(img, -w / 2 + 16 + (iw - img.width * sc) * fx, -h / 2 + 16 + (ih - img.height * sc) * fy, img.width * sc, img.height * sc);
   ctx.restore();
   ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot); ctx.scale(s2, s2); ctx.globalAlpha = clamp(k * 1.6);
   T(label, 0, h / 2 - 22, { size: 44, w: 700, fam: HAND, color: '#253a8f' });
@@ -55,7 +55,7 @@ function photoCorners(img, cx, cy, w, rot, label, k, o = {}) {
   if (k <= 0) return; const h = w * 0.8;
   ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot); const s = lerp(1.25, 1, easeOutCubic(k)); ctx.scale(s, s); ctx.globalAlpha = clamp(k * 1.6);
   ctx.shadowColor = 'rgba(40,30,10,0.28)'; ctx.shadowBlur = 18; ctx.shadowOffsetY = 8; ctx.fillStyle = '#fff'; ctx.fillRect(-w / 2 - 10, -h / 2 - 10, w + 20, h + 20); ctx.shadowColor = 'transparent';
-  ctx.save(); ctx.beginPath(); ctx.rect(-w / 2, -h / 2, w, h); ctx.clip(); const sc = Math.max(w / img.width, h / img.height); ctx.drawImage(img, -img.width * sc / 2, -img.height * sc / 2, img.width * sc, img.height * sc); ctx.restore();
+  ctx.save(); ctx.beginPath(); ctx.rect(-w / 2, -h / 2, w, h); ctx.clip(); const sc = Math.max(w / img.width, h / img.height), [fx, fy] = focusOf(img); ctx.drawImage(img, -w / 2 + (w - img.width * sc) * fx, -h / 2 + (h - img.height * sc) * fy, img.width * sc, img.height * sc); ctx.restore();
   ctx.fillStyle = '#222'; const c = w * 0.12; [[-1, -1], [1, -1], [-1, 1], [1, 1]].forEach(([sx, sy]) => { ctx.beginPath(); ctx.moveTo(sx * (w / 2 + 12), sy * (h / 2 + 12)); ctx.lineTo(sx * (w / 2 + 12) - sx * c, sy * (h / 2 + 12)); ctx.lineTo(sx * (w / 2 + 12), sy * (h / 2 + 12) - sy * c); ctx.closePath(); ctx.fill(); });
   if (label) T(label, 0, h / 2 + 70, { size: 52, w: 700, fam: o.fam ?? SCRIPT, color: o.ink ?? '#1f2d5a' });
   ctx.restore();

@@ -1,6 +1,6 @@
 // =====================================================================
 // lib/weather.js: rain on glass, weather icons, fog-wipe reveal, photo card sequence
-// rainScene(g, t, {drops, alpha}) · cloudIcon(cx, cy, s, a) · RAIN_END(t) · fogWipe(cnv, t, a, b, img, {fx, turns, ph}) · cardSeq(t, cards, y, w, h, {dim})
+// rainScene(g, t, {drops, alpha}) · cloudIcon(cx, cy, s, a) · RAIN_END(t) · fogWipe(cnv, t, a, b, img, {fx, turns, ph, under}) · cardSeq(t, cards, y, w, h, {dim})
 // =====================================================================
 const RAIN = (() => {
   const r = rng(11);
@@ -33,7 +33,7 @@ function cloudIcon(cx, cy, s, a) {
 const RAIN_END = (t) => { rainScene(ctx, t, { drops: false, alpha: 0.6 }); ctx.save(); ctx.globalAlpha = 0.72; fill('#0d1a3a'); ctx.restore(); };
 function fogWipe(cnv, t, a, b, img, o = {}) {
   // draws img full-bleed, then a fogged rainy window that gets wiped away between a and b
-  photo(img, 0, 0, W, H, { zoom: 1.05 + 0.05 * prog(t, a, b + 1), fx: o.fx ?? 0.5 });
+  if (o.under) o.under(); else photo(img, 0, 0, W, H, { zoom: 1.05 + 0.05 * prog(t, a, b + 1), fx: o.fx });
   const g = cnv.getContext('2d');
   g.globalCompositeOperation = 'source-over'; rainScene(g, t, { alpha: 0.8 }); g.fillStyle = 'rgba(200,214,228,0.22)'; g.fillRect(0, 0, W, H);
   g.globalCompositeOperation = 'destination-out'; g.strokeStyle = '#000'; g.lineCap = 'round'; g.lineJoin = 'round'; g.lineWidth = 280;

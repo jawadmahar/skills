@@ -1,6 +1,6 @@
 # Learnings
 
-Last consolidated: 19 October 2026 (version 1.1.0)
+Last consolidated: 20 October 2026 (version 1.1.0)
 
 Read Global plus the section for the brand you are working on before planning. Brand guidelines and the campaign brief override anything here. Confidence: **Director** (the director said so), **Proven** (Meta data across campaigns), **Hypothesis** (test it on purpose), **Firm** (learned the hard way in production). How rules are added, promoted and retired: `references/feedback-loop.md`.
 
@@ -19,17 +19,21 @@ Read Global plus the section for the brand you are working on before planning. B
 | G9 | Ask which seasonal moments matter and the sales window before planning; do not fill the calendar with every date. | Winter set: director dropped Bonfire Night and Black Friday and narrowed the focus to Nov to 10 Jan | Director | Oct 2026 |
 | G10 | For sets above about 15 videos, write formats as config-driven functions in a shared kit (`spot(meta, format, config)`) so each video is a short config and fixes reach every video that uses the format. | Winter set: 50 videos from 35 formats in six files; layout fixes applied once per format | Firm | Oct 2026 |
 | G11 | Keep legal lines short: put the terms on the end card, and keep end dates and early-end clauses out of the terms line when the director asks. | Director: "more concise, don't mention end dates here, or the right to cancel, end with T&Cs apply" | Director | Oct 2026 |
+| G12 | Never cover-fill a 9:16 frame with a landscape photo (it zooms about 3x into the middle). Show the whole photo at full width over a blurred fill of itself, and give every photo a focal point (`focus` in brand.json) so crops keep the subject. | Director: "some photos are zoomed in, in the wrong part and not centred after the zoom in" | Director | Oct 2026 |
 
 ## Explorazone
 
 | # | Rule | Evidence | Confidence | Since |
 |---|---|---|---|---|
 | E1 | Give grandparents and three-generation angles a fixed share of every set. | 90-day buy 2, get the 3rd free data: the grandparent-led campaign drove most attributed purchases and the oldest age band had among the cheapest leads | Hypothesis (strong in static-ad data; confirm with video) | Oct 2026 |
-| E2 | Bad weather is the strongest seasonal lever for an indoor attraction: rain, cold, dark evenings. | Rain concept chosen as a favourite; indoor angle matches the half-term brief | Hypothesis | Oct 2026 |
+| E2 | Bad weather is the strongest seasonal lever for an indoor attraction: rain, grey skies, dark evenings (see E8). | Rain concept chosen as a favourite; indoor angle matches the half-term brief | Hypothesis | Oct 2026 |
 | E3 | Video should open up Reels and Stories inventory; earlier static ads spent mostly in Feed. | 90-day placement data before the half-term videos | Hypothesis (check after half term) | Oct 2026 |
 | E4 | Keep "Formerly Exploring Science" on end cards until the director drops it. | Rename during 2026 | Director | Oct 2026 |
 | E5 | Never show Christmas or New Year opening or closure dates in videos or copy. | Director, winter interview | Director | Oct 2026 |
 | E6 | Lead with parents 25 to 44 when the director asks, but keep about a quarter of the set for grandparents and three generations. | Director chose parents first for winter; rule E1 data still favours grandparents | Director | Oct 2026 |
+| E7 | Make more grandparent-led stories with a nostalgic or playful-mission twist; the director's favourites are W11 "In my day" and W31 "Operation: Wrapping". | Director feedback on the winter set | Director | Oct 2026 |
+| E8 | Norwich winters are grey, cloudy and dark, not frozen: no frost, ice, sub-zero or snow hooks (snow as Christmas decoration is fine). | Director: "Norwich doesn't get sub zero winter temperatures or snow" | Director | Oct 2026 |
+| E9 | From November to January use the location: the city centre is busy with traffic and crowds, and Explorazone is outside the ring road. | Director, winter feedback | Director | Oct 2026 |
 
 ## STEMEX
 No learnings yet.

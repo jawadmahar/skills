@@ -73,3 +73,27 @@ What: The 50-video render hit the 2-hour background limit at 46 videos; the last
 Applies to: rendering and music for large sets
 Meaning: plan renders in batches under 2 hours; trust check_videos and fix starts per video
 Outcome: logged only (pitfalls added to engine.md)
+
+### 2026-10-20 · Explorazone · winter 2026-27 · active · director
+What: Favourites so far: W11 "In my day" (sepia film of the old phones, radios and cameras, then colour) and W31 "Operation: Wrapping" (a top-secret dossier: Nan and Grandad take the children out so the presents can be wrapped). Next batch: more like these.
+Applies to: W11, W31; the batch from 11 Jan 2027
+Meaning: grandparent-led stories with a nostalgic or playful-mission twist land best with the director
+Outcome: promoted to rule E7; concept-library statuses set to Director favourite
+
+### 2026-10-20 · Explorazone · winter 2026-27 · active · director
+What: Norwich does not get sub-zero temperatures or snow; it does get dark, grey and cloudy in winter. Use those hooks.
+Applies to: W01 (frost became "Grey. Again."), W26 (snow plan became "White Christmas? In Norwich?"), W45 (frost became grey and dark), W46 (ice scraper replaced)
+Meaning: weather hooks must match local reality; grey and dark are the true levers
+Outcome: promoted to rule E8; E2 reworded
+
+### 2026-10-20 · Explorazone · winter 2026-27 · active · director
+What: The city centre gets very busy with traffic and crowds from November to January, and Explorazone is outside the city-centre ring road. Use these hooks.
+Applies to: W46 (new "Skip the city centre"), W09 (traffic alert), 14 primary texts ("Skip the city-centre traffic and crowds: we are outside the ring road, in Bowthorpe.")
+Meaning: location is a seasonal advantage worth saying
+Outcome: promoted to rule E9
+
+### 2026-10-20 · Explorazone · winter 2026-27 · active · director
+What: "Some photos are zoomed in, in the wrong part and not centred after the zoom in, fix that bit, rest looks good."
+Applies to: every full-frame photo (landscape venue photos cover-filled into 9:16, about 3x zoom on the middle) and off-centre subjects in smaller crops
+Meaning: never cover-fill 9:16 with a landscape photo; show the whole photo over a blurred fill, and give each photo a focal point
+Outcome: promoted to rule G12; engine gains per-photo focal points ("focus" in brand.json) and the kit's heroPhoto shows the whole photo; 17 videos re-rendered

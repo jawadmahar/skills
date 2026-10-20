@@ -32,11 +32,11 @@ function notifFmt(c) {
     },
   };
 }
-spot({ id: 'W09', title: 'Lock-screen pings', slug: 'lock-screen-pings', dur: 8, run: 'nov', series: 'Screens and phones', music: 729,
+spot({ id: 'W09', title: 'Lock-screen pings', slug: 'lock-screen-pings', dur: 8, run: 'nov', series: 'Screens and phones', music: 729, ring: true,
   persona: 'Parents 25 to 44, Saturday morning', angle: 'The notifications pile up until the right one lands', style: 'Phone lock screen with stacking notifications that expand into a photo',
-  hook: 'Weather notification: "Rain all weekend"',
-  meta: { headline: 'The notification you wanted', primary: primary('Weather: rain all weekend. Family chat: what are we doing Saturday? Kids: I am bored.', 'Explorazone: the laser room, heat vision and the sky maze, all indoors in Bowthorpe, Norwich.') } },
-  notifFmt, { wall: 'laser_room', day: 'Saturday', time: '9:41', photo: 'laser_room', expand: 3.2, notes: [['Weather', '#3b82f6', 'W', 'Rain all weekend', 'Heavy showers Sat and Sun', 0.15], ['Family chat', '#22c55e', 'F', 'Mum', 'What are we doing Saturday?', 0.9], ['Kids', '#f59e0b', 'K', '"I\'m bored"', '14 new messages', 1.6], ['Explorazone', '#ef4720', 'E', 'Buy 2, get the 3rd free', 'Lasers, heat vision, sky maze. Indoors.', 2.4]], end: ['Saturday?', '_Sorted._'], strip: ['laser_room', 'heat', 'sky_maze2', 'infinity_floor', 'robot2', 'roses'] });
+  hook: 'Weather notification: "Grey all weekend"',
+  meta: { headline: 'The notification you wanted', primary: primary('Weather: grey all weekend. Family chat: what are we doing Saturday? Maps: city centre, heavy traffic.', 'Explorazone: the laser room, heat vision and the sky maze, all indoors in Bowthorpe, Norwich.') } },
+  notifFmt, { wall: 'laser_room', day: 'Saturday', time: '9:41', photo: 'laser_room', expand: 3.2, notes: [['Weather', '#3b82f6', 'W', 'Grey all weekend', 'Cloudy with drizzle, Sat and Sun', 0.15], ['Family chat', '#22c55e', 'F', 'Mum', 'What are we doing Saturday?', 0.9], ['Maps', '#ef4444', 'M', 'City centre: heavy traffic', 'Christmas shoppers everywhere', 1.6], ['Explorazone', '#ef4720', 'E', 'Buy 2, get the 3rd free', 'Outside the ring road. All indoors.', 2.4]], end: ['Saturday?', '_Sorted._'], strip: ['laser_room', 'heat', 'sky_maze2', 'infinity_floor', 'robot2', 'roses'] });
 
 // W10 and W41 Search bar ---------------------------------------------------------------
 function searchFmt(c) {
@@ -74,7 +74,7 @@ function searchFmt(c) {
     },
   };
 }
-spot({ id: 'W10', title: 'Search: rainy day Norwich', slug: 'search-rainy-day', dur: 12, run: 'nov', series: 'Screens and phones', music: 587,
+spot({ id: 'W10', title: 'Search: rainy day Norwich', slug: 'search-rainy-day', dur: 12, run: 'nov', series: 'Screens and phones', music: 587, ring: true,
   persona: 'Parents 25 to 44 searching for rainy-day ideas', angle: 'The search every Norwich parent types on a wet Saturday', style: 'Search bar typing with autocomplete, then a result card with photos',
   hook: 'Typing: "things to do in norwich when it..."',
   meta: { headline: 'What to do when it rains', primary: primary('Things to do in Norwich when it rains with kids. You have typed it. We have answered it.', 'The science lab, the AR sandbox and the laser jungle, all indoors at Explorazone, Bowthorpe, Norwich.') } },
@@ -95,12 +95,14 @@ function povFmt(c) {
         const seg = c.segs.findIndex((s, i) => t >= s[2] && (i === c.segs.length - 1 || t < c.segs[i + 1][2]));
         const [key, cap, a, filt] = c.segs[Math.max(0, seg)];
         const punch = 1 + 0.12 * (1 - easeOutCubic(prog(t, a, a + 0.35))), j = J[Math.floor(t * 8) % 200];
-        ctx.save(); ctx.translate(540 + j[0] * 14, 960 + j[1] * 14); ctx.rotate(j[0] * 0.01); ctx.scale(punch, punch); ctx.translate(-540, -960);
-        photo(IMG[key], -40, -40, W + 80, H + 80, { zoom: 1.05 + 0.06 * prog(t, a, a + 2), filter: filt });
+        bgPhoto(IMG[key]);
+        const ph = heroH(key);
+        ctx.save(); ctx.translate(540 + j[0] * 14, 900 + j[1] * 14); ctx.rotate(j[0] * 0.01); ctx.scale(punch, punch); ctx.translate(-540, -900);
+        photo(IMG[key], 0, 900 - ph / 2, W, ph, { zoom: 1.02 + 0.04 * prog(t, a, a + 2), filter: filt, shadow: 'rgba(0,0,0,0.45)' });
         ctx.restore(); vgrad([[0, 'rgba(0,0,0,0.35)'], [0.3, 'rgba(0,0,0,0)'], [0.75, 'rgba(0,0,0,0)'], [1, 'rgba(0,0,0,0.35)']]);
         const lines = wrap(cap, 900, 66, 800), k = prog(t, a + 0.05, a + 0.2);
         lines.forEach((ln, i) => {
-          const y = 600 + i * 92;
+          const y = 440 + i * 92;
           if (c.bubble) { const w = measure(ln, 62, 800) + 50; ctx.save(); ctx.globalAlpha = k; ctx.fillStyle = '#fff'; rr(ctx, 540 - w / 2, y - 62, w, 84, 16); ctx.fill(); ctx.restore(); T(ln, 540, y, { size: 62, w: 800, color: '#111', alpha: k }); }
           else T(ln, 540, y, { size: 66, w: 800, color: '#fff', stroke: 10, strokeColor: '#000', alpha: k });
         });
@@ -155,7 +157,7 @@ function chatFmt(c) {
     },
   };
 }
-spot({ id: 'W29', title: 'Family group chat', slug: 'family-group-chat', dur: 12, run: 'xmas', series: 'Screens and phones', music: 984,
+spot({ id: 'W29', title: 'Family group chat', slug: 'family-group-chat', dur: 12, run: 'xmas', series: 'Screens and phones', music: 984, ring: true,
   persona: 'Three generations planning the Christmas holidays', angle: 'The family chat agrees on one plan for once', style: 'Messaging app with typing dots, a photo message and heart reactions',
   hook: 'Nan in the family chat: "Who’s doing what this Christmas?"',
   meta: { headline: 'The family chat agrees', primary: primary('Nan: who is doing what this Christmas? Mum: kids are off soon, ideas? Grandad: somewhere dry, please.', 'Robot waiters, heat vision and the laser room, all indoors at Explorazone, Bowthorpe, Norwich. Buy 2, the 3rd goes free.') } },
@@ -223,12 +225,12 @@ function batteryFmt(c) {
           T(`${Math.max(1, Math.round(lvl * 100))}%`, 540, 1180, { size: 110, w: 800, fam: HEAD, color: lvl > 0.2 ? '#fff' : '#ff453a' });
           hook(c.hook, 430, 104, 0.05, t, { hl: '#ff453a' });
         } else {
-          heroPhoto(c.cards[0], t, S, E, { z0: 1.12 });
+          heroPhoto(c.cards[0], t, S, E, { cy: 820 });
           ctx.save(); ctx.globalAlpha = 1 - prog(t, S, S + 0.25); fill('#fff'); ctx.restore();
           ctx.save(); ctx.globalAlpha = prog(t, S, S + 0.3); shade(0.75, 0, 0.36); ctx.restore();
           hook(c.mid, 430, 100, S + 0.1, t, { hl: P.yellow });
-          if (c.cards[1] && t > S + 0.9) card(c.cards[1], 520, 820, 480, 380, { alpha: easeOutCubic(prog(t, S + 0.9, S + 1.2)), zoom: 1.06 });
-          labelPill(c.cards[0], 70, 700, { alpha: prog(t, S + 0.4, S + 0.7) });
+          if (c.cards[1] && t > S + 0.9) card(c.cards[1], 540, 1000, 470, 260, { alpha: easeOutCubic(prog(t, S + 0.9, S + 1.2)), zoom: 1.06 });
+          labelPill(c.cards[0], 70, 1060, { alpha: prog(t, S + 0.4, S + 0.7) });
         }
         brandTop();
       }
@@ -250,12 +252,12 @@ function rollFmt(c) {
       if (t < E + 0.4) {
         fill('#fff'); T('Recents', 70, 420, { size: 66, w: 800, color: '#111', align: 'left' }); T(c.sub, 70, 480, { size: 32, w: 600, color: '#8e8e93', align: 'left' });
         const s = 312, gap = 6, keys = c.grid;
-        keys.forEach((k, i) => { const a = 0.15 + i * 0.12, p = prog(t, a, a + 0.25); if (p <= 0) return; const x = 30 + (i % 3) * (s + gap), y = 520 + Math.floor(i / 3) * (s + gap); photo(IMG[k], x, y, s, s, { alpha: p, zoom: 1.2, fx: (i * 0.37) % 1 }); });
+        keys.forEach((k, i) => { const a = 0.15 + i * 0.12, p = prog(t, a, a + 0.25); if (p <= 0) return; const x = 30 + (i % 3) * (s + gap), y = 520 + Math.floor(i / 3) * (s + gap); photo(IMG[k], x, y, s, s, { alpha: p, zoom: 1.05 }); });
         const sel = c.open.findIndex((o, i) => t >= o[1] && (i === c.open.length - 1 || t < c.open[i + 1][1]));
         if (t > X && sel >= 0) {
           const [key, at, cap] = c.open[sel]; const k = easeOutCubic(prog(t, at, at + 0.4));
           ctx.save(); ctx.globalAlpha = k; fill('#000'); ctx.restore();
-          const w = lerp(312, W, k), h = lerp(312, 1300, k), x = lerp(30 + 312, 0, k), y = lerp(830, 380, k);
+          const fh = heroH(key), w = lerp(312, W, k), h = lerp(312, fh, k), x = lerp(30 + 312, 0, k), y = lerp(830, 900 - fh / 2, k);
           photo(IMG[key], x, y, w, h, { zoom: 1.05 + 0.04 * prog(t, at, at + 2) });
           T(cap, 540, 1210, { size: 52, w: 800, color: '#fff', shadow: 'rgba(0,0,0,0.8)', alpha: prog(t, at + 0.3, at + 0.6) });
           labelPill(key, 70, 460, { alpha: prog(t, at + 0.3, at + 0.6) });

@@ -7,7 +7,7 @@ function roundedPhotoCanvas(img, w, h, o = {}) {
   const c = makeCanvas(w, h), g = c.getContext('2d'); const b = o.border ?? 18, r = o.radius ?? 40;
   g.fillStyle = o.borderColor ?? ROLE.light; rr(g, 0, 0, w, h, r); g.fill();
   g.save(); rr(g, b, b, w - b * 2, h - b * 2, r - b / 2); g.clip();
-  const s = Math.max((w - b * 2) / img.width, (h - b * 2) / img.height); g.drawImage(img, w / 2 - img.width * s / 2, h / 2 - img.height * s / 2, img.width * s, img.height * s);
+  const s = Math.max((w - b * 2) / img.width, (h - b * 2) / img.height), [fx, fy] = focusOf(img); g.drawImage(img, b + (w - b * 2 - img.width * s) * fx, b + (h - b * 2 - img.height * s) * fy, img.width * s, img.height * s);
   g.restore(); return c;
 }
 function project(v) { const p = v.clone().project(three.camera); return { x: (p.x + 1) / 2 * W, y: (1 - p.y) / 2 * H }; }

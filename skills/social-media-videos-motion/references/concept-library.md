@@ -24,14 +24,14 @@ Winter variants (Oct 2026, Untested on Meta; code in the winter campaign, `01-we
 
 | Id | Title | Format | Mechanic |
 |---|---|---|---|
-| W01 | Frosty window | `frostFmt` | Procedural frost over a cold street; a hand wipes it clear to reveal a room |
-| W46 | Ice scraper | `frostFmt` (scrape) | Dark January windscreen scraped row by row |
+| W01 | Grey again | `frostFmt` (mist, grey street) | Condensation on a window over a grey street, 8°C and overcast; a hand wipes it clear |
+| W46 | Skip the city centre | `frostFmt` (mist, traffic, scrape) | Misty windscreen in a tail-light traffic jam, "HEAVY TRAFFIC"; wiped clear to "Outside the ring road" |
 | W02 | Dark by 4pm | `duskFmt` | Sunset time-lapse with a ticking clock, rooms switch on one by one |
 | W03 | Wet weekend forecast | `forecastFmt` | Two-day weather app swipes to an Explorazone forecast |
 | W04 | Windscreen wipers | `wipersFmt` | Each wiper pass clears a sector showing an attraction |
 | W05 | Foggy Saturday | `fogFmt` | Road sign in fog; the fog lifts into colour |
 | W17 | Storm warning | `stormFmt` | Phone weather alert over blowing leaves, then a calm 2x2 grid |
-| W26 | Snow day plan | `snowPlanFmt` | Snow at the window, a handwritten plan ticked and crossed |
+| W26 | White Christmas? In Norwich? | `snowPlanFmt` (grey) | Drizzle on the window, a plan with "Snowman (no snow)" crossed out |
 | W32 | Fairy lights | `fairyFmt` | One tired string of bulbs, then the garden of light |
 | W42 | Raindrop race: holidays | `raceFmt` | Three-drop race (Me, Dad, Mum), then a fog wipe |
 
@@ -103,9 +103,9 @@ Code in `campaigns/explorazone/2026-11-winter/spots/`. Every format is a functio
 | W25 | Jumper day: done | `knitFmt` | Procedural knitted jumper with stitched photo patches |
 | W28 | Countdown to the holidays | `flapFmt` | Split-flap 5 to 1, then a 2x2 grid |
 | W30 | Tickets in the snow | `snowTicketsFmt` | Three tickets in falling snow; the third flips to FREE |
-| W31 | Operation: Wrapping | `dossierFmt` | Typed top-secret dossier with stamps and clipped photos |
-| W11 | In my day | `filmFmt` | Sepia film strip with grain and sprockets over retro tech, then colour |
-| W12, W45 | £36 / January maths | `bigNumFmt` | Giant price filled with a venue photo (frosty option) |
+| W31 | Operation: Wrapping | `dossierFmt` | Typed top-secret dossier with stamps and clipped photos. **Director favourite** (Oct 2026) |
+| W11 | In my day | `filmFmt` | Sepia film strip with grain and sprockets over retro tech, then colour. **Director favourite** (Oct 2026) |
+| W12, W45 | £36 / January maths | `bigNumFmt` | Giant price filled with a venue photo (grey-cloud option) |
 | W14 | Outside vs inside | `splitFmt` | Grey rain versus colour; the divider slides |
 | W15 | Bored-o-meter | `stopwatchFmt` | Stopwatch to 04:59 and a BORED stamp |
 | W16 | True or false? | `quizFmt` | Swipe quiz cards with answer stamps |
@@ -116,6 +116,8 @@ Code in `campaigns/explorazone/2026-11-winter/spots/`. Every format is a functio
 | W47 | Family tree | `treeFmt` | Tree grows; Nan and Mum get £18 tags, Me gets FREE |
 | W48 | Myth: nothing to do | `mythFmt` | Myth statement stamped BUSTED |
 | W50 | New year, new worlds | `portalFmt` | Zoom-through glowing portals |
+
+Next ideas in the favourites' vein (rule E7): Grandad's toolbox of old gadgets, a 1970s school report next to today's, Nan's recipe card for "a good day out", Mission: half term, a spy-gadget briefing for the grandchildren.
 
 ## Making a variant well
 

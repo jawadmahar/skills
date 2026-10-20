@@ -95,8 +95,11 @@ function chipsRow(list, cy, t0, t, o = {}) {
     x += ws[i] + gap;
   });
 }
+// focal point of each photo, [fx, fy] from 0 to 1, from "focus" in brand.json or campaign.json: crops keep the subject in view
+const FOCUS = { ...(BRAND.focus || {}), ...(CAMPAIGN.focus || {}) };
+function focusOf(img) { return FOCUS[img?.dataset?.key] || [0.5, 0.5]; }
 function photo(img, x, y, w, h, o = {}) {
-  const z = o.zoom ?? 1, fx = o.fx ?? 0.5, fy = o.fy ?? 0.5;
+  const [dfx, dfy] = focusOf(img), z = o.zoom ?? 1, fx = o.fx ?? dfx, fy = o.fy ?? dfy;
   const s = Math.max(w / img.width, h / img.height) * z, iw = img.width * s, ih = img.height * s;
   ctx.save(); ctx.globalAlpha = o.alpha ?? 1;
   if (o.shadow) { const sp = shadowSprite(w, h, o.radius ?? 0, o.shadow); ctx.drawImage(sp, x - SHADOW_PAD, y - SHADOW_PAD, w + SHADOW_PAD * 2, h + SHADOW_PAD * 2 + 18); }
@@ -172,7 +175,7 @@ function polaroidAt(img, cx, cy, w, rot, label, k, o = {}) {
   ctx.save(); ctx.translate(cx, cy); ctx.rotate(rot); const s = lerp(1.3, 1, easeOutCubic(k)); ctx.scale(s, s); ctx.globalAlpha = clamp(k * 1.6);
   ctx.shadowColor = 'rgba(40,30,10,0.32)'; ctx.shadowBlur = 26; ctx.shadowOffsetY = 12; ctx.fillStyle = '#fff'; ctx.fillRect(-w / 2, -h / 2, w, h); ctx.shadowColor = 'transparent';
   ctx.save(); ctx.beginPath(); ctx.rect(-w / 2 + pad, -h / 2 + pad, w - pad * 2, w - pad * 1.2); ctx.clip();
-  const iw = w - pad * 2, ih = w - pad * 1.2, sc = Math.max(iw / img.width, ih / img.height); ctx.drawImage(img, -img.width * sc / 2, -h / 2 + pad + ih / 2 - img.height * sc / 2, img.width * sc, img.height * sc); ctx.restore();
+  const iw = w - pad * 2, ih = w - pad * 1.2, sc = Math.max(iw / img.width, ih / img.height), [fx, fy] = focusOf(img); ctx.drawImage(img, -w / 2 + pad + (iw - img.width * sc) * fx, -h / 2 + pad + (ih - img.height * sc) * fy, img.width * sc, img.height * sc); ctx.restore();
   if (label) T(label, 0, h / 2 - w * 0.07, { size: w * 0.15, w: 700, fam: o.fam ?? HAND, color: o.ink ?? '#253a8f' });
   if (o.tape !== false) { ctx.fillStyle = o.tapeColor ?? 'rgba(235,220,170,0.78)'; ctx.fillRect(-w * 0.22, -h / 2 - w * 0.07, w * 0.44, w * 0.14); }
   ctx.restore();

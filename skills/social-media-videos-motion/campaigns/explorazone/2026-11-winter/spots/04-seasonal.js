@@ -38,7 +38,7 @@ function adventFmt(c) {
     },
   };
 }
-spot({ id: 'W20', title: 'Advent doors', slug: 'advent-doors', dur: 12, run: 'xmas', series: 'Christmas', music: 867,
+spot({ id: 'W20', title: 'Advent doors', slug: 'advent-doors', dur: 12, run: 'xmas', series: 'Christmas', music: 867, ring: true,
   persona: 'Parents 25 to 44, December weekends', angle: 'Every advent door so far has been rain; the next ones open on colour', style: 'Advent calendar whose first doors show rain clouds and later doors open on venue photos',
   hook: 'Advent doors open: "Door 1: rain. Door 3: rain."',
   meta: { headline: 'A December worth opening', primary: primary('Advent so far. Door 1: rain. Door 3: rain. Door 7: more rain.', 'Open a better door: the laser room, the infinity floor, robot waiters and the garden of light, all indoors at Explorazone, Bowthorpe, Norwich.') } },
@@ -104,7 +104,7 @@ function receiptFmt(c) {
     },
   };
 }
-spot({ id: 'W23', title: 'Christmas shopping receipt', slug: 'christmas-receipt', dur: 12, run: 'xmas', series: 'Christmas', music: 503,
+spot({ id: 'W23', title: 'Christmas shopping receipt', slug: 'christmas-receipt', dur: 12, run: 'xmas', series: 'Christmas', music: 503, ring: true,
   persona: 'Parents 25 to 44 doing the Christmas shop', angle: 'In a pricey December, the 3rd ticket is the one line that costs nothing', style: 'A till receipt prints line by line; the free 3rd ticket is circled in red',
   hook: 'Receipt printing: "Wrapping paper £4.00"',
   meta: { headline: 'The cheapest line on the receipt', primary: primary('Christmas shopping receipt: wrapping paper, batteries, more batteries. One line costs nothing: the 3rd ticket.', 'Robot waiters and heat vision, all indoors at Explorazone, Bowthorpe, Norwich.') } },
@@ -180,7 +180,7 @@ function knitFmt(c) {
     },
   };
 }
-spot({ id: 'W25', title: 'Jumper day: done', slug: 'jumper-day-done', dur: 8, run: 'xmas', series: 'Christmas', music: 981,
+spot({ id: 'W25', title: 'Jumper day: done', slug: 'jumper-day-done', dur: 8, run: 'xmas', series: 'Christmas', music: 981, ring: true,
   persona: 'Parents 25 to 44, last weeks of term', angle: 'Christmas jumper day is done; now what do you do with the weekend?', style: 'Knitted Christmas jumper pattern with photos stitched on as patches',
   hook: '"Christmas jumper day: done." on a knitted background',
   meta: { headline: 'Jumper day done. Now what?', primary: primary('Christmas jumper day: done. Weekend: now what?', 'The laser room and the space-time tunnel, all indoors at Explorazone, Bowthorpe, Norwich.') } },
@@ -217,7 +217,7 @@ function flapFmt(c) {
     },
   };
 }
-spot({ id: 'W28', title: 'Countdown to the holidays', slug: 'countdown-to-holidays', dur: 8, run: 'xmas', series: 'Christmas', music: 911,
+spot({ id: 'W28', title: 'Countdown to the holidays', slug: 'countdown-to-holidays', dur: 8, run: 'xmas', series: 'Christmas', music: 911, ring: true,
   persona: 'Parents 25 to 44, last week of term', angle: 'The countdown to the Christmas holidays, with the first day out already planned', style: 'Split-flap countdown from 5 to 1, then a 2x2 photo grid',
   hook: 'Flip clock: "5 days of term left"',
   meta: { headline: 'Holidays: first day sorted', primary: primary('5 days of term left. 4. 3. 2. 1. Christmas holidays: first day out already sorted.', 'The laser room, infinity lights, robot waiters and the infinity floor, all indoors at Explorazone, Bowthorpe, Norwich.') } },

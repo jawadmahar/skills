@@ -19,6 +19,10 @@
 
 Ad name prefix: `EXZ_WIN27` (for example `EXZ_WIN27_W07_saturday-sorted`). Audience mix: parents 25 to 44 lead (28), grandparents and three generations (16), friends and family groups and teens (6). Lengths: 12 at 8 s, 30 at 12 s, 8 at 15 s.
 
+## Director feedback (20 Oct 2026)
+
+Favourites: W11 "In my day" and W31 "Operation: Wrapping"; make more like them next time. Norwich winters are grey and dark, not frozen, so W01 became "Grey again", W26 "White Christmas? In Norwich?", W45 went grey and W46 became "Skip the city centre" (traffic, outside the ring road). Full-frame photos now show the whole photo over a blurred fill, with focal points in `brand.json`. 17 videos were re-rendered on 20 Oct.
+
 ## How the code is organised
 
 `spots/00-kit.js` is the shared kit (primary text builder, run windows, `spot()`, `endScene()`, snow, cards, stacks and grids). Each of `01-weather.js` to `05-classic.js` defines formats as functions of a config and then one `spot(meta, format, config)` call per video. See `references/engine.md` section 10.

@@ -132,7 +132,7 @@ spot({ id: 'W06', title: 'Dear Nan & Grandad: too cold', slug: 'dear-nan-grandad
   ] });
 
 // W07 Saturday: sorted (fridge) -----------------------------------------------------
-spot({ id: 'W07', title: 'Saturday: sorted', slug: 'saturday-sorted', dur: 8, run: 'nov', series: 'Notebook', music: 1057,
+spot({ id: 'W07', title: 'Saturday: sorted', slug: 'saturday-sorted', dur: 8, run: 'nov', series: 'Notebook', music: 1057, ring: true,
   persona: 'Parents 25 to 44, weekend planners', angle: 'The empty Saturday on the fridge gets filled', style: 'Sticky notes and magnet photos on a fridge door',
   hook: 'Sticky note: "SAT: ???"',
   meta: { headline: 'Saturday: sorted', primary: primary('SAT: ??? Rain forecast, nothing planned.', 'Saturday sorted: the sky maze, the space zone and the light-up floor, all indoors in Bowthorpe, Norwich.') } },

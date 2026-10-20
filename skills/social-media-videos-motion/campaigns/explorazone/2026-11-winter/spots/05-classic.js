@@ -12,8 +12,9 @@ function filmFmt(c) {
         const i = c.segs.findIndex((s, j) => t >= s[2] && (j === c.segs.length - 1 || t < c.segs[j + 1][2])), [key, lines, a, sepia] = c.segs[Math.max(0, i)];
         const fade = prog(t, a, a + 0.3);
         fill('#0b0b0b');
-        photo(IMG[key], 90, 0, W - 180, H, { zoom: 1.08 + 0.05 * prog(t, a, a + 2), filter: sepia ? 'sepia(0.9) contrast(1.1) brightness(0.85)' : 'saturate(1.25)' });
-        if (fade < 1 && i > 0) { const [pk, , , ps] = c.segs[i - 1]; photo(IMG[pk], 90, 0, W - 180, H, { zoom: 1.13, alpha: 1 - fade, filter: ps ? 'sepia(0.9) contrast(1.1) brightness(0.85)' : 'saturate(1.25)' }); }
+        const filmShot = (k, sep, alpha, z) => { const fh = 900 * IMG[k].height / IMG[k].width; bgPhoto(IMG[k], { alpha, filter: sep ? 'blur(36px) sepia(0.9) brightness(0.4)' : 'blur(36px) brightness(0.45) saturate(1.3)' }); photo(IMG[k], 90, 900 - fh / 2, W - 180, fh, { zoom: z, alpha, filter: sep ? 'sepia(0.9) contrast(1.1) brightness(0.85)' : 'saturate(1.25)', shadow: 'rgba(0,0,0,0.5)' }); };
+        filmShot(key, sepia, 1, 1.02 + 0.04 * prog(t, a, a + 2));
+        if (fade < 1 && i > 0) { const [pk, , , ps] = c.segs[i - 1]; filmShot(pk, ps, 1 - fade, 1.06); }
         const gr = rng(Math.floor(t * 12) + 1); ctx.save(); for (let k = 0; k < (sepia ? 220 : 60); k++) { ctx.fillStyle = `rgba(255,255,255,${gr() * 0.18})`; ctx.fillRect(gr() * W, gr() * H, 2, 2 + gr() * 6); } ctx.restore();
         if (sepia) { ctx.save(); ctx.globalAlpha = 0.25; ctx.strokeStyle = '#fff'; ctx.lineWidth = 2; const sx = 200 + gr() * 680; ctx.beginPath(); ctx.moveTo(sx, 0); ctx.lineTo(sx + 6, H); ctx.stroke(); ctx.restore(); }
         vignette(0.6);
@@ -37,11 +38,11 @@ spot({ id: 'W11', title: 'In my day', slug: 'in-my-day', dur: 15, run: 'nov', se
 function bigNumFmt(c) {
   let tc = null, fr = null;
   return {
-    setup() { tc = makeCanvas(W, 700); if (c.frost) fr = makeFrost(12); },
+    setup() { tc = makeCanvas(W, 700); },
     frame(t) {
       const E = endAt(c.dur), X = c.cardsAt ?? 2.7;
       if (t < E + 0.4) {
-        if (c.frost) { vgrad([[0, '#bcd4ea'], [1, '#5f86ad']]); ctx.save(); ctx.globalAlpha = 0.6; ctx.drawImage(fr, 0, 0); ctx.restore(); } else vgrad([[0, '#2440d6'], [1, '#101f7a']]);
+        if (c.grey) { vgrad([[0, '#8d97a3'], [1, '#3c4552']]); for (let k = 0; k < 8; k++) { const x = ((k * 300 + t * 70) % (W + 800)) - 400, y = 240 + (k % 4) * 330; const g2 = ctx.createRadialGradient(x, y, 0, x, y, 460); g2.addColorStop(0, 'rgba(225,230,236,0.35)'); g2.addColorStop(1, 'rgba(225,230,236,0)'); ctx.fillStyle = g2; ctx.fillRect(x - 460, y - 460, 920, 920); } } else vgrad([[0, '#2440d6'], [1, '#101f7a']]);
         if (t < X + 0.3) {
           const k = easeOutBack(prog(t, c.numAt ?? 0.15, (c.numAt ?? 0.15) + 0.5), 1.3), out2 = prog(t, X, X + 0.3);
           const g = tc.getContext('2d'); g.globalCompositeOperation = 'source-over'; g.clearRect(0, 0, W, 700);
@@ -50,29 +51,29 @@ function bigNumFmt(c) {
           ctx.save(); ctx.globalAlpha = 1 - out2; ctx.translate(540, 920); ctx.scale(k, k); ctx.translate(-540, -350);
           ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.45)'; ctx.shadowBlur = 40; ctx.drawImage(tc, 0, 0); ctx.restore();
           ctx.lineWidth = 6; ctx.strokeStyle = '#fff'; ctx.font = `800 520px ${HEAD}`; ctx.textAlign = 'center'; ctx.strokeText(c.num, 540, 560); ctx.restore();
-          c.beats.forEach(([lines, a, b], i) => { if (t >= a && t < b) hook(lines, 430, 100, a, t, { hl: c.frost ? P.navy : P.lime, color: c.frost ? P.ink : '#fff', shadow: c.frost ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.5)' }); });
-          chipsRow(c.chips, 1205, 1.3, t, { bg: c.frost ? P.navy : P.lime, fg: c.frost ? '#fff' : P.ink, size: 44, alpha: 1 - out2 });
+          c.beats.forEach(([lines, a, b], i) => { if (t >= a && t < b) hook(lines, 430, 100, a, t, { hl: P.lime, color: '#fff', shadow: 'rgba(0,0,0,0.5)' }); });
+          chipsRow(c.chips, 1205, 1.3, t, { bg: P.lime, fg: P.ink, size: 44, alpha: 1 - out2 });
         } else {
           c.cards.forEach((key, i) => { const a = X + 0.2 + i * 0.35; card(key, 70 + i * 180, 580 + i * 280, 760, 400, { alpha: easeOutCubic(prog(t, a, a + 0.3)), zoom: 1.06 }); });
-          hook(c.mid, 430, 100, X + 0.1, t, { hl: c.frost ? P.navy : P.lime, color: c.frost ? P.ink : '#fff', shadow: c.frost ? 'rgba(255,255,255,0.6)' : 'rgba(0,0,0,0.5)' });
+          hook(c.mid, 430, 100, X + 0.1, t, { hl: P.lime, color: '#fff', shadow: 'rgba(0,0,0,0.5)' });
         }
         if (t < X + 0.3) photoStrip(t, 1395, 470, { keys: c.strip });
         brandTop();
       }
-      endScene(t, E, c.end, c.frost ? 'snow' : 'royal', { stripKeys: c.strip });
+      endScene(t, E, c.end, c.grey ? 'navy' : 'royal', { stripKeys: c.strip });
     },
   };
 }
-spot({ id: 'W12', title: '£36. Three of you.', slug: 'thirty-six-three', dur: 8, run: 'nov', series: 'More concepts', music: 849,
+spot({ id: 'W12', title: '£36. Three of you.', slug: 'thirty-six-three', dur: 8, run: 'nov', series: 'More concepts', music: 849, ring: true,
   persona: 'Parents 25 to 44, price-conscious families of three', angle: 'The price is the headline: £36 gets three in', style: 'Giant £36 filled with a venue photo, price chips, then two photo cards',
   hook: 'Giant "£36" filled with the light-up floor',
   meta: { headline: '£36 for three tickets', primary: primary('£36. Three of you. That is the whole maths.', 'The light-up floor and robot waiters, all indoors at Explorazone, Bowthorpe, Norwich.') } },
   bigNumFmt, { num: '£36', fillKey: 'floor2', beats: [[['£36.'], 0.1, 0.9], [['Three of you.', '_Two tickets._'], 0.9, 3.0]], chips: ['3 for £36', '6 for £72', '9 for £108'], mid: ['Three of you.', '_Sorted._'], cards: ['floor2', 'robot2'], end: ['£36.', '_Three of you._'], strip: ['floor2', 'robot2', 'laser_room', 'heat', 'infinity_floor', 'roses'] });
 spot({ id: 'W45', title: 'January maths', slug: 'january-maths', dur: 8, run: 'jan', series: 'More concepts', music: 1029,
-  persona: 'Parents 25 to 44, January budgets', angle: 'Cold, dark, skint January: three get in for the price of two', style: 'Frosty background with a giant £36 filled with the infinity floor',
-  hook: '"Cold. Dark. January." then a frosted £36',
-  meta: { headline: 'January maths: £36 for three', primary: primary('Cold. Dark. January. And the bank balance agrees.', 'Three tickets for £36: the infinity floor and the space-time tunnel, all indoors at Explorazone, Bowthorpe, Norwich.') } },
-  bigNumFmt, { frost: true, num: '£36', fillKey: 'infinity_floor', numAt: 0.9, beats: [[['Cold. Dark.', '_January._'], 0.05, 1.3], [['Three of you:', '_£36._'], 1.3, 3.0]], chips: ['3 for £36', '6 for £72'], mid: ['January,', '_brightened._'], cards: ['infinity_floor', 'tunnel'], end: ['January maths:', '_£36 for three._'], strip: ['infinity_floor', 'tunnel', 'laser_room', 'roses', 'heat', 'dodeca'] });
+  persona: 'Parents 25 to 44, January budgets', angle: 'Grey, dark, skint January: three get in for the price of two', style: 'Grey drifting clouds behind a giant £36 filled with the infinity floor',
+  hook: '"Grey. Dark. January." then a giant £36',
+  meta: { headline: 'January maths: £36 for three', primary: primary('Grey. Dark. January. And the bank balance agrees.', 'Three tickets for £36: the infinity floor and the space-time tunnel, all indoors at Explorazone, Bowthorpe, Norwich.') } },
+  bigNumFmt, { grey: true, num: '£36', fillKey: 'infinity_floor', numAt: 0.9, beats: [[['Grey. Dark.', '_January._'], 0.05, 1.3], [['Three of you:', '_£36._'], 1.3, 3.0]], chips: ['3 for £36', '6 for £72'], mid: ['January,', '_brightened._'], cards: ['infinity_floor', 'tunnel'], end: ['January maths:', '_£36 for three._'], strip: ['infinity_floor', 'tunnel', 'laser_room', 'roses', 'heat', 'dodeca'] });
 
 // W14 Outside vs inside --------------------------------------------------------------------
 function splitFmt(c) {
@@ -84,7 +85,7 @@ function splitFmt(c) {
       if (t < E + 0.4) {
         const split = lerp(540, 0, easeInOutCubic(prog(t, M, M + 0.7)));
         const seg = c.inside.findIndex(([, a], i) => t >= a && (i === c.inside.length - 1 || t < c.inside[i + 1][1])), key = c.inside[Math.max(0, seg)][0];
-        photo(IMG[key], 0, 0, W, H, { zoom: 1.06 + 0.05 * prog(t, 0, E), fx: 0.5 });
+        heroPhoto(key, t, 0, E);
         if (split > 1) {
           const g = rc.getContext('2d'); g.clearRect(0, 0, W, H); rainScene(g, t); g.fillStyle = 'rgba(120,130,140,0.35)'; g.fillRect(0, 0, W, H);
           ctx.save(); ctx.beginPath(); ctx.rect(0, 0, split, H); ctx.clip(); ctx.filter = 'grayscale(1)'; ctx.drawImage(rc, 0, 0); ctx.filter = 'none'; ctx.restore();
@@ -125,9 +126,9 @@ function stopwatchFmt(c) {
           hook(c.hook, 430, 92, 0.05, t, { hl: '#ff9f0a' });
           if (t > X) noteItem({ type: 'stamp', text: 'BORED.', x: 540, y: 1160, rot: -0.1, at: X, color: '#ef4720', size: 72 }, t);
         } else {
-          heroPhoto(c.cards[0], t, X + 0.6, E, {}); shade(0.75, 0, 0.36);
-          if (c.cards[1]) card(c.cards[1], 520, 800, 480, 400, { alpha: easeOutCubic(prog(t, X + 1.2, X + 1.5)), zoom: 1.06 });
-          labelPill(c.cards[0], 70, 700, { alpha: prog(t, X + 0.8, X + 1.1) });
+          heroPhoto(c.cards[0], t, X + 0.6, E, { cy: 820 }); shade(0.75, 0, 0.36);
+          if (c.cards[1]) card(c.cards[1], 60, 1000, 460, 260, { alpha: easeOutCubic(prog(t, X + 1.2, X + 1.5)), zoom: 1.06 });
+          labelPill(c.cards[0], 600, 1060, { alpha: prog(t, X + 0.8, X + 1.1) });
           hook(c.mid, 430, 100, X + 0.6, t, { hl: P.lime });
         }
         brandTop();
@@ -265,7 +266,7 @@ function dayFmt(c) {
     },
   };
 }
-spot({ id: 'W38', title: 'What day is it?', slug: 'what-day-is-it', dur: 8, run: 'post', series: 'More concepts', music: 2,
+spot({ id: 'W38', title: 'What day is it?', slug: 'what-day-is-it', dur: 8, run: 'post', series: 'More concepts', music: 2, ring: true,
   persona: 'Parents 25 to 44, between Christmas and New Year', angle: 'Nobody knows what day it is, but the plan is clear', style: 'A desk calendar spinning through random days, then a 2x2 photo grid',
   hook: '"Nobody knows what day it is." with a spinning calendar',
   meta: { headline: 'What day is it? Who cares.', primary: primary('Between Christmas and New Year nobody knows what day it is. Monday? Thursday? Sunday?', 'We do know the plan: the sky maze, robot waiters, heat vision and the infinity floor, all indoors at Explorazone, Bowthorpe, Norwich.') } },
@@ -345,7 +346,7 @@ function mythFmt(c) {
     },
   };
 }
-spot({ id: 'W48', title: 'Myth: nothing to do in January', slug: 'myth-nothing-to-do', dur: 8, run: 'jan', series: 'More concepts', music: 15,
+spot({ id: 'W48', title: 'Myth: nothing to do in January', slug: 'myth-nothing-to-do', dur: 8, run: 'jan', series: 'More concepts', music: 15, ring: true,
   persona: 'Friends and family groups, January weekends', angle: 'Busting the myth that there is nothing to do in January', style: 'Bold myth statement with a red BUSTED stamp, then a 2x2 photo grid',
   hook: '"MYTH: there’s nothing to do in January." stamped BUSTED',
   meta: { headline: 'Nothing to do in January? Busted', primary: primary('Myth: there is nothing to do in January. Busted.', 'The laser jungle, the AR sandbox, rocks and crystals and the light forest, all indoors at Explorazone, Bowthorpe, Norwich.') } },
@@ -359,9 +360,9 @@ function portalFmt(c) {
       const E = endAt(c.dur), n = c.worlds.length, step = (E - 0.2) / n;
       if (t < E + 0.4) {
         const i = Math.min(n - 1, Math.floor(t / step)), a = i * step, u = prog(t, a, a + step), [key] = c.worlds[i];
-        if (i > 0) photo(IMG[c.worlds[i - 1][0]], 0, 0, W, H, { zoom: 1.2, filter: 'brightness(0.55)' }); else { fill('#050816'); ST.forEach((s) => { const r2 = ((s.d + t * 0.25) % 1) * 1100; ctx.fillStyle = `rgba(255,255,255,${(r2 / 1100) * 0.9})`; ctx.beginPath(); ctx.arc(540 + Math.cos(s.a) * r2, 900 + Math.sin(s.a) * r2, s.s * (r2 / 600), 0, Math.PI * 2); ctx.fill(); }); }
+        if (i > 0) { heroPhoto(c.worlds[i - 1][0], t, a, a + step, { z0: 1.05 }); ctx.save(); ctx.globalAlpha = 0.45; fill('#050816'); ctx.restore(); } else { fill('#050816'); ST.forEach((s) => { const r2 = ((s.d + t * 0.25) % 1) * 1100; ctx.fillStyle = `rgba(255,255,255,${(r2 / 1100) * 0.9})`; ctx.beginPath(); ctx.arc(540 + Math.cos(s.a) * r2, 900 + Math.sin(s.a) * r2, s.s * (r2 / 600), 0, Math.PI * 2); ctx.fill(); }); }
         const R = lerp(260, 1300, easeInCubic(prog(u, 0.55, 1)));
-        ctx.save(); ctx.beginPath(); ctx.arc(540, 900, R, 0, Math.PI * 2); ctx.clip(); photo(IMG[key], 0, 0, W, H, { zoom: lerp(1.25, 1.05, u) }); ctx.restore();
+        ctx.save(); ctx.beginPath(); ctx.arc(540, 900, R, 0, Math.PI * 2); ctx.clip(); heroPhoto(key, t, a, a + step, { z0: lerp(1.15, 1.0, u), dz: 0 }); ctx.restore();
         ctx.save(); ctx.strokeStyle = c.worlds[i][1]; ctx.lineWidth = 18; ctx.shadowColor = c.worlds[i][1]; ctx.shadowBlur = 50; for (let k = 0; k < 2; k++) { ctx.beginPath(); ctx.arc(540, 900, R + k * 26, t * 2 + k, t * 2 + k + Math.PI * 1.6); ctx.stroke(); } ctx.restore();
         if (LABEL[key]) pill(540, 1110, LABEL[key], { size: 34, bg: c.worlds[i][1], fg: P.ink, alpha: 1 - prog(u, 0.6, 0.8) });
         shade(0.65, 0, 0.3);

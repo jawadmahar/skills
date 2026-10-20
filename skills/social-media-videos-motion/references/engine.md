@@ -56,6 +56,7 @@ When the campaign is finished, copy `campaign.json`, `spots/`, `music_map.json` 
 - `fonts.google` entries are Google Fonts css2 family specs; `preload` lists every face the spots draw with. Canvas text falls back to a system font if a face is not preloaded.
 - `copy.footer` (or `loc` plus `formerly`) is the small line under the end-card button.
 - `labels` map photo keys to the names shown on photo cards; `photoPool` is the set used for photo strips.
+- `focus` maps photo keys to a focal point `[fx, fy]` (0 to 1). `photo()`, polaroids, photo corners and 3D photo cards crop around it, so an off-centre subject (a microscope on the right, a tunnel on the left) stays in view. Set it for any photo whose subject is not in the middle.
 
 ## 4. campaign.json
 
@@ -113,7 +114,7 @@ Fields: `id`, `title`, `dur` (seconds), `persona`, `angle`, `style`, `hook`, `mu
 
 Timing (all pure): `clamp`, `lerp`, `prog(t, a, b)` (0 to 1 between a and b), `smooth`, `easeOutCubic`, `easeInCubic`, `easeInOutCubic`, `easeInOutSine`, `easeOutBack`, `win(t, a, b, fade)` (fade in at a, out by b), `rng(seed)` (seeded random; never use Math.random).
 
-Canvas: `W`, `H`, `ctx`, `IMG.<key>`, `P` (palette), `ROLE`, `COPY`, `HEAD`, `BODY`, `HAND`, `makeCanvas(w, h)`, `rr(g, x, y, w, h, r)`, `fill(colour)`, `vgrad([[0, c1], [1, c2]])`, `vignette(a)`.
+Canvas: `W`, `H`, `ctx`, `IMG.<key>`, `focusOf(img)` (the photo's focal point), `P` (palette), `ROLE`, `COPY`, `HEAD`, `BODY`, `HAND`, `makeCanvas(w, h)`, `rr(g, x, y, w, h, r)`, `fill(colour)`, `vgrad([[0, c1], [1, c2]])`, `vignette(a)`.
 
 | Helper | Use |
 |---|---|
@@ -133,7 +134,7 @@ Canvas: `W`, `H`, `ctx`, `IMG.<key>`, `P` (palette), `ROLE`, `COPY`, `HEAD`, `BO
 | `getThree()`, `draw3D()`, `texFromCanvas(c)`, `THREE` | Three.js renderer, scene and camera composited onto the canvas |
 
 Libraries (`campaign.json` `"libs"`):
-- `weather`: `rainScene(g, t, {drops, alpha})`, `cloudIcon`, `RAIN_END(t)`, `fogWipe(canvas, t, a, b, img)`, `cardSeq(t, cards, y, w, h)`
+- `weather`: `rainScene(g, t, {drops, alpha})`, `cloudIcon`, `RAIN_END(t)`, `fogWipe(canvas, t, a, b, img, {under})` (`under` draws the revealed scene instead of a full-frame photo), `cardSeq(t, cards, y, w, h)`
 - `paper`: `makePaper()`, `writeLine`, `writeH(text, x, y, t, a, b, {fam, size, color})`, `strokeReveal(path, p)`, `polaroid`, `tickMark`, `star`, `heart`, `photoCorners`, fonts `SCRIPT`, `PRINT`, `KALAM` (add their Google Fonts to campaign.json)
 - `fx3d`: `roundedPhotoCanvas`, `project(vec3)`, `confetti2D(x, y, dt)`, `VS_UV`
 
@@ -172,6 +173,8 @@ Rendering runs at about 1 to 3 minutes per 12-second spot under software WebGL; 
 - `mixkit.py starts` can pick a soft passage; `check_videos.py` then flags the loudness. Measure 12-second windows with `ffmpeg -ss N -t 12 -i track.mp3 -af ebur128 -f null -`, set a livelier start in `music/starts.json` and re-mux that video only.
 
 ## 10. Big sets: the kit pattern
+
+Full-frame photos: the venue photos are landscape, so `photo(img, 0, 0, W, H)` cover-fills 9:16 at about 3x and shows only the middle third, often the wrong part (rule G12). The winter kit's `heroPhoto(key, t, a, b, {cy, z0, dz})` instead draws `bgPhoto` (blurred fill) and the whole photo at full width centred on `cy`; `heroH(key)` gives its height. Use it wherever a scene needs a big photo behind it.
 
 For more than about 15 videos, write each look once as a format function and make every video a short config (rule G10). The winter 2026-27 campaign is the worked example (`campaigns/explorazone/2026-11-winter/spots/`):
 

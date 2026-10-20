@@ -14,6 +14,10 @@ Last checked: 19 October 2026
 ## What the brand is
 An indoor, hands-on science attraction in Bowthorpe, Norwich, with immersive rooms (laser room, sky maze, garden of light, heat vision, AR sandbox, robot waiters and more) and a café. Formerly Exploring Science; renamed Explorazone during April to June 2026. Spelling is always "Explorazone": capital E, one word.
 
+## Place and season (director, Oct 2026)
+- Bowthorpe, Norwich: outside the city-centre ring road. From November to January the city centre is busy with traffic and crowds, so "skip the city-centre traffic and crowds" is a true and useful hook.
+- Norwich winters are grey, cloudy and dark early, not frozen: no frost, ice, sub-zero or snow hooks (snow as Christmas decoration is fine).
+
 ## Audiences
 - Families with primary-age children (the core)
 - Grandparents taking grandchildren out (strong performers in 2026 data)
@@ -31,7 +35,7 @@ An indoor, hands-on science attraction in Bowthorpe, Norwich, with immersive roo
 - Palette: navy #16223f, royal #1a34bf, teal #00ddb4, lime #b6f542, red #ef4720, cream #fbf5e8, ink #14203a, gold #e9b949, yellow #ffe14d (`brand.json`).
 - Fonts: Bricolage Grotesque (headlines), Inter (body), Caveat and other Google handwriting fonts for the notebook series.
 - Logo: current lockup is a red box with "EXPLORAZONE" and "SCIENCE DISCOVERY LAB" in white (from the Oct 2026 static ads). Cropped from an ad (`photo-manifest.json`); ask for the master file.
-- Photos: big, saturated venue shots; label every attraction on screen (LASER ROOM, SKY MAZE).
+- Photos: big, saturated venue shots; label every attraction on screen (LASER ROOM, SKY MAZE). They are landscape: show each one whole over a blurred fill, never cover-filled to 9:16 (rule G12). Focal points for off-centre subjects are in `brand.json` (`focus`).
 - End card footer: BOWTHORPE · NORWICH · FORMERLY EXPLORING SCIENCE (keep until the director drops it).
 
 ## Offers and terms in use

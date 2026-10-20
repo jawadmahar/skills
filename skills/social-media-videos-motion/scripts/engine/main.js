@@ -53,7 +53,7 @@ function loadImage(src) { return new Promise((res, rej) => { const i = new Image
 (async () => {
   await loadFonts();
   const keys = Object.keys(ASSETS); const imgs = await Promise.all(keys.map((k) => loadImage(ASSETS[k])));
-  keys.forEach((k, i) => { IMG[k] = imgs[i]; });
+  keys.forEach((k, i) => { IMG[k] = imgs[i]; imgs[i].dataset.key = k; });
   await SPOT.setup();
   $('loading').remove();
   window.__dur = SPOT.dur;

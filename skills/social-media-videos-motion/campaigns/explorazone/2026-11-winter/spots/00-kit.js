@@ -10,9 +10,13 @@ const RUN = {
   post: ['2026-12-26', '2027-01-04'], jan: ['2027-01-01', '2027-01-10'], winter: ['2026-12-19', '2027-01-10'],
 };
 const PERIOD = { nov: 'November', xmas: 'Christmas run-up', hols: 'Christmas holidays', post: 'Christmas holidays', jan: 'New Year and back to school', winter: 'Christmas holidays and January' };
+// director, Oct 2026: Norwich city centre is busy from November to January and Explorazone is outside the ring road
+const RING = 'Skip the city-centre traffic and crowds: we are outside the ring road, in Bowthorpe.';
 function spot(m, fmt, cfg = {}) {
   const f = fmt({ dur: m.dur, ...cfg });
-  defineSpot({ ...m, meta: { button: 'Sign up', ...m.meta, start: RUN[m.run][0], end: RUN[m.run][1], period: PERIOD[m.run] }, setup: f.setup ?? (() => {}), frame: f.frame });
+  const meta = { button: 'Sign up', ...m.meta, start: RUN[m.run][0], end: RUN[m.run][1], period: PERIOD[m.run] };
+  if (m.ring) meta.primary = meta.primary.replace('\n\n' + OFFER_COPY, ' ' + RING + '\n\n' + OFFER_COPY);
+  defineSpot({ ...m, meta, setup: f.setup ?? (() => {}), frame: f.frame });
 }
 const endAt = (dur) => dur - 3.6;
 
@@ -84,5 +88,12 @@ function mosaic(t, keys, t0, o = {}) {
   });
 }
 // full-bleed photo with a slow push-in, for scene backgrounds
-function heroPhoto(key, t, a, b, o = {}) { photo(IMG[key], 0, 0, W, H, { zoom: (o.z0 ?? 1.05) + (o.dz ?? 0.08) * prog(t, a, b), fx: o.fx ?? 0.5, fy: o.fy ?? 0.5, filter: o.filter, alpha: o.alpha ?? 1 }); }
+// The venue photos are landscape. Filling the 9:16 frame with one by cover-fit zooms about 3x into the middle and loses the subject
+// (director, Oct 2026), so a hero shows the whole photo at full width, sharp, over a blurred fill of itself.
+function heroH(key, maxH = 1150) { const img = IMG[key]; return Math.min(maxH, W * img.height / img.width); }
+function heroPhoto(key, t, a, b, o = {}) {
+  bgPhoto(IMG[key], { alpha: o.alpha });
+  const h = heroH(key, o.maxH), cy = o.cy ?? 900;
+  photo(IMG[key], 0, cy - h / 2, W, h, { zoom: (o.z0 ?? 1.0) + (o.dz ?? 0.05) * prog(t, a, b), filter: o.filter, alpha: o.alpha ?? 1, shadow: 'rgba(0,0,0,0.45)' });
+}
 function shade(top = 0.7, bottom = 0.0, mid = 0.38) { vgrad([[0, `rgba(8,14,40,${top})`], [mid, 'rgba(8,14,40,0)'], [1, `rgba(8,14,40,${bottom})`]]); }

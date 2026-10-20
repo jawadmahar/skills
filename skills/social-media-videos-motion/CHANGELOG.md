@@ -10,6 +10,7 @@ Versions: patch for learnings and concept statuses, minor for new concepts, libr
 - Explorazone: photo manifest grows to 35 photos (18 from the October half-term statics) and the current "Science Discovery Lab" logo crop; profile records the winter offer and claim steps.
 - Learnings: G3 and G5 reworded; new G9 (ask which seasonal moments matter), G10 (kit pattern for big sets), G11 (short legal lines), E5 (no Christmas opening dates), E6 (parents first, grandparents keep about a quarter).
 - Music library: 31 new Mixkit tracks recorded with their videos.
+- Director feedback, 20 Oct: per-photo focal points (`focus` in brand.json, used by `photo()`, polaroids, photo corners and 3D cards); `fogWipe` accepts `under`; the winter kit's `heroPhoto` shows the whole photo over a blurred fill instead of a 3x cover-fill. Grey, dark Norwich instead of frost and snow; city-centre traffic and ring-road hooks. 17 winter videos re-rendered. New rules G12, E7, E8, E9; E2 reworded; W11 and W31 marked Director favourite.
 
 ## 1.0.0 (18 October 2026)
 - First version, built from the Explorazone October half-term 2026 production (20 videos with music, pack, ad copy and zip).
