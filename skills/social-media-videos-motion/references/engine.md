@@ -172,6 +172,11 @@ Rendering runs at about 1 to 3 minutes per 12-second spot under software WebGL; 
 - A background command in Claude Code on the web is stopped after 2 hours. For 40+ videos, render in batches with `--ids` (or restart the rest with `--ids`); finished MP4s in `out/silent` are kept.
 - `mixkit.py starts` can pick a soft passage; `check_videos.py` then flags the loudness. Measure 12-second windows with `ffmpeg -ss N -t 12 -i track.mp3 -af ebur128 -f null -`, set a livelier start in `music/starts.json` and re-mux that video only.
 
+- Zoom-through cuts must land on a picture: zoom into the photo bubble, the cover photo or the phone screen, never into text, or the transition shows giant blurred letters (W105 first draft).
+- Split-flap values longer than two characters overflow the flap: `flapFmt` scales them (`flapS`).
+- Background QA jobs (stills, seek checks) slow a running render by half; run them at `nice -n 19`, and never rebuild the studio file a running job has open (copy it first).
+- Stills pages: never reuse a class name for the page size that a layout also uses (a `story` body class restyled every `img` and `p` in the phone-story layout).
+
 ## 10. Big sets: the kit pattern
 
 Full-frame photos: the venue photos are landscape, so `photo(img, 0, 0, W, H)` cover-fills 9:16 at about 3x and shows only the middle third, often the wrong part (rule G12). The winter kit's `heroPhoto(key, t, a, b, {cy, z0, dz})` instead draws `bgPhoto` (blurred fill) and the whole photo at full width centred on `cy`; `heroH(key)` gives its height. Use it wherever a scene needs a big photo behind it.
@@ -185,3 +190,5 @@ For more than about 15 videos, write each look once as a format function and mak
 - Before a long render, seek every frame once to catch runtime errors: an exception at an unsampled moment otherwise shows up only as a failed render after an hour.
 
 Group the campaign's `series` by when the videos run (for example one group per month) when the person posting needs a schedule; each spot keeps its creative series in its own `series` field, and the ad copy sheet shows both (Group and Series columns).
+
+Stills from the same configs: the kit's `spot()` also records `window.__spotCfg[id] = { fmt, run, ring, cfg }`. A small Playwright script dumps it with `window.__spots` to `out/spots-cfg.json`, and the campaign's `stills/make_stills.py` turns each spot into a 4:5 feed and a 9:16 story page (one layout per format: dossier, notebook, retro film, phone, map, crossword, bingo, calendar, split, quiz card, receipt, swatch, magazine, checklist, scrapbook, chart, portals, liquid glass), with the same offer band, end date and terms on every image. `stills/shoot.mjs` screenshots them to JPEG and `stills/stills_copy.py` names them and writes `ad-copy-stills.tsv`. Worked example: `campaigns/explorazone/2026-11-winter/stills/`.

@@ -100,3 +100,110 @@ The director asked to reuse the best half-term tracks where the mood fits, so 19
 Reused from half term: 10 (W42), 1029 (W45), 1037 (W33), 1057 (W07), 1072 (W06), 1076 (W36), 12 (W41), 175 (W17), 2 (W38), 480 (W03), 670 (W16), 682 (W08), 729 (W09), 8 (W43), 813 (W35), 82 (W13), 849 (W12), 9 (W15), 988 (W02).
 
 Mood shortcuts added: festive and bright (862, 867, 911, 981, 984, 1021), festive and gentle (93, 691, 896, 916, 866), winter but not festive (504, 532, 1073, 587, 621), jazzy (503, 644), pop and dance (474, 834, 1183, 688).
+
+### Added in the Explorazone winter batch 2 (Oct 2026)
+
+100 new tracks, one per video (W51 to W150), none repeated from earlier sets. Festive tracks only in the Christmas run-up (W71 to W92); New Year, late January and February use upbeat non-festive tracks. Full credits: `campaigns/explorazone/2026-11-winter/music_credits.json`.
+
+| Id | Title | Artist | Used in (Explorazone, winter 2026-27) |
+|---|---|---|---|
+| 1077 | Sounds Good | Michael Ramir C. | W51 |
+| 1003 | Keep the Funk ON | Michael Ramir C. | W52 |
+| 653 | Cinematic Jazz | Francisco Alvear | W53 |
+| 935 | Disco Ain't Old School | Michael Ramir C. | W54 |
+| 1092 | Cold Coffee | Michael Ramir C. | W55 |
+| 102 | Stylz | Ahjay Stelino | W56 |
+| 689 | Classical Jazz | Grigoriy Nuzhny | W57 |
+| 1140 | Funkee Monkeee | Michael Ramir C. | W58 |
+| 494 | Chill Bro | Diego Nava | W59 |
+| 1116 | Pick it Up | Michael Ramir C. | W60 |
+| 526 | Swing is the Answer | Diego Nava | W61 |
+| 158 | Happy Times | Alejandro Magaña (A. M.) | W62 |
+| 872 | Gimme that Groove! | Michael Ramir C. | W63 |
+| 1168 | Coffee or Tea | Michael Ramir C. | W64 |
+| 1142 | Gummies | Michael Ramir C. | W65 |
+| 1166 | Chicken Out | Michael Ramir C. | W66 |
+| 804 | I Love You Grandma | Michael Ramir C. | W67 |
+| 94 | Traveling Along | Ahjay Stelino | W68 |
+| 851 | Me and You | Michael Ramir C. | W69 |
+| 1012 | Take this Higher | Michael Ramir C. | W70 |
+| 1035 | Merry Christmas to you! | Michael Ramir C. | W71 |
+| 87 | Holiday Fun | Ahjay Stelino | W72 |
+| 511 | Holiday / Seasonal 4 | Diego Nava | W73 |
+| 1022 | Close Your Eyes Now | Michael Ramir C. | W74 |
+| 897 | A Very Happy Christmas | Michael Ramir C. | W75 |
+| 1004 | Lets Paint the Town Red! | Michael Ramir C. | W76 |
+| 902 | Everyday Is Like Christmas With You | Michael Ramir C. | W77 |
+| 985 | Christmas Lullaby | Michael Ramir C. | W78 |
+| 907 | Ho Ho Ho | Michael Ramir C. | W79 |
+| 533 | Santa Claus is Here! | Diego Nava | W80 |
+| 303 | Party | Arulo | W81 |
+| 926 | Christmas Away from Home | Michael Ramir C. | W82 |
+| 1048 | Turn This Up a Little Louder! | Michael Ramir C. | W83 |
+| 743 | Holiday 01 | Lily J | W84 |
+| 909 | I'm All Yours This December | Michael Ramir C. | W85 |
+| 537 | Christmas Night | Diego Nava | W86 |
+| 502 | Winter Wind | Diego Nava | W87 |
+| 509 | Holiday / Seasonal 2 | Diego Nava | W88 |
+| 512 | Holiday / Seasonal 5 | Diego Nava | W89 |
+| 1131 | Bopper from Memphis | Michael Ramir C. | W90 |
+| 506 | Little Bells | Diego Nava | W91 |
+| 505 | Golden Freezer | Diego Nava | W92 |
+| 5 | Feeling Happy | Ahjay Stelino | W93 |
+| 6 | Fun and Games | Ahjay Stelino | W94 |
+| 613 | Sicilian Coffee | Eugenio Mininni | W95 |
+| 1089 | Bruh! | Michael Ramir C. | W96 |
+| 495 | Danger | Diego Nava | W97 |
+| 1042 | Simon Says | Michael Ramir C. | W98 |
+| 1127 | Are U Ready For This? | Michael Ramir C. | W99 |
+| 513 | Feeling Good | Diego Nava | W100 |
+| 1064 | Goup the Wall | Michael Ramir C. | W101 |
+| 963 | Just Keep Walking | Michael Ramir C. | W102 |
+| 31 | Dreaming Big | Ahjay Stelino | W103 |
+| 868 | Dry Gin | Michael Ramir C. | W104 |
+| 1109 | My Mind Goes Wah Wah | Michael Ramir C. | W105 |
+| 852 | Music and Life | Michael Ramir C. | W106 |
+| 927 | This Our Year! (Happy New Year!) | Michael Ramir C. | W107 |
+| 1000 | I Can Hear Your Heartbeat | Michael Ramir C. | W108 |
+| 395 | Sci-Fi Game | Arulo | W109 |
+| 853 | Night Patrol | Michael Ramir C. | W110 |
+| 716 | Classical 9 | Jonny S. | W111 |
+| 764 | Lo-Fi 02 | Lily J | W112 |
+| 1138 | Follow My Voice | Michael Ramir C. | W113 |
+| 832 | I'm Going Home | Michael Ramir C. | W114 |
+| 1060 | Five | Michael Ramir C. | W115 |
+| 1147 | Midnight Funk | Michael Ramir C. | W116 |
+| 543 | A New Life | Eugenio Mininni | W117 |
+| 466 | Games Worldbeat | Bernardo R. | W118 |
+| 1054 | Blue Funk | Michael Ramir C. | W119 |
+| 989 | Dirty Thinkin' | Michael Ramir C. | W120 |
+| 892 | Vampires in the City | Michael Ramir C. | W121 |
+| 282 | Sweet September | Arulo | W122 |
+| 1105 | Life Goes On | Michael Ramir C. | W123 |
+| 717 | Classical 10 | Jonny S. | W124 |
+| 1164 | It's A Cool Thing | Michael Ramir C. | W125 |
+| 429 | State of Mind | Arulo | W126 |
+| 652 | Soul Jazz | Francisco Alvear | W127 |
+| 577 | Cristales | Eugenio Mininni | W128 |
+| 1001 | I Do! | Michael Ramir C. | W129 |
+| 595 | Secret Garden | Eugenio Mininni | W130 |
+| 77 | Running Out of Time | Ahjay Stelino | W131 |
+| 1210 | Can't Get You Off My Mind | Michael Ramir C. | W132 |
+| 824 | Bob | Michael Ramir C. | W133 |
+| 696 | Pop 04 | Grigoriy Nuzhny | W134 |
+| 676 | Epical Drums 01 | Grigoriy Nuzhny | W135 |
+| 148 | Forest Mist Whispers | Alejandro Magaña (A. M.) | W136 |
+| 1137 | Don't Fall Again | Michael Ramir C. | W137 |
+| 1152 | One Night Gamble | Michael Ramir C. | W138 |
+| 167 | Brainiac | Alejandro Magaña (A. M.) | W139 |
+| 182 | Love Serenade | Andrew Ev | W140 |
+| 310 | Alignment | Arulo | W141 |
+| 476 | Baileys | Diego Nava | W142 |
+| 1141 | Funky Triplets | Michael Ramir C. | W143 |
+| 639 | Jazz 1 | Francisco Alvear | W144 |
+| 1145 | I Pity The Fool | Michael Ramir C. | W145 |
+| 706 | Games Music | Grigoriy Nuzhny | W146 |
+| 655 | Chillax | Francisco Alvear | W147 |
+| 858 | Too Hot | Michael Ramir C. | W148 |
+| 1135 | Dare Me | Michael Ramir C. | W149 |
+| 1167 | Close Up | Michael Ramir C. | W150 |

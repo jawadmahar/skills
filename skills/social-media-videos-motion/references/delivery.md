@@ -15,6 +15,13 @@ The person posting the ads should be able to open one zip, read one page and upl
   Music-credits-and-licence.txt
   <brand>-<campaign>-studio.html      optional: preview every video in a browser
 ```
+When the set runs across several periods or ad sets, stage it as the posting schedule instead (rule G13): one top folder per run period, named with its dates, then one folder per ad set, then `Videos` and `Stills`, and one zip per period so each can be uploaded when its window opens:
+```
+<Brand>-<Campaign>-<n> <Period> (run <dates>)/
+  README.txt, pack PDF, ad copy TSV (videos and stills), music credits
+  Families/Videos/*.mp4   Families/Stills/*-feed-4x5.jpg, *-story-9x16.jpg
+  Grandparents/Videos/... Grandparents/Stills/...
+```
 File names: lower case with hyphens, `<brand>-<campaign>-<ID>-<slug>.mp4` (for example `explorazone-winter-W07-frosty-window.mp4`). Ad names in Meta: `<PREFIX>_<ID>_<slug>` (for example `EXZ_WIN27_W07_frosty-window`). The ad name is how results find their way back to the creative, so it must match the sheet exactly.
 
 ## 2. Build the documents

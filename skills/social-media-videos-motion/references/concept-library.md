@@ -117,6 +117,29 @@ Code in `campaigns/explorazone/2026-11-winter/spots/`. Every format is a functio
 | W48 | Myth: nothing to do | `mythFmt` | Myth statement stamped BUSTED |
 | W50 | New year, new worlds | `portalFmt` | Zoom-through glowing portals |
 
+## Winter batch 2 formats (Oct 2026, Untested on Meta)
+
+W51 to W150 for 2 Nov 2026 to Fri 12 Feb 2027, 31 in the grandparents ad set. Code: `06-formats2.js` (eight formats), `06b-formats3.js` (effects picked from the director's list, rule G16) and the period files `07-p1-nov.js` to `12-p6-feb.js`. Seventeen of the 31 grandparent videos follow the favourites: seven "Operation" dossiers and five "In my day" films, plus then-and-now pairs.
+
+| Id | Title | Format | Look |
+|---|---|---|---|
+| W51, W119 | 50 shades of grey / Blue Monday | `swatchFmt` | Paint chart of local greys or blues; the last swatch is a venue photo |
+| W52, W72, W115 | Ring-road map | `mapFmt` | Night map: jammed ring road, dashed route round to a glowing Bowthorpe pin (rule E9) |
+| W57, W127 | Crossword | `crosswordFmt` | Newspaper clue; EXPLORAZONE typed into the grid, green tick |
+| W61, W94 | Grandparent bingo | `bingoFmt` | Bingo card of everyday moans dabbed to FULL HOUSE |
+| W64, W117, W147 | Then and now | `thenNowFmt` | Sepia old object above, the colour attraction below |
+| W68 | Boarding pass | `boardingFmt` | "From: the sofa. Gate: outside the ring road. Seat 3: free" |
+| W120 | Payday | `payFmt` | Banking app; the highlighted line is three tickets for £36 |
+| W137 | February calendar | `calendarFmt` | Wall calendar with the last offer day circled in red pen |
+| W103, W134 | Magazine cover | `magazineFmt` | Cover with masthead and popping cover lines, then a zoom through the cover photo |
+| W108, W129, W145 | Checklist | `checklistFmt` | Items tick off; the last one carries a thumbnail and zooms through into the photos |
+| W93, W113, W132, W138 | Phone mockup | `phoneFmt` | Phone with a lock-screen reminder, a scrolling feed or a story with progress bars, then a zoom through the screen |
+| W100, W114 | Paper cutout | `scrapbookFmt` | Ransom-note letters and torn, taped photos on kraft paper, 12 fps stop-motion timing |
+| W98, W131 | Growth curve | `chartFmt` | Tongue-in-cheek chart (patience, energy) falling all week, then a zoom through the Saturday spike |
+| W105 | Chat takeover | `chatTakeoverFmt` | Group chat floods with replies until it fills the screen, then the photo bubble zooms open |
+
+Cuts: `snapSeq` (each photo snaps in from 122% with a white flash) and `zoomThrough` (zoom into a rectangle until it fills the frame) join these formats to the photos; `zoomTail` wires both together.
+
 Next ideas in the favourites' vein (rule E7): Grandad's toolbox of old gadgets, a 1970s school report next to today's, Nan's recipe card for "a good day out", Mission: half term, a spy-gadget briefing for the grandchildren.
 
 ## Making a variant well

@@ -97,3 +97,21 @@ What: "Some photos are zoomed in, in the wrong part and not centred after the zo
 Applies to: every full-frame photo (landscape venue photos cover-filled into 9:16, about 3x zoom on the middle) and off-centre subjects in smaller crops
 Meaning: never cover-fill 9:16 with a landscape photo; show the whole photo over a blurred fill, and give each photo a focal point
 Outcome: promoted to rule G12; engine gains per-photo focal points ("focus" in brand.json) and the kit's heroPhoto shows the whole photo; 17 videos re-rendered
+
+### 2026-10-20 · Explorazone · winter 2026-27 · active · director
+What: "When you rebuild, and make a zip folder, have subfolders by category... we run different ad-sets, we have a separate ad-set for grandparents... so we can upload December creatives in December, and Christmas creatives right before or during that season."
+Applies to: every delivery of this campaign (W01 to W150, S51 to S150)
+Meaning: the folder structure is the posting schedule: run period first, then ad set (Grandparents or Families), then Videos and Stills
+Outcome: promoted to rule G13; delivery.md staging template changed; one zip per period
+
+### 2026-10-20 · Explorazone · winter 2026-27 · active · director
+What: 100 more diversified motion videos (W51 to W150, 2 Nov 2026 to Fri 12 Feb 2027), 30% for the grandparents ad set, plus 200 still images (100 feed 4:5 and 100 story 9:16).
+Applies to: W51 to W150, S51 to S150
+Meaning: every video should have matching statics for Feed and Stories placements; grandparents now get about a third of the set
+Outcome: stills builder added (campaign `stills/`); rule G15; E6 reworded (31 of 100 for grandparents)
+
+### 2026-10-20 · Explorazone · winter 2026-27 · active · director
+What: A list of effects (Orbit, Chat Takeover, Frame Escape, Snap Zoom, Zoom Portal, Growth Curve, Studio Reveal, B-roll Overlay, Paper Cutout, Dolly Zoom, Magazine Cover, Liquid Glass, Zoom Through Cut, Green Screen, Frame Break, Digital Zoom, Phone Mockup, Checklist), "use only if you agree they can produce better results than what you are already using".
+Applies to: W93 to W150 and the stills
+Meaning: the director wants fresher looks, but judged on results, not novelty
+Outcome: used Magazine Cover, Checklist, Phone Mockup, Paper Cutout, Growth Curve and Chat Takeover as new formats, Snap Zoom and Zoom Through as cuts between photos, Liquid Glass in the stills; skipped effects that need filmed people, depth or a moving camera (Green Screen, B-roll Overlay, Orbit, Dolly Zoom, Studio Reveal, Frame Escape, Frame Break, Digital Zoom). Rule G16

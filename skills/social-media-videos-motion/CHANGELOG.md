@@ -2,6 +2,14 @@
 
 Versions: patch for learnings and concept statuses, minor for new concepts, libraries, scripts and workflow changes, major for brand.json or campaign.json changes that break old campaigns.
 
+## 1.2.0 (20 October 2026)
+- Explorazone winter batch 2: 100 more videos (W51 to W150) for 2 Nov 2026 to Fri 12 Feb 2027, 31 for the grandparents ad set, each with its own licensed track (100 new Mixkit tracks), plus 200 stills (S51 to S150, 4:5 feed and 9:16 story).
+- New formats: `06-formats2.js` (paint swatch, ring-road map, crossword, bingo, then and now, boarding pass, banking app, calendar) and `06b-formats3.js` (magazine cover, checklist, phone mockup, paper cutout, growth curve, chat takeover, with `snapSeq`, `zoomThrough` and `zoomTail` cuts), chosen from the director's effects list (rule G16).
+- Stills builder (campaign `stills/`): the kit records each spot's format and config, `make_stills.py` turns them into feed and story pages with one layout per format and the same offer band, `shoot.mjs` screenshots them, `stills_copy.py` names them and writes the stills ad copy.
+- Delivery staged as the posting schedule: period, then ad set, then Videos and Stills, one zip per period (rule G13).
+- Formats: `flapFmt` scales long values; `calendarFmt` writes its note below the grid; `specimenFmt` draws a pebble.
+- Learnings: new G13 to G16; E6 reworded (a quarter to a third for grandparents). Engine pitfalls: zoom-through targets, background QA slowing renders, class-name clash in stills pages.
+
 ## 1.1.0 (19 October 2026)
 - Built from the Explorazone winter 2026-27 production: 50 videos (W01 to W50) for Mon 2 Nov 2026 to Sun 10 Jan 2027, delivered in one zip with pack, ad copy, credits and studio.
 - New campaign `campaigns/explorazone/2026-11-winter/`: a shared kit (`00-kit.js`) and 35 config-driven formats (frost, dusk, fog, storm, wipers, snow plan, fairy lights, notebook pages, lock screen, search, POV, chat, screen time, camera roll, battery, advent, gift box, receipt, snow globe, knitted jumper, flip countdown, tickets in snow, dossier, retro film, big number, split screen, stopwatch, quiz, specimens, cracker, calendar, chalkboard, family tree, myth stamp, portals). Documented in `engine.md` section 10 and `concept-library.md`.

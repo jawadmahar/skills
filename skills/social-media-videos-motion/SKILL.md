@@ -1,10 +1,10 @@
 ---
 name: social-media-videos-motion
-description: "Social Media Videos Motion, also called SMVM (aliases: smvm, /smvm, social videos, motion ads, reels maker). Plans, builds, renders and delivers 9:16 motion videos with licensed music for Instagram and Facebook Reels and Stories, for any brand: Explorazone, STEMEX, Muffin Break, Cafe UFO or a new one. It finds and follows the brand's own guidelines and campaign brief first, runs a short multiple-choice interview, designs a creatively diverse set for Meta's Andromeda ad delivery, renders MP4s with a code-driven motion engine, writes the ad copy, zips everything for the team and improves itself from feedback and Meta results. Use it whenever someone wants social media videos, Reels, Stories, motion graphics or animated ads, video ad variations, a creative refresh, or promo videos for an offer, season or holiday, or says any alias, even without the word skill. Also use it to log feedback on past videos or to review how posted videos performed on Meta."
+description: "Social Media Videos Motion, also called SMVM (aliases: smvm, /smvm, social videos, motion ads, reels maker). Plans, builds, renders and delivers 9:16 motion videos with licensed music for Instagram and Facebook Reels and Stories, for any brand: Explorazone, STEMEX, Muffin Break, Cafe UFO or a new one. It finds and follows the brand's own guidelines and campaign brief first, runs a short multiple-choice interview, designs a creatively diverse set for Meta's Andromeda ad delivery, renders MP4s with a code-driven motion engine, makes matching 4:5 and 9:16 stills, writes the ad copy, zips everything for the team and improves itself from feedback and Meta results. Use it whenever someone wants social media videos, Reels, Stories, motion graphics or animated ads, video ad variations, a creative refresh, or promo videos for an offer, season or holiday, or says any alias, even without the word skill. Also use it to log feedback on past videos or to review how posted videos performed on Meta."
 compatibility: "Rendering needs Node 18+, Playwright with Chromium, ffmpeg and Python 3 with numpy and Pillow, plus internet for fonts and music (Claude Code on the web has all of these). Planning, copy and feedback work anywhere. Optional connectors: Meta Ads, Google Drive."
 metadata:
-  version: "1.1.0"
-  updated: "2026-10-19"
+  version: "1.2.0"
+  updated: "2026-10-20"
   aliases: "smvm, social-videos, motion-ads, reels-maker"
   owner: "Mahar Group Operations"
 ---
@@ -47,7 +47,7 @@ Follow `references/engine.md`: set up the campaign folder, write the spots (star
 `scripts/render_all.py` (run big batches in the background, after seeking every frame once for runtime errors; budget about 1 frame per second per job on a 4-core machine), `scripts/mixkit.py` to search, fetch and trim music, `scripts/mux.py`, `scripts/check_videos.py`, then a contact sheet of the finished files. Music rules are in `references/music.md`: one licensed track per video, matched to its mood, with credits recorded.
 
 ### 8. Deliver
-Follow `references/delivery.md`: pack PDF (`scripts/make_pack.mjs`), ad copy sheet (`scripts/make_adcopy.py`, tab-separated for Google Sheets), music credits, README, studio HTML and zips (`scripts/make_zip.py`, as few as possible). For Google Drive, use `scripts/upload_to_drive.py` when Drive secrets are set; otherwise create the folder with the Drive connector and hand the zips over in chat for the user to drop in. Ad names follow `PREFIX_ID_slug` so results can be traced back to each creative later.
+Follow `references/delivery.md`: pack PDF (`scripts/make_pack.mjs`), ad copy sheet (`scripts/make_adcopy.py`, tab-separated for Google Sheets), music credits, README, studio HTML and zips (`scripts/make_zip.py`, as few as possible). For Google Drive, use `scripts/upload_to_drive.py` when Drive secrets are set; otherwise create the folder with the Drive connector and hand the zips over in chat for the user to drop in. Ad names follow `PREFIX_ID_slug` so results can be traced back to each creative later. When the user wants statics too, build a 4:5 feed and a 9:16 story still for each video from the same configs (rule G15; `engine.md` section 10). Stage the folders as the posting schedule (period, then ad set, then Videos and Stills; rule G13).
 
 ### 9. Feedback and evolution
 Follow `references/feedback-loop.md`:
