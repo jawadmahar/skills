@@ -67,3 +67,9 @@ What: Three scripts (make_adcopy, make_pack, score_ads) only recognised V-number
 Applies to: any campaign that uses a new id letter
 Meaning: id handling must not assume a letter
 Outcome: fixed in the scripts (any capital letter plus digits); logged only
+
+### 2026-10-20 · Explorazone · winter 2026-27 · passive · QA
+What: The 50-video render hit the 2-hour background limit at 46 videos; the last four were rendered in a second batch. One video (W10) came out at -19.8 LUFS because the track's chosen start was a soft passage; a later start fixed it.
+Applies to: rendering and music for large sets
+Meaning: plan renders in batches under 2 hours; trust check_videos and fix starts per video
+Outcome: logged only (pitfalls added to engine.md)

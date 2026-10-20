@@ -168,6 +168,8 @@ Rendering runs at about 1 to 3 minutes per 12-second spot under software WebGL; 
 - Stretching an offscreen canvas for a ripple: draw slices directly instead (`rippleRect` in V15).
 - Headless MediaRecorder output is WebM with drifting timing: always render frames with `render.mjs`, never record for delivery.
 - Text placed for one font looked wrong when the font failed to load: preload every face and check the first stills.
+- A background command in Claude Code on the web is stopped after 2 hours. For 40+ videos, render in batches with `--ids` (or restart the rest with `--ids`); finished MP4s in `out/silent` are kept.
+- `mixkit.py starts` can pick a soft passage; `check_videos.py` then flags the loudness. Measure 12-second windows with `ffmpeg -ss N -t 12 -i track.mp3 -af ebur128 -f null -`, set a livelier start in `music/starts.json` and re-mux that video only.
 
 ## 10. Big sets: the kit pattern
 
