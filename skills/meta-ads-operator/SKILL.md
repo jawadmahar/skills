@@ -3,7 +3,7 @@ name: meta-ads-operator
 description: "Meta Ads Operator, also called MAO (aliases: mao, /mao, ads operator, ads-operator). Runs Mahar Group's paid Facebook and Instagram advertising end to end through the Meta Ads connector, so the business does not depend on one person: uploads videos and images, builds campaigns, ad sets and ads from a creative pack, puts each creative in the right audience's ad set, asks for the daily budget whenever none is agreed, publishes only with explicit approval and checks it went live, sets up A/B tests, monitors on a schedule, pauses clear losers and then reports, and hands what the connector cannot do to the right person. Use it whenever someone wants Facebook or Instagram ads posted, launched, paused, budgeted, tested, checked or reported, wants Claude to do Musa's Ads Manager work, or says 'launch the drop', 'post these videos as ads', 'how are the ads doing' or any alias, even without the word skill. Pairs with social-media-videos-motion (smvm), which makes the videos."
 compatibility: "Needs the Meta Ads connector (draft mode is fine). Optional: GitHub for a temporary media link, Google Drive for the budget log, Claude Code routines (send_later, create_trigger) for scheduled checks, Python 3 with Pillow and numpy for the helper scripts."
 metadata:
-  version: "1.0.1"
+  version: "1.0.2"
   updated: "2026-10-21"
   aliases: "mao, ads-operator"
   owner: "Mahar Group Operations"

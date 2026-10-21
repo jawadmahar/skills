@@ -2,6 +2,10 @@
 
 Versions: patch for learnings and wording, minor for new recipes, scripts and workflow steps, major for changes that break saved launch settings.
 
+## 1.0.2 (21 October 2026)
+- Gaps: GHL Social Planner and Conversations as the route for organic posts and DMs; Lead Ads terms now accepted for Explorazone; the connector's Instagram list stays empty even when linked.
+- Brand notes: Explorazone's Instagram is @explorazonelab. Learning O9 confirmed.
+
 ## 1.0.1 (21 October 2026)
 - Learning O12: judge "running" by delivery status and end date, never by status or effective status, and re-check before reporting.
 

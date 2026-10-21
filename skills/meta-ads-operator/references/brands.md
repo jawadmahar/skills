@@ -13,7 +13,7 @@ Audiences, links, terms and cautions per brand. No IDs, budgets or results here:
 - Landing page: the official offer page on explorazone.co.uk (for buy 2, get the 3rd free: `/buy-2-get-3-free/`), with UTMs `utm_source=meta&utm_medium=paid_social&utm_campaign=<campaign>&utm_content=<ID>`. Test any other link first; the n8n practice sign-up webhook returned 404 in October 2026.
 - Button: Sign up, because the offer needs a sign-up.
 - Required terms in every primary text for buy 2, get the 3rd free: the ticket price, "New customers only", "Sign up to claim" (or "Sign up first at explorazone.co.uk"), "Max 9 per group", "T&Cs apply", and the dates. Add the early-end wording when the director has approved it.
-- Instagram: Meta attaches the Page's Instagram account to creatives; ask Musa to confirm it is the Explorazone account before a big launch.
+- Instagram: @explorazonelab, connected to the Page (confirmed in an ad preview on 21 Oct 2026). Meta attaches it to every creative made with the Page.
 - Seasonal windows: launch each drop only inside its own dates (half term, Christmas, January, February). Later drops wait.
 
 ## STEMEX (STEM Centre Ltd)
