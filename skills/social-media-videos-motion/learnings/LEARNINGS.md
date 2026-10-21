@@ -1,6 +1,6 @@
 # Learnings
 
-Last consolidated: 18 October 2026 (version 1.0.0)
+Last consolidated: 21 October 2026 (version 1.0.1)
 
 Read Global plus the section for the brand you are working on before planning. Brand guidelines and the campaign brief override anything here. Confidence: **Director** (the director said so), **Proven** (Meta data across campaigns), **Hypothesis** (test it on purpose), **Firm** (learned the hard way in production). How rules are added, promoted and retired: `references/feedback-loop.md`.
 
@@ -16,6 +16,7 @@ Read Global plus the section for the brand you are working on before planning. B
 | G6 | After swapping any photo, re-read every line of ad copy that names an attraction or product. | Six ad texts named photos that had been replaced | Firm | Oct 2026 |
 | G7 | Review a contact sheet of stills before rendering the full set; most layout bugs only show in frames. | Overlaps, text under polaroids and 3D objects behind headlines were all caught this way | Firm | Oct 2026 |
 | G8 | Deliver everything in as few zips as possible, with a README and a pack the poster can follow without help. | Director: "I would prefer fewer zip folders which I could share" | Director | Oct 2026 |
+| G9 | Put the offer's significant conditions in `requiredTerms` in campaign.json so `make_adcopy.py` refuses any primary text that misses one. | 9 of 20 half-term primary texts lacked "Max 9 per group" and were fixed only at launch | Firm | Oct 2026 |
 
 ## Explorazone
 

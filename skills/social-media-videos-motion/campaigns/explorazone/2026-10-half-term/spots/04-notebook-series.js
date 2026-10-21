@@ -18,7 +18,7 @@ defineSpot({
   id: 'V16', title: 'Dear Mum & Dad', dur: 12, persona: 'Parents, through the child’s eyes (25 to 44)',
   angle: 'A child bargains for a half-term trip: you buy 2, my brother goes free', style: 'Spiral notebook, child’s handwriting, doodles and big polaroids',
   hook: '"Dear Mum & Dad, it’s half term and it’s raining. AGAIN."', music: 9,
-  meta: { headline: 'You buy 2. One goes free.', primary: '"Dear Mum & Dad, it’s half term and it’s raining. AGAIN. Can we go to Explorazone? You buy 2 tickets and Sam goes FREE!! I’ll tidy my room.* (*probably)"\n\nBuy 2 tickets at £18 each, the 3rd walks in free. 3 for £36. Lasers, robots and six hours of hands-on science in Bowthorpe, Norwich. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. T&Cs apply.' },
+  meta: { headline: 'You buy 2. One goes free.', primary: '"Dear Mum & Dad, it’s half term and it’s raining. AGAIN. Can we go to Explorazone? You buy 2 tickets and Sam goes FREE!! I’ll tidy my room.* (*probably)"\n\nBuy 2 tickets at £18 each, the 3rd walks in free. 3 for £36. Lasers, robots and six hours of hands-on science in Bowthorpe, Norwich. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. Max 9 per group. T&Cs apply.' },
   setup() { paper16 = makeSpiralPaper(); },
   frame(t) {
     const E = 7.9; const slide = easeInCubic(prog(t, E, E + 0.6));
@@ -65,7 +65,7 @@ defineSpot({
   id: 'V17', title: 'Grandad’s reply', dur: 12, persona: 'Grandparents 60+',
   angle: 'Grandad writes back: Nan and I buy two tickets, so you go free', style: 'Fountain-pen letter in an envelope, vintage photos with album corners',
   hook: '"My dear Lily, Nan and I would love to take you to Explorazone this half term."', music: 12,
-  meta: { headline: 'Nan & Grandad pay. One goes free.', primary: '"My dear Lily, Nan and I would love to take you to Explorazone this half term. We’ll buy two tickets, so you go free. Saturday at ten? Love, Grandad x. P.S. They have typewriters!"\n\nBuy 2 tickets at £18 each, the 3rd walks in free. Typewriters, rotary phones, a garden of light and a laser room in Bowthorpe, Norwich. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. T&Cs apply.' },
+  meta: { headline: 'Nan & Grandad pay. One goes free.', primary: '"My dear Lily, Nan and I would love to take you to Explorazone this half term. We’ll buy two tickets, so you go free. Saturday at ten? Love, Grandad x. P.S. They have typewriters!"\n\nBuy 2 tickets at £18 each, the 3rd walks in free. Typewriters, rotary phones, a garden of light and a laser room in Bowthorpe, Norwich. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. Max 9 per group. T&Cs apply.' },
   setup() { paper17 = makeLetterPaper(); },
   frame(t) {
     const E = 7.5; const slide = easeInCubic(prog(t, E, E + 0.6));
@@ -146,7 +146,7 @@ defineSpot({
   id: 'V19', title: 'Dear Diary', dur: 12, persona: 'Kids 7 to 12 and their parents (social proof)',
   angle: 'A child’s diary after the visit: best day ever, and my ticket was free', style: 'Gel-pen diary page, doodled hearts and stars, big taped photos',
   hook: '"Dear Diary, BEST. DAY. EVER."', music: 1076,
-  meta: { headline: 'Make it their best day ever', primary: '"Dear Diary, BEST. DAY. EVER. We went to Explorazone! I saw myself in heat vision, a robot brought Mum’s coffee and Grandad got lost in the sky maze (lol). AND my ticket was FREE!!"\n\nBuy 2 tickets at £18 each, the 3rd walks in free. 3 for £36. Bowthorpe, Norwich. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. T&Cs apply.' },
+  meta: { headline: 'Make it their best day ever', primary: '"Dear Diary, BEST. DAY. EVER. We went to Explorazone! I saw myself in heat vision, a robot brought Mum’s coffee and Grandad got lost in the sky maze (lol). AND my ticket was FREE!!"\n\nBuy 2 tickets at £18 each, the 3rd walks in free. 3 for £36. Bowthorpe, Norwich. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. Max 9 per group. T&Cs apply.' },
   setup() { paper19 = makeDiaryPaper(); },
   frame(t) {
     const E = 7.6; const slide = easeInCubic(prog(t, E, E + 0.6));
@@ -202,7 +202,7 @@ defineSpot({
   id: 'V20', title: 'The fridge plan', dur: 10, persona: 'Organised parents planning the week',
   angle: 'The half-term plan on the fridge: Mon rain, Tue rain, Wed EXPLORAZONE', style: 'Fridge door with colourful sticky notes, magnets and big photos',
   hook: 'Sticky notes slapping onto a fridge: "HALF TERM PLAN"', music: 1057,
-  meta: { headline: 'The half-term plan is on the fridge', primary: 'The half-term plan. Mon: rain. Tue: rain. Wed: EXPLORAZONE! Buy 2 tickets at £18 each and the 3rd walks in free. The laser room, the garden of light and the light-up floor, all indoors in Bowthorpe, Norwich.\n\nHalf term: Fri 23 Oct to Sun 1 Nov. 3 for £36, 6 for £72, 9 for £108. New customers only. Sign up first at explorazone.co.uk. T&Cs apply.' },
+  meta: { headline: 'The half-term plan is on the fridge', primary: 'The half-term plan. Mon: rain. Tue: rain. Wed: EXPLORAZONE! Buy 2 tickets at £18 each and the 3rd walks in free. The laser room, the garden of light and the light-up floor, all indoors in Bowthorpe, Norwich.\n\nHalf term: Fri 23 Oct to Sun 1 Nov. 3 for £36, 6 for £72, 9 for £108. New customers only. Sign up first at explorazone.co.uk. Max 9 per group. T&Cs apply.' },
   setup() { fridgeC = makeFridge(); },
   frame(t) {
     const E = 5.4;

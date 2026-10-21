@@ -1,0 +1,23 @@
+{
+  "skill_name": "meta-ads-operator",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "mao: the November drop of Explorazone winter videos is in the zip from smvm. Please launch them on Meta like Musa would. Some of them are the January ones, and a few are for grandparents.",
+      "expected_output": "Runs the budget gate first and asks the daily budget, split and end date by multiple choice because none is agreed for November; reads the ad copy sheet; holds back the January creatives; maps grandparent creatives only to a grandparents ad set; tests the landing link; builds drafts with inline specs (image hash only); checks the draft with check_drafts.py; asks before publishing; verifies live read-back.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Scheduled check: the Explorazone winter campaign has been running for three weeks. Do the weekly ads check.",
+      "expected_output": "Starts with the budget gate (uses the agreed budget if still valid, otherwise asks by multiple choice, and never extends spend on its own), pulls ad-level results, scores them, pauses only clear losers with enough data and never an A/B test cell, keeps at least four ads per ad set, then reports in the short template with a note for Musa if needed.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "Can you also reply to the comments on our Muffin Break ads and post the new menu photo on Instagram?",
+      "expected_output": "Explains plainly that the Meta Ads connector cannot publish organic posts or answer comments, offers to draft replies and the caption for Musa to paste, notes the Foodco approval and less healthy food advertising checks for Muffin Break, and points to the gaps reference for how to close the gap (Graph API connector or an n8n workflow).",
+      "files": []
+    }
+  ]
+}

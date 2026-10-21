@@ -136,7 +136,7 @@ defineSpot({
   id: 'V04', title: 'Dear Nan & Grandad', dur: 12, persona: 'Grandparents, through the grandchild’s eyes',
   angle: 'A child’s half-term letter: if you buy 2 tickets, I go free', style: 'Handwritten notebook letter, polaroids and doodles',
   hook: 'A child’s handwriting: "Dear Nan & Grandad, it’s half term!!"',
-  meta: { headline: 'Nan, Grandad and me. One goes free.', primary: '"Dear Nan & Grandad, it’s half term!! Can we PLEASE go to Explorazone? If you buy 2 tickets, I go FREE!!!"\n\nBuy 2 tickets at £18 each and the 3rd walks in free. The offer made for a party of three. VR, robots, mirror maze and 15,000 sq ft of hands-on science in Bowthorpe, Norwich. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. T&Cs apply.' },
+  meta: { headline: 'Nan, Grandad and me. One goes free.', primary: '"Dear Nan & Grandad, it’s half term!! Can we PLEASE go to Explorazone? If you buy 2 tickets, I go FREE!!!"\n\nBuy 2 tickets at £18 each and the 3rd walks in free. The offer made for a party of three. VR, robots, mirror maze and 15,000 sq ft of hands-on science in Bowthorpe, Norwich. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. Max 9 per group. T&Cs apply.' },
   setup() { paperC = makePaper(); },
   frame(t) {
     const E = 7.4; const slide = easeInCubic(prog(t, E, E + 0.6));
@@ -254,7 +254,7 @@ defineSpot({
   id: 'V09', title: 'An old-fashioned day out', dur: 15, persona: 'Grandparents 65+',
   angle: 'Half term with the grandchildren: bring two, the third walks in free', style: 'Slow, warm, cinematic photo pans with large type',
   hook: '"Half term with the grandchildren?" over a busy science lab',
-  meta: { headline: 'Bring two grandchildren, one goes free', primary: 'Half term with the grandchildren? Bring two, the third walks in free. Warm, dry and six hours of wonder: a real science lab, infinity lights, typewriters, rotary phones and a laser room, all under one roof in Bowthorpe, Norwich.\n\nBuy 2 tickets at £18 each, the 3rd walks in free. 3 in for £36. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. T&Cs apply.' },
+  meta: { headline: 'Bring two grandchildren, one goes free', primary: 'Half term with the grandchildren? Bring two, the third walks in free. Warm, dry and six hours of wonder: a real science lab, infinity lights, typewriters, rotary phones and a laser room, all under one roof in Bowthorpe, Norwich.\n\nBuy 2 tickets at £18 each, the 3rd walks in free. 3 in for £36. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. Max 9 per group. T&Cs apply.' },
   setup() {},
   frame(t) {
     const scenes = [

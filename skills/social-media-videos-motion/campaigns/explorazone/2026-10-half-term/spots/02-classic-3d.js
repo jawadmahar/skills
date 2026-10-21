@@ -233,7 +233,7 @@ defineSpot({
   id: 'V10', title: 'Ticket trio', dur: 15, persona: 'Families (broad), proven 3D style',
   angle: 'Three tickets, the 3rd flips to FREE, then a fly-through of the venue', style: '3D tickets fly through photo portals to a planet',
   hook: 'A deck of three gold-edged tickets spins out of the dark',
-  meta: { headline: 'Buy 2. Get the 3rd free.', primary: 'Half term for three? Buy 2 tickets at £18 each and the 3rd walks in free. Fly through the laser room, the sky maze, the garden of light, heat vision and infinity lights: six hours of hands-on science, all indoors.\n\nExplorazone, Bowthorpe, Norwich. Half term: Fri 23 Oct to Sun 1 Nov. 3 for £36, 6 for £72, 9 for £108. New customers only. Sign up to claim. T&Cs apply.' },
+  meta: { headline: 'Buy 2. Get the 3rd free.', primary: 'Half term for three? Buy 2 tickets at £18 each and the 3rd walks in free. Fly through the laser room, the sky maze, the garden of light, heat vision and infinity lights: six hours of hands-on science, all indoors.\n\nExplorazone, Bowthorpe, Norwich. Half term: Fri 23 Oct to Sun 1 Nov. 3 for £36, 6 for £72, 9 for £108. New customers only. Sign up to claim. Max 9 per group. T&Cs apply.' },
   setup() {
     const { scene } = getThree();
     scene.fog = new THREE.Fog('#16223f', 13, 40);

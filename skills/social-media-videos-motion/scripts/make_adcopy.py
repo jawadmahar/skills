@@ -7,6 +7,10 @@ Usage:
 
 One row per video: the Meta ad name to use (so results can be traced back to the creative later),
 file name, series, audience, angle, hook, headline, primary text, button, music and dates.
+
+If campaign.json has "requiredTerms" (e.g. ["New customers only", "Max 9 per group", "T&Cs apply"]),
+every primary text must contain each of them; the sheet is still written, but the script lists the
+gaps and exits with code 1 so they are fixed before anything is posted.
 """
 import argparse
 import csv
@@ -42,6 +46,8 @@ def main():
                 files[m.group(1)] = p.name
     prefix = camp.get('adPrefix', camp.get('slug', 'AD').upper())
     dates = camp.get('dates', {})
+    required = camp.get('requiredTerms', [])
+    gaps = []
     cols = ['Ad name', 'File', 'Series', 'Title', 'Length (s)', 'Audience', 'Angle', 'Hook', 'Headline', 'Primary text',
             'Button', 'Music', 'Start', 'End']
     with open(a.out, 'w', newline='', encoding='utf-8') as fh:
@@ -54,10 +60,17 @@ def main():
             c = credits.get(track, {})
             music = f"{c.get('title', '?')} by {c.get('author', '?')} ({c.get('source', 'Mixkit')} #{track})" if track else ''
             meta = s.get('meta', {})
+            missing = [t for t in required if t not in meta.get('primary', '')]
+            if missing:
+                gaps.append(f'{sid}: {", ".join(missing)}')
             w.writerow([f'{prefix}_{sid}_{slug}', files.get(sid, ''), series.get(sid, s.get('series', '')), s['title'], s['dur'],
                         s.get('persona', ''), s.get('angle', ''), s.get('hook', ''), meta.get('headline', ''), meta.get('primary', ''),
                         meta.get('button', camp.get('button', 'Sign up')), music, dates.get('start', ''), dates.get('end', '')])
     print(f'{a.out}: {len(spots)} rows')
+    if gaps:
+        print('  problem: primary text is missing required terms (significant conditions, CAP Code 3.9 and 8.17):')
+        print('\n'.join('    ' + g for g in gaps))
+        raise SystemExit(1)
 
 
 if __name__ == '__main__':

@@ -41,6 +41,7 @@ How to post
 - One ad per video. Use the ad name from the sheet exactly.
 - Leave them 5 to 7 days, then pause clear losers and keep winners.
 - Then tell Claude "smvm feedback" so the next batch learns from the results.
+- Or ask Claude to post them: "mao: launch <campaign>" (the meta-ads-operator skill).
 Music: licensed from Mixkit for social ads (credits included). Do not use the tracks outside these videos.
 Questions: <owner name>.
 ```

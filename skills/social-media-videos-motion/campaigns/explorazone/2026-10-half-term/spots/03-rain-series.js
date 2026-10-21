@@ -110,7 +110,7 @@ defineSpot({
   id: 'V13', title: 'The group chat', dur: 12, persona: 'Parents, word-of-mouth style (25 to 44)',
   angle: 'A rainy-day parents’ group chat lands on Explorazone', style: 'Messaging-app conversation over a rainy window, with a big photo message',
   hook: '"It’s raining AGAIN. What are we doing with them all half term?"', music: 729,
-  meta: { headline: 'The group chat has decided', primary: '"It’s raining AGAIN. What are we doing with them all half term?" Sorted: Explorazone in Bowthorpe. Lasers, robot waiters, a sky maze and a café, all indoors.\n\nBuy 2 tickets at £18 each, the 3rd walks in free. 3 for £36, 6 for £72, 9 for £108. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. T&Cs apply.' },
+  meta: { headline: 'The group chat has decided', primary: '"It’s raining AGAIN. What are we doing with them all half term?" Sorted: Explorazone in Bowthorpe. Lasers, robot waiters, a sky maze and a café, all indoors.\n\nBuy 2 tickets at £18 each, the 3rd walks in free. 3 for £36, 6 for £72, 9 for £108. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. Max 9 per group. T&Cs apply.' },
   setup() { CHAT_L = chatLayout(); },
   frame(t) {
     const E = 7.9;
@@ -214,7 +214,7 @@ defineSpot({
   id: 'V15', title: 'Puddle season', dur: 12, persona: 'Families, all ages, dreamy and visual',
   angle: 'Look closer at the puddle: it reflects the garden of light', style: 'Rippling puddle reflection that dives into colourful rooms',
   hook: '"Puddle season is here." with rain rippling a puddle', music: 175,
-  meta: { headline: 'Puddles outside. Wonder inside.', primary: 'Puddle season is here. Look closer: a garden of light, a sky maze and infinity lights, six hours of it, all indoors at Explorazone in Bowthorpe, Norwich.\n\nBuy 2 tickets at £18 each, the 3rd walks in free. 3 for £36, 6 for £72, 9 for £108. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. T&Cs apply.' },
+  meta: { headline: 'Puddles outside. Wonder inside.', primary: 'Puddle season is here. Look closer: a garden of light, a sky maze and infinity lights, six hours of it, all indoors at Explorazone in Bowthorpe, Norwich.\n\nBuy 2 tickets at £18 each, the 3rd walks in free. 3 for £36, 6 for £72, 9 for £108. Half term: Fri 23 Oct to Sun 1 Nov. New customers only. Sign up to claim. Max 9 per group. T&Cs apply.' },
   setup() {
     tarmac = makeCanvas(W, H); const g = tarmac.getContext('2d'), r = rng(8);
     const gr = g.createLinearGradient(0, 0, 0, H); gr.addColorStop(0, '#20262e'); gr.addColorStop(1, '#0e1115'); g.fillStyle = gr; g.fillRect(0, 0, W, H);
