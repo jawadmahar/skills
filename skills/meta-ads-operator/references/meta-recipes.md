@@ -17,7 +17,7 @@ The calls that cover Musa's day-to-day work, in the order a launch uses them, wi
 | Pages | `ads_get_ad_account_pages` | The Page that owns the ads |
 | Exclusion audiences | `ads_get_ad_account_custom_audiences` | Pick by name (existing customers, existing leads), not by remembered ID |
 | Instagram account | `ads_get_ig_accounts` | Can return nothing even when Meta knows the Page's Instagram account (see Pitfalls) |
-| What is live | `ads_get_ad_entities` level `campaign` or `adset` | Verify field names with `ads_get_field_context` first |
+| What is live | `ads_get_ad_entities` level `campaign` or `adset` with `delivery` and `end_time` | Verify field names with `ads_get_field_context` first. Judge "running" by `delivery`: `status` and `effective_status` stay ACTIVE after the end date |
 | Change history | `ads_account_get_activity_logs` | Who changed what; best proof that a publish created objects |
 
 ## Upload media
@@ -91,3 +91,4 @@ Draft mode stages everything in Ads Manager's draft. `ads_get_ad_entities` with 
 | Publishing a new draft campaign pushed only the campaign; its ad sets and ads stayed in the draft, validated, with no error shown | Verify live, retry once, then hand to Ads Manager's Review and publish |
 | The auto-mode safety check blocked a single write as a real-world transaction | Do not loop. Finish the rest, then explain to the director and let them decide |
 | Draft listings over about 100 KB could not be shown | Read the saved file with `check_drafts.py` |
+| A campaign past its end date still read ACTIVE, and was reported as running three days after it completed | Check `delivery` and `end_time`, and re-read before any report |

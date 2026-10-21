@@ -1,6 +1,6 @@
 # Operator learnings
 
-Last consolidated: 21 October 2026 (version 1.0.0)
+Last consolidated: 21 October 2026 (version 1.0.1)
 
 Rules learned while running real launches. Read them before building. Confidence: **Director** (the director said so), **Firm** (learned the hard way in production), **Hypothesis** (believed, not yet proven). Creative lessons (hooks, series, music) belong in the SMVM learnings, not here.
 
@@ -17,6 +17,7 @@ Rules learned while running real launches. Read them before building. Confidence
 | O9 | Pass the Page's Instagram account (instagram_user_id) in inline specs so Instagram placements run, and ask Musa to confirm it is the right account. | `ads_get_ig_accounts` returned nothing while Meta filled the account into creatives | Hypothesis (confirm on the first live ad) | Oct 2026 |
 | O10 | When the auto-mode safety check blocks a Meta write, do not loop. Finish everything else, then explain and let the director decide. | Two single calls blocked as real-world transactions on 21 Oct; one retry each succeeded | Firm | Oct 2026 |
 | O11 | Prefer media routes that need no clean-up: cloud sessions could not delete the temporary GitHub branch (HTTP 403), so the director had to. | 21 Oct 2026 | Firm | Oct 2026 |
+| O12 | Call a campaign or ad "running" only from its delivery status and end date, and re-check before reporting. Status and effective status stay ACTIVE after an end date has passed. | 21 Oct report flagged the B1G1 reactivation campaign as still running from 17 Oct data; it had completed at its end date, midday Sun 18 Oct | Firm | Oct 2026 |
 
 ## Retired
 None yet.
