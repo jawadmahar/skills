@@ -132,7 +132,7 @@ function chatFmt(c) {
       if (t < E + 0.4) {
         fill('#ece5dd');
         ctx.save(); ctx.fillStyle = '#075e54'; ctx.fillRect(0, 0, W, 380); ctx.restore();
-        T(c.title, 520, 356, { size: 44, w: 800, color: '#fff', align: 'left' }); T('Nan, Grandad, Mum, you', 520, 300, { size: 26, w: 500, color: 'rgba(255,255,255,0.75)', align: 'left' }); appIcon(410, 290, 90, '#25d366', c.title[4] ?? 'F');
+        T(c.title, 520, 356, { size: 44, w: 800, color: '#fff', align: 'left' }); T(c.members ?? 'Nan, Grandad, Mum, you', 520, 300, { size: 26, w: 500, color: 'rgba(255,255,255,0.75)', align: 'left' }); appIcon(410, 290, 90, '#25d366', c.title[4] ?? 'F');
         let y = 450;
         const shown = c.msgs.filter((m) => t >= m.at);
         const total = shown.reduce((a, m) => a + (m.key ? 360 : 120) + 22, 0), off = Math.max(0, total - 800);
@@ -219,10 +219,10 @@ function batteryFmt(c) {
       if (t < E + 0.4) {
         if (t < S) {
           vgrad([[0, '#1b1b2f'], [1, '#2a1f3d']]);
-          const lvl = lerp(1, 0.01, easeInCubic(prog(t, 0.1, 1.5)));
+          const lvl = lerp(1, (c.minPct ?? 1) / 100, easeInCubic(prog(t, 0.1, 1.5)));
           ctx.save(); ctx.translate(540, 900); ctx.strokeStyle = '#fff'; ctx.lineWidth = 16; rr(ctx, -300, -150, 560, 300, 40); ctx.stroke(); ctx.fillStyle = '#fff'; rr(ctx, 270, -60, 40, 120, 12); ctx.fill();
           ctx.fillStyle = lvl > 0.2 ? '#30d158' : '#ff453a'; rr(ctx, -278, -128, Math.max(16, 516 * lvl), 256, 26); ctx.fill(); ctx.restore();
-          T(`${Math.max(1, Math.round(lvl * 100))}%`, 540, 1180, { size: 110, w: 800, fam: HEAD, color: lvl > 0.2 ? '#fff' : '#ff453a' });
+          T(`${Math.max(c.minPct ?? 1, Math.round(lvl * 100))}%`, 540, 1180, { size: 110, w: 800, fam: HEAD, color: lvl > 0.2 ? '#fff' : '#ff453a' });
           hook(c.hook, 430, 104, 0.05, t, { hl: '#ff453a' });
         } else {
           heroPhoto(c.cards[0], t, S, E, { cy: 820 });

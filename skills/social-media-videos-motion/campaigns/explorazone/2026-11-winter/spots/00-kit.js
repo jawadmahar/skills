@@ -8,12 +8,14 @@ function primary(lead, more) { return `${lead}${more ? ' ' + more : ''}\n\n${OFF
 const RUN = {
   nov: ['2026-11-02', '2026-11-29'], xmas: ['2026-11-30', '2026-12-20'], hols: ['2026-12-19', '2027-01-04'],
   post: ['2026-12-26', '2027-01-04'], jan: ['2027-01-01', '2027-01-10'], winter: ['2026-12-19', '2027-01-10'],
+  latejan: ['2027-01-11', '2027-01-31'], feb: ['2027-02-01', '2027-02-12'],
 };
-const PERIOD = { nov: 'November', xmas: 'Christmas run-up', hols: 'Christmas holidays', post: 'Christmas holidays', jan: 'New Year and back to school', winter: 'Christmas holidays and January' };
+const PERIOD = { nov: 'November', xmas: 'Christmas run-up', hols: 'Christmas holidays', post: 'Christmas holidays', jan: 'New Year and back to school', winter: 'Christmas holidays and January', latejan: 'Late January', feb: 'February, last chance' };
 // director, Oct 2026: Norwich city centre is busy from November to January and Explorazone is outside the ring road
 const RING = 'Skip the city-centre traffic and crowds: we are outside the ring road, in Bowthorpe.';
+const SPOT_CFG = (window.__spotCfg = {}); // format name and settings per spot, read by the stills builder
 function spot(m, fmt, cfg = {}) {
-  const f = fmt({ dur: m.dur, ...cfg });
+  const f = fmt({ dur: m.dur, ...cfg }); SPOT_CFG[m.id] = { fmt: fmt.name, run: m.run, ring: !!m.ring, cfg };
   const meta = { button: 'Sign up', ...m.meta, start: RUN[m.run][0], end: RUN[m.run][1], period: PERIOD[m.run] };
   if (m.ring) meta.primary = meta.primary.replace('\n\n' + OFFER_COPY, ' ' + RING + '\n\n' + OFFER_COPY);
   defineSpot({ ...m, meta, setup: f.setup ?? (() => {}), frame: f.frame });

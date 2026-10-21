@@ -90,9 +90,9 @@ function splitFmt(c) {
           const g = rc.getContext('2d'); g.clearRect(0, 0, W, H); rainScene(g, t); g.fillStyle = 'rgba(120,130,140,0.35)'; g.fillRect(0, 0, W, H);
           ctx.save(); ctx.beginPath(); ctx.rect(0, 0, split, H); ctx.clip(); ctx.filter = 'grayscale(1)'; ctx.drawImage(rc, 0, 0); ctx.filter = 'none'; ctx.restore();
           ctx.fillStyle = '#fff'; ctx.fillRect(split - 5, 0, 10, H);
-          T('OUTSIDE', split / 2, 640, { size: 46, w: 800, color: '#fff', ls: 6, alpha: clamp(split / 400) });
+          T((c.labels ?? ['OUTSIDE'])[0], split / 2, 640, { size: 46, w: 800, color: '#fff', ls: 6, alpha: clamp(split / 400) });
           T(c.outside, split / 2, 720, { size: 40, w: 600, color: '#dfe6ee', alpha: clamp(split / 400) });
-          T('INSIDE', split + (W - split) / 2, 640, { size: 46, w: 800, color: P.lime, ls: 6, shadow: 'rgba(0,0,0,0.6)' });
+          T((c.labels ?? [0, 'INSIDE'])[1], split + (W - split) / 2, 640, { size: 46, w: 800, color: P.lime, ls: 6, shadow: 'rgba(0,0,0,0.6)' });
         }
         shade(0.7, 0, 0.36);
         if (t < M) hook(c.hook, 430, 100, 0.1, t, { hl: P.lime }); else hook(c.mid, 430, 100, M + 0.4, t, { hl: P.lime });
@@ -117,14 +117,14 @@ function stopwatchFmt(c) {
       if (t < E + 0.4) {
         if (t < X + 0.6) {
           vgrad([[0, '#2b2f3a'], [1, '#14161c']]);
-          const secs = Math.floor(lerp(0, 299, easeInCubic(prog(t, 0.1, X)))); const mm = String(Math.floor(secs / 60)).padStart(2, '0'), ss = String(secs % 60).padStart(2, '0');
+          const secs = Math.floor(lerp(0, c.target ?? 299, easeInCubic(prog(t, 0.1, X)))); const mm = String(Math.floor(secs / 60)).padStart(2, '0'), ss = String(secs % 60).padStart(2, '0');
           ctx.save(); ctx.translate(540, 900); ctx.fillStyle = '#f4f4f5'; ctx.beginPath(); ctx.arc(0, 0, 320, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = '#d4d4d8'; ctx.fillRect(-40, -390, 80, 70); ctx.fillRect(-70, -410, 140, 30);
           for (let i = 0; i < 60; i++) { ctx.save(); ctx.rotate(i * Math.PI / 30); ctx.fillStyle = '#27272a'; ctx.fillRect(-2, -300, 4, i % 5 ? 18 : 36); ctx.restore(); }
           ctx.save(); ctx.rotate((secs % 60) / 60 * Math.PI * 2); ctx.fillStyle = '#ef4720'; ctx.fillRect(-4, -280, 8, 300); ctx.restore(); ctx.fillStyle = '#27272a'; ctx.beginPath(); ctx.arc(0, 0, 16, 0, Math.PI * 2); ctx.fill();
           ctx.restore();
           T(`${mm}:${ss}`, 540, 1010, { size: 90, w: 800, fam: '"Courier Prime", monospace', color: '#111' });
           hook(c.hook, 430, 92, 0.05, t, { hl: '#ff9f0a' });
-          if (t > X) noteItem({ type: 'stamp', text: 'BORED.', x: 540, y: 1160, rot: -0.1, at: X, color: '#ef4720', size: 72 }, t);
+          if (t > X) noteItem({ type: 'stamp', text: c.stamp ?? 'BORED.', x: 540, y: 1160, rot: -0.1, at: X, color: '#ef4720', size: 72 }, t);
         } else {
           heroPhoto(c.cards[0], t, X + 0.6, E, { cy: 820 }); shade(0.75, 0, 0.36);
           if (c.cards[1]) card(c.cards[1], 60, 1000, 460, 260, { alpha: easeOutCubic(prog(t, X + 1.2, X + 1.5)), zoom: 1.06 });
@@ -184,6 +184,7 @@ function specimenFmt(c) {
         const k = easeOutCubic(prog(t, a, a + 0.4)), o = 1 - prog(t, a + step - 0.25, a + step);
         ctx.save(); ctx.globalAlpha = k * o;
         if (key === 'conker') { ctx.save(); ctx.translate(540, 800); const g = ctx.createRadialGradient(-60, -60, 10, 0, 0, 230); g.addColorStop(0, '#b0602a'); g.addColorStop(1, '#4a2410'); ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(0, 0, 230, 210, 0.2, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = '#d9c3a0'; ctx.beginPath(); ctx.ellipse(-30, -150, 90, 50, 0.1, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,0.25)'; ctx.beginPath(); ctx.ellipse(-90, -40, 40, 70, -0.5, 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
+        else if (key === 'pebble') { ctx.save(); ctx.translate(540, 800); const g = ctx.createRadialGradient(-70, -60, 10, 0, 0, 240); g.addColorStop(0, '#b8b8b2'); g.addColorStop(1, '#5d5d58'); ctx.fillStyle = g; ctx.beginPath(); ctx.ellipse(0, 0, 250, 170, -0.15, 0, Math.PI * 2); ctx.fill(); ctx.fillStyle = 'rgba(255,255,255,0.2)'; ctx.beginPath(); ctx.ellipse(-80, -60, 70, 30, -0.3, 0, Math.PI * 2); ctx.fill(); ctx.restore(); }
         else { ctx.save(); ctx.shadowColor = 'rgba(255,240,200,0.25)'; ctx.shadowBlur = 60; photo(IMG[key], 90, 520, 900, 560, { radius: 12, zoom: 1.06 + 0.04 * prog(t, a, a + step) }); ctx.restore(); }
         ctx.save(); ctx.translate(540, 1165); ctx.rotate(-0.015); ctx.fillStyle = '#f3ead5'; ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 20; ctx.fillRect(-380, -110, 760, 220); ctx.restore();
         const TW = '"Special Elite", "Courier New", monospace';
@@ -253,7 +254,7 @@ function dayFmt(c) {
           const i = Math.floor(t / 0.28) % c.days.length, wob = Math.sin(t * 9) * 0.05;
           ctx.save(); ctx.translate(540, 900); ctx.rotate(wob); ctx.fillStyle = '#fff'; ctx.shadowColor = 'rgba(0,0,0,0.3)'; ctx.shadowBlur = 30; rr(ctx, -330, -260, 660, 540, 30); ctx.fill(); ctx.shadowColor = 'transparent';
           ctx.fillStyle = '#ef4720'; rr(ctx, -330, -260, 660, 150, 30); ctx.fill(); ctx.fillRect(-330, -160, 660, 50);
-          T(c.days[i], 0, -160, { size: 64, w: 800, fam: HEAD, color: '#fff' }); T('??', 0, 170, { size: 260, w: 800, fam: HEAD, color: '#111' });
+          T(c.days[i], 0, -160, { size: 64, w: 800, fam: HEAD, color: '#fff' }); T(c.big ?? '??', 0, 170, { size: c.bigSize ?? 260, w: 800, fam: HEAD, color: '#111' });
           ctx.restore();
           hook(c.hook, 430, 92, 0.05, t, { color: P.ink, hl: '#c0271b', shadow: false });
         } else {

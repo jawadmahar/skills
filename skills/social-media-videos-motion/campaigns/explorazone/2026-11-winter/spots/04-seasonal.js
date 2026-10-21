@@ -187,6 +187,8 @@ spot({ id: 'W25', title: 'Jumper day: done', slug: 'jumper-day-done', dur: 8, ru
   knitFmt, { hook: ['Jumper day:', '_done._'], hook2: ['Weekend:', '_now what?_'], patches: [['laser_room', 70, 740, 560, 440, -0.05], ['tunnel', 500, 820, 520, 400, 0.06]], end: ['Jumper day done.', '_Lasers next._'], strip: ['laser_room', 'tunnel', 'infinity_floor', 'heat', 'robot2', 'roses'] });
 
 // W28 Countdown to the holidays ----------------------------------------------------------------
+// shrink long split-flap values (e.g. £18) so they fit the flap
+const flapS = (v) => Math.min(1, 2 / Math.max(1, String(v).length));
 function flapFmt(c) {
   return {
     frame(t) {
@@ -199,8 +201,8 @@ function flapFmt(c) {
           const x = 290, y = 560, w = 500, h = 560;
           ctx.save(); ctx.shadowColor = 'rgba(0,0,0,0.5)'; ctx.shadowBlur = 40; ctx.fillStyle = '#111827'; rr(ctx, x, y, w, h, 40); ctx.fill(); ctx.restore();
           ctx.save(); rr(ctx, x, y, w, h, 40); ctx.clip();
-          T(cur, 540, y + h / 2 + 150, { size: 420, w: 800, fam: HEAD, color: '#fff' });
-          if (f < 1 && i > 0) { ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h / 2); ctx.clip(); ctx.translate(540, y + h / 2); ctx.scale(1, Math.max(0.02, 1 - f)); ctx.translate(-540, -(y + h / 2)); ctx.fillStyle = '#111827'; ctx.fillRect(x, y, w, h / 2); T(prev, 540, y + h / 2 + 150, { size: 420, w: 800, fam: HEAD, color: '#fff' }); ctx.restore(); }
+          T(cur, 540, y + h / 2 + 150 * flapS(cur), { size: 420 * flapS(cur), w: 800, fam: HEAD, color: '#fff' });
+          if (f < 1 && i > 0) { ctx.save(); ctx.beginPath(); ctx.rect(x, y, w, h / 2); ctx.clip(); ctx.translate(540, y + h / 2); ctx.scale(1, Math.max(0.02, 1 - f)); ctx.translate(-540, -(y + h / 2)); ctx.fillStyle = '#111827'; ctx.fillRect(x, y, w, h / 2); T(prev, 540, y + h / 2 + 150 * flapS(prev), { size: 420 * flapS(prev), w: 800, fam: HEAD, color: '#fff' }); ctx.restore(); }
           ctx.fillStyle = '#000'; ctx.fillRect(x, y + h / 2 - 3, w, 6);
           ctx.restore();
           T(c.label, 540, 1210, { size: 40, w: 800, color: P.yellow, ls: 4 });
