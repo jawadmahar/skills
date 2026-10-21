@@ -1,0 +1,411 @@
+{
+ "_readme": "How the Explorazone venue photos were made, so they can be rebuilt without storing brand photos in this repository. Each photo is a full-width crop of a 1080x1920 Story ad image from the Explorazone ad account. To rebuild: list the account's ad images (Meta Ads connector, ads_get_ad_images), find the image whose URL contains source_ad_image, download it, crop x, y, w, h, save as assets/photos/<key>.jpg (JPEG quality 90). Older small crops (lab, lab2, vr, jungle, mirror, floor, tunnel, racing, tubes, infinity, plasma, foliage, lasers_green, tubes_purple) came from square and 4:5 ads; recrop them by eye if needed, or prefer the large photos below. Added 19 Oct 2026: 18 more photos from the October half-term static ads (Explorazone_ht_NN_*_9x16.png); in those ads the photo sits under the logo, so crop from y 272 to 864.",
+ "logo": {
+  "note": "Current lockup \"EXPLORAZONE / SCIENCE DISCOVERY LAB\" (red box, white text), cropped from the half-term static ads of 17 Oct 2026 (ad image Explorazone_ht_10_mixed_ages_9x16.png, url contains 851925329_122145766971157697): crop x 47, y 159, w 305, h 75, then upscaled 2x with Lanczos. Replace with the master logo file when the brand owner supplies it."
+ },
+ "photos": {
+  "astro": {
+   "label": "SPACE ZONE",
+   "source_ad_image": "806203267_122141400849157697_4494529943140183397_n.png",
+   "source_label": "s_hands_on",
+   "crop": {
+    "x": 0,
+    "y": 244,
+    "w": 1080,
+    "h": 625
+   }
+  },
+  "cafe": {
+   "label": "CAFE",
+   "source_ad_image": "783755389_122139203973157697_4332252681792552675_n.png",
+   "source_label": "s_seat",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 835
+   }
+  },
+  "dodeca": {
+   "label": "INFINITY LIGHTS",
+   "source_ad_image": "784590359_122139203997157697_3298223241574006338_n.png",
+   "source_label": "s_want_photo",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 855
+   }
+  },
+  "floor2": {
+   "label": "LIGHT-UP FLOOR",
+   "source_ad_image": "806203270_122141400999157697_6301439262756515963_n.png",
+   "source_label": "s_share916",
+   "crop": {
+    "x": 0,
+    "y": 240,
+    "w": 1080,
+    "h": 750
+   }
+  },
+  "found_room": {
+   "label": "GARDEN OF LIGHT",
+   "source_ad_image": "798019266_122140645641157697_119286979678150951_n.png",
+   "source_label": "s_found_room",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 775
+   }
+  },
+  "heat": {
+   "label": "HEAT VISION",
+   "source_ad_image": "798589979_122140645461157697_7633460162914827404_n.png",
+   "source_label": "s_heat_vision",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 745
+   }
+  },
+  "jungle2": {
+   "label": "LASER JUNGLE",
+   "source_ad_image": "784428615_122139089577157697_2861799154883872630_n.png",
+   "source_label": "s_jungle916",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 715
+   }
+  },
+  "lab3": {
+   "label": "SCIENCE LAB",
+   "source_ad_image": "784251994_122139089427157697_7280575753829638390_n.png",
+   "source_label": "s_gen_lab",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 835
+   }
+  },
+  "laser_room": {
+   "label": "LASER ROOM",
+   "source_ad_image": "784843226_122139204033157697_1204556467223941410_n.png",
+   "source_label": "s_laser_room",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 1035
+   }
+  },
+  "phones": {
+   "label": "ROTARY PHONES",
+   "source_ad_image": "784818734_122139204051157697_7761655469370973087_n.png",
+   "source_label": "s_explain_dial",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 845
+   }
+  },
+  "robot2": {
+   "label": "ROBOT WAITERS",
+   "source_ad_image": "784326752_122139089463157697_6356796790677911844_n.png",
+   "source_label": "s_robot_waiter",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 845
+   }
+  },
+  "robots": {
+   "label": "ROBOTS",
+   "source_ad_image": "786384775_122139089409157697_2362584065014232989_n.png",
+   "source_label": "s_maths_robots",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 845
+   }
+  },
+  "roses": {
+   "label": "GARDEN OF LIGHT",
+   "source_ad_image": "783754725_122139089535157697_1100614221799445226_n.png",
+   "source_label": "s_roses",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 865
+   }
+  },
+  "sandbox": {
+   "label": "AR SANDBOX",
+   "source_ad_image": "783013328_122139089337157697_9187042507264278753_n.png",
+   "source_label": "s_sandbox",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 785
+   }
+  },
+  "science": {
+   "label": "SCIENCE SHOW",
+   "source_ad_image": "798513500_122140645569157697_3149518135221210309_n.png",
+   "source_label": "s_real_science",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 845
+   }
+  },
+  "sky_maze": {
+   "label": "SKY MAZE",
+   "source_ad_image": "784431637_122139089595157697_2689892077145681919_n.png",
+   "source_label": "s_sky_maze",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 895
+   }
+  },
+  "typewriters": {
+   "label": "TYPEWRITERS",
+   "source_ad_image": "784541679_122139204069157697_6722022375518874983_n.png",
+   "source_label": "s_typewriters",
+   "crop": {
+    "x": 0,
+    "y": 216,
+    "w": 1080,
+    "h": 835
+   }
+  },
+  "infinity_floor": {
+   "label": "INFINITY FLOOR",
+   "source_ad_image": "852028555_122145767637157697_9181199379274426535_n.png",
+   "source_label": "ht_01_ten_days",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "flags_crystals": {
+   "label": "ROCKS & CRYSTALS",
+   "source_ad_image": "851339607_122145766875157697_7811869043378702628_n.png",
+   "source_label": "ht_02_do_the_maths",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "sky_maze2": {
+   "label": "SKY MAZE",
+   "source_ad_image": "852679662_122145768147157697_6202149244550877411_n.png",
+   "source_label": "ht_03_third_never_pays",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "light_pillars": {
+   "label": "LIGHT FOREST",
+   "source_ad_image": "852516312_122145767655157697_4736897841918294922_n.png",
+   "source_label": "ht_04_rain",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "starfield": {
+   "label": "STAR ROOM (unconfirmed name)",
+   "source_ad_image": "851986172_122145768165157697_7433302582897086285_n.png",
+   "source_label": "ht_05_clocks_back",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "uv_room": {
+   "label": "UV ROOM (unconfirmed name)",
+   "source_ad_image": "854338524_122145767823157697_8503571411912329937_n.png",
+   "source_label": "ht_07_halloween",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "radios": {
+   "label": "RETRO RADIOS",
+   "source_ad_image": "852101230_122145767577157697_4235955562577828886_n.png",
+   "source_label": "ht_08_grandparents",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "test_tubes": {
+   "label": "SCIENCE LAB",
+   "source_ad_image": "851925329_122145766971157697_4318332823322774656_n.png",
+   "source_label": "ht_10_mixed_ages",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "red_lasers": {
+   "label": "SKY MAZE (red light)",
+   "source_ad_image": "852221292_122145768129157697_3506743899466217794_n.png",
+   "source_label": "ht_11_screens",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "lava_lamp": {
+   "label": "LAVA LAMPS",
+   "source_ad_image": "855166455_122145766677157697_4810920126538214355_n.png",
+   "source_label": "ht_12_whats_inside",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "sandbox2": {
+   "label": "AR SANDBOX",
+   "source_ad_image": "851844283_122145767871157697_908653585595710968_n.png",
+   "source_label": "ht_13_sleep_well",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "microscope": {
+   "label": "MICROSCOPES",
+   "source_ad_image": "854627429_122145767403157697_6941911646268565918_n.png",
+   "source_label": "ht_14_back_monday",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "crystals": {
+   "label": "ROCKS & CRYSTALS",
+   "source_ad_image": "852660954_122145767211157697_6338995679365358187_n.png",
+   "source_label": "ht_15_any_three",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "fossils": {
+   "label": "FOSSILS",
+   "source_ad_image": "852644941_122145767559157697_3812111879472032049_n.png",
+   "source_label": "ht_16_twelve_each",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "cameras": {
+   "label": "VINTAGE CAMERAS",
+   "source_ad_image": "854627420_122145767955157697_3499963308506374792_n.png",
+   "source_label": "ht_17_not_the_shops",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "telephones": {
+   "label": "OLD TELEPHONES",
+   "source_ad_image": "852221300_122145767895157697_4051010385735096781_n.png",
+   "source_label": "ht_18_bowthorpe",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "tunnel": {
+   "label": "SPACE-TIME TUNNEL",
+   "source_ad_image": "851503962_122145768111157697_622851633243956798_n.png",
+   "source_label": "ht_19_the_photo",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  },
+  "plasma": {
+   "label": "PLASMA BALL",
+   "source_ad_image": "852101230_122145766659157697_5652443346721787412_n.png",
+   "source_label": "ht_20_sign_up_now",
+   "crop": {
+    "x": 0,
+    "y": 272,
+    "w": 1080,
+    "h": 592
+   },
+   "added": "2026-10-19"
+  }
+ }
+}

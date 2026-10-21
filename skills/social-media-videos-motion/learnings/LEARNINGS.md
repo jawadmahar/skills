@@ -1,0 +1,52 @@
+# Learnings
+
+Last consolidated: 20 October 2026 (version 1.2.0)
+
+Read Global plus the section for the brand you are working on before planning. Brand guidelines and the campaign brief override anything here. Confidence: **Director** (the director said so), **Proven** (Meta data across campaigns), **Hypothesis** (test it on purpose), **Firm** (learned the hard way in production). How rules are added, promoted and retired: `references/feedback-loop.md`.
+
+## Global
+
+| # | Rule | Evidence | Confidence | Since |
+|---|---|---|---|---|
+| G1 | Fill the top and bottom of the frame with imagery (ticker, photo strip, texture) and keep all text in the safe band (y 270 to 1248). Empty bands look unfinished. | Director: "a little more white space... try to fill those gaps" | Director | Oct 2026 |
+| G2 | Use big, colourful photos (hero shots at least 1,000 px wide on screen) and vary them across the set. | Director: "use more colourful photos... make the photos a bit bigger... diversify the photos" | Director | Oct 2026 |
+| G3 | Give every video its own licensed track matched to its mood; no repeats within a batch. Reusing a track from an earlier campaign is fine when the mood fits. | Director asked for different music on each variation (Oct 2026), then to reuse the best half-term tracks in the winter set | Director | Oct 2026 |
+| G4 | Story-led everyday moments (rain on the window, a handwritten note) are the strongest concepts; expand them into series with different hooks, angles and music. | Director picked the rain and notebook videos as the best and asked for five more of each | Director (not yet tested on Meta) | Oct 2026 |
+| G5 | Confirm the live offer, its exact maths and how customers claim it at the interview; never carry over the previous campaign's offer or terms. | BOGOF video had to be redone for buy 2, get the 3rd free; the winter terms changed the claim steps while the price stayed the same | Firm | Oct 2026 |
+| G6 | After swapping any photo, re-read every line of ad copy that names an attraction or product. | Six ad texts named photos that had been replaced | Firm | Oct 2026 |
+| G7 | Review a contact sheet of stills before rendering the full set; most layout bugs only show in frames. | Overlaps, text under polaroids and 3D objects behind headlines were all caught this way | Firm | Oct 2026 |
+| G8 | Deliver everything in as few zips as possible, with a README and a pack the poster can follow without help. | Director: "I would prefer fewer zip folders which I could share" | Director | Oct 2026 |
+| G9 | Ask which seasonal moments matter and the sales window before planning; do not fill the calendar with every date. | Winter set: director dropped Bonfire Night and Black Friday and narrowed the focus to Nov to 10 Jan | Director | Oct 2026 |
+| G10 | For sets above about 15 videos, write formats as config-driven functions in a shared kit (`spot(meta, format, config)`) so each video is a short config and fixes reach every video that uses the format. | Winter set: 50 videos from 35 formats in six files; layout fixes applied once per format | Firm | Oct 2026 |
+| G11 | Keep legal lines short: put the terms on the end card, and keep end dates and early-end clauses out of the terms line when the director asks. | Director: "more concise, don't mention end dates here, or the right to cancel, end with T&Cs apply" | Director | Oct 2026 |
+| G12 | Never cover-fill a 9:16 frame with a landscape photo (it zooms about 3x into the middle). Show the whole photo at full width over a blurred fill of itself, and give every photo a focal point (`focus` in brand.json) so crops keep the subject. | Director: "some photos are zoomed in, in the wrong part and not centred after the zoom in" | Director | Oct 2026 |
+| G13 | Stage deliveries as the posting schedule: one folder (and zip) per run period, then one per ad set, then Videos and Stills. Name periods with their run dates. | Director: "have subfolders by category... so we can upload December creatives in December" | Director | Oct 2026 |
+| G14 | Read each photo's manifest notes before using it: some photos carry another season's décor or an unconfirmed room name; keep those out of labels, copy and seasonal sets. | Winter batch 2: the UV room photo shows Halloween decorations and its name is unconfirmed; swapped out of five videos before render | Firm | Oct 2026 |
+| G15 | Give every video a 4:5 feed still and a 9:16 story still built from the same spot config (same hook, photos, period, ad set and copy), so one ad can carry all three. | Director asked for 200 statics alongside 100 videos | Director | Oct 2026 |
+| G16 | Pick new effects for what the photos can carry: venue stills suit 2D devices (magazine cover, checklist, phone mockup, paper cutout, chart, chat takeover, snap and zoom-through cuts, liquid glass). Skip effects that need filmed people, depth or a moving camera (green screen, B-roll overlay, orbit, dolly zoom, frame break). | Director's effects list, Oct 2026; judged against what still photos can do | Hypothesis | Oct 2026 |
+
+## Explorazone
+
+| # | Rule | Evidence | Confidence | Since |
+|---|---|---|---|---|
+| E1 | Give grandparents and three-generation angles a fixed share of every set. | 90-day buy 2, get the 3rd free data: the grandparent-led campaign drove most attributed purchases and the oldest age band had among the cheapest leads | Hypothesis (strong in static-ad data; confirm with video) | Oct 2026 |
+| E2 | Bad weather is the strongest seasonal lever for an indoor attraction: rain, grey skies, dark evenings (see E8). | Rain concept chosen as a favourite; indoor angle matches the half-term brief | Hypothesis | Oct 2026 |
+| E3 | Video should open up Reels and Stories inventory; earlier static ads spent mostly in Feed. | 90-day placement data before the half-term videos | Hypothesis (check after half term) | Oct 2026 |
+| E4 | Keep "Formerly Exploring Science" on end cards until the director drops it. | Rename during 2026 | Director | Oct 2026 |
+| E5 | Never show Christmas or New Year opening or closure dates in videos or copy. | Director, winter interview | Director | Oct 2026 |
+| E6 | Lead with parents 25 to 44 when the director asks, but keep a quarter to a third of the set for grandparents and three generations (their own ad set). | Director chose parents first for winter, then 30% grandparents for the second batch (31 of 100); rule E1 data still favours grandparents | Director | Oct 2026 |
+| E7 | Make more grandparent-led stories with a nostalgic or playful-mission twist; the director's favourites are W11 "In my day" and W31 "Operation: Wrapping". | Director feedback on the winter set | Director | Oct 2026 |
+| E8 | Norwich winters are grey, cloudy and dark, not frozen: no frost, ice, sub-zero or snow hooks (snow as Christmas decoration is fine). | Director: "Norwich doesn't get sub zero winter temperatures or snow" | Director | Oct 2026 |
+| E9 | From November to January use the location: the city centre is busy with traffic and crowds, and Explorazone is outside the ring road. | Director, winter feedback | Director | Oct 2026 |
+
+## STEMEX
+No learnings yet.
+
+## Muffin Break
+No learnings yet.
+
+## Cafe UFO
+No learnings yet.
+
+## Retired
+None yet.
