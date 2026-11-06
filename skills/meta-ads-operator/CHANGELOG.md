@@ -2,6 +2,9 @@
 
 Versions: patch for learnings and wording, minor for new recipes, scripts and workflow steps, major for changes that break saved launch settings.
 
+## 1.0.3 (6 November 2026)
+- Learnings O13 to O15: video ad links are not readable through the creative list; read the activity log for other people's changes; check every ad's copy when someone else builds from a pack.
+
 ## 1.0.2 (21 October 2026)
 - Gaps: GHL Social Planner and Conversations as the route for organic posts and DMs; Lead Ads terms now accepted for Explorazone; the connector's Instagram list stays empty even when linked.
 - Brand notes: Explorazone's Instagram is @explorazonelab. Learning O9 confirmed.

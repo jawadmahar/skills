@@ -92,3 +92,5 @@ Draft mode stages everything in Ads Manager's draft. `ads_get_ad_entities` with 
 | The auto-mode safety check blocked a single write as a real-world transaction | Do not loop. Finish the rest, then explain to the director and let them decide |
 | Draft listings over about 100 KB could not be shown | Read the saved file with `check_drafts.py` |
 | A campaign past its end date still read ACTIVE, and was reported as running three days after it completed | Check `delivery` and `end_time`, and re-read before any report |
+| `ads_get_creatives` returned no link for video ads that do have one | Check the link in an ad preview or Ads Manager |
+| Someone else rebuilt or paused the campaign outside the connector | Read the activity log before reporting, and say who did what |

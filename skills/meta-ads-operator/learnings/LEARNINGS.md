@@ -1,6 +1,6 @@
 # Operator learnings
 
-Last consolidated: 21 October 2026 (version 1.0.2)
+Last consolidated: 6 November 2026 (version 1.0.3)
 
 Rules learned while running real launches. Read them before building. Confidence: **Director** (the director said so), **Firm** (learned the hard way in production), **Hypothesis** (believed, not yet proven). Creative lessons (hooks, series, music) belong in the SMVM learnings, not here.
 
@@ -18,6 +18,9 @@ Rules learned while running real launches. Read them before building. Confidence
 | O10 | When the auto-mode safety check blocks a Meta write, do not loop. Finish everything else, then explain and let the director decide. | Two single calls blocked as real-world transactions on 21 Oct; one retry each succeeded | Firm | Oct 2026 |
 | O11 | Prefer media routes that need no clean-up: cloud sessions could not delete the temporary GitHub branch (HTTP 403), so the director had to. | 21 Oct 2026 | Firm | Oct 2026 |
 | O12 | Call a campaign or ad "running" only from its delivery status and end date, and re-check before reporting. Status and effective status stay ACTIVE after an end date has passed. | 21 Oct report flagged the B1G1 reactivation campaign as still running from 17 Oct data; it had completed at its end date, midday Sun 18 Oct | Firm | Oct 2026 |
+| O13 | `ads_get_creatives` shows no link for video ads even when the button has one, so never report a video ad as having no link from that field; check an ad preview or Ads Manager. | Our own Sign up video creative read back with no link on 6 Nov; a 27 Oct report had overstated "no web link" on Musa's ads | Firm | Nov 2026 |
+| O14 | Before reporting on a launch or a pause, read the activity log for other people's work and say who did what. | Musa built his own version on 25 Oct and switched ours off; his team stopped it at 12:15 on 1 Nov, before our pause | Firm | Nov 2026 |
+| O15 | When someone else builds ads from a pack, check every ad's headline and primary text against the copy sheet. | 1 Nov: one text pasted into all 25 family video ads, and a garbled text into all 13 grandparent ads | Firm | Nov 2026 |
 
 ## Retired
 None yet.
