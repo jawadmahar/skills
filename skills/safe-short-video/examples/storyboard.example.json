@@ -1,0 +1,42 @@
+{
+  "title": "Explorazone half-term science",
+  "aspect": "9:16",
+  "fps": 30,
+  "voice": {
+    "provider": "azure",
+    "name": "en-GB-SoniaNeural",
+    "lang": "en-GB",
+    "rate": "+0%"
+  },
+  "captions": {
+    "enabled": true,
+    "font": "Arial",
+    "size": 64
+  },
+  "logo": {
+    "file": "brand/explorazone-logo.png",
+    "position": "top-right",
+    "width": 180
+  },
+  "scenes": [
+    {
+      "media": "media/pexels-rocket-launch.mp4",
+      "overlay": "Half-term at Explorazone",
+      "narration": "What if your kids spent half-term launching rockets?"
+    },
+    {
+      "media": "media/own-slime-table.jpg",
+      "narration": "At Explorazone in Bowthorpe, they mix slime, build circuits and run real experiments."
+    },
+    {
+      "media": "media/pexels-kids-microscope.mp4",
+      "start": 2,
+      "narration": "Every session is hands-on and led by our science team."
+    },
+    {
+      "media": "media/own-centre-entrance.jpg",
+      "overlay": "Book now",
+      "narration": "Spaces are limited, so book today through the link in our bio."
+    }
+  ]
+}

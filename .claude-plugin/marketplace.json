@@ -50,6 +50,15 @@
       "skills": [
         "./skills/claude-api"
       ]
+    },
+    {
+      "name": "mahar-group-skills",
+      "description": "Mahar Group Operations skills, including safe short social video creation with approval gates",
+      "source": "./",
+      "strict": false,
+      "skills": [
+        "./skills/safe-short-video"
+      ]
     }
   ]
 }
