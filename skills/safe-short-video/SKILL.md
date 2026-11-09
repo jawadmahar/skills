@@ -38,7 +38,8 @@ Write the script yourself. No external AI service or API key is needed for this.
 
 - British English. Never use em dashes. Spell the Bowthorpe centre "Explorazone".
 - Hook in the first two seconds. One idea per scene. Usually 5 to 8 scenes of 8 to 20 spoken words. End with the call to action.
-- Every claim must be true and provable. Prices to consumers include VAT. No children's names. No invented reviews.
+- Every claim must be true and provable. Take the facts (what the business offers, dates, prices, how to book) from the user or the business's own material, and confirm anything you are unsure of before rendering. Never invent activities, and never reuse lines from the example storyboard unchecked.
+- Prices to consumers include VAT. No children's names. No invented reviews.
 - No emoji in on-screen text (headlines and captions). They often render as empty boxes. Put emoji in the post caption instead.
 
 Create a project folder (for example `videos/2026-11-halfterm/`) and write `storyboard.json` there. Format: `references/storyboard-format.md`. Worked example: `examples/storyboard.example.json`.
