@@ -1,0 +1,44 @@
+{
+  "_note": "Layout example only. Every spoken or on-screen line must be true for the business. Take the facts from the user or the business's own material and check them before rendering. Never reuse these lines unchecked.",
+  "title": "Explorazone February half-term",
+  "aspect": "9:16",
+  "fps": 30,
+  "voice": {
+    "provider": "none"
+  },
+  "captions": {
+    "enabled": true,
+    "font": "Arial",
+    "size": 64
+  },
+  "logo": {
+    "file": "brand/explorazone-logo.png",
+    "position": "top-right",
+    "width": 180
+  },
+  "scenes": [
+    {
+      "media": "media/own-entrance.jpg",
+      "overlay": "February half-term, sorted",
+      "narration": "Stuck for ideas this February half-term? We've got you."
+    },
+    {
+      "media": "media/own-tesla-coil.mp4",
+      "narration": "See Tesla coils, laser lights and physics in action."
+    },
+    {
+      "media": "media/own-crystals.jpg",
+      "narration": "Get up close to crystals, gems, and real butterfly and insect collections."
+    },
+    {
+      "media": "media/own-lab-bench.mp4",
+      "start": 2,
+      "narration": "Plus chemistry and biology to discover, all under one roof."
+    },
+    {
+      "media": "media/own-logo-card.jpg",
+      "overlay": "Book now",
+      "narration": "Book your half-term visit today through the link in our bio."
+    }
+  ]
+}
