@@ -74,14 +74,16 @@ Captions sit inside Meta's Reels safe zone (clear of the top 14% and bottom 35%)
 
 | Field | Notes |
 | --- | --- |
-| `media` | **Required.** Video (`.mp4 .mov .m4v .webm .mkv`) or photo (`.jpg .jpeg .png .webp`). Short clips loop. Photos get a slow pan. |
+| `media` | **Required.** Video (`.mp4 .mov .m4v .webm .mkv`) or photo (`.jpg .jpeg .png .webp`). Short clips loop. Photos get a slow pan and are rotated upright. HDR phone clips are converted to standard colour. |
 | `narration` | What the voice says. Also the caption text unless `caption` is set. |
 | `caption` | On-screen text if it should differ from the narration. Use `""` for no caption on this scene. |
-| `overlay` | Short headline in a box at the top, up to 60 characters. Good for the hook and the call to action. |
+| `overlay` | Short headline in a box at the top, up to 60 characters. Good for the hook and the call to action. No emoji. |
 | `duration` | Seconds on screen (0.5 to 60). If left out: the narration length plus a short pause, or about 2.6 words a second when there is no voice. |
 | `start` | Seconds into the clip to start from. |
 | `audio` | A recorded line for this scene only. Overrides the voice provider for this scene. |
 
 ## Validation
+
+Save the storyboard as UTF-8 text (Notepad's default is fine). Emoji in on-screen text produce a warning, because they often render as empty boxes.
 
 The renderer refuses: values of the wrong type, files that are not ordinary media (for example playlists disguised as `.mp4`), em dashes in on-screen or spoken text, music without a `licence`, voice names or rates in an unexpected format, and videos longer than 180 seconds (raise with `--max-seconds`, up to 900).

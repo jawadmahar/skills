@@ -18,6 +18,7 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import http.client
 import json
 import os
 import sys
@@ -27,7 +28,7 @@ import urllib.request
 from datetime import datetime, timezone
 from pathlib import Path
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 API = "https://api.pexels.com"
 ALLOWED_HOSTS = ("pexels.com",)  # api., videos., images., www.
 MAX_VIDEO_BYTES = 250 * 1024 * 1024
@@ -64,12 +65,29 @@ def api_get(path: str, params: dict, key: str) -> dict:
     })
     try:
         with OPENER.open(request, timeout=30) as response:
-            return json.loads(response.read(5 * 1024 * 1024).decode("utf-8"))
+            data = json.loads(response.read(5 * 1024 * 1024).decode("utf-8"))
+        if not isinstance(data, dict):
+            raise FetchError("Pexels returned an unexpected response")
+        return data
+    except json.JSONDecodeError:
+        raise FetchError("Pexels returned a response that was not JSON") from None
     except urllib.error.HTTPError as exc:
         hint = {401: "key rejected", 403: "key not allowed", 429: "hourly or monthly quota reached"}
         raise FetchError(f"Pexels API error {exc.code}: {hint.get(exc.code, exc.reason)}") from None
     except urllib.error.URLError as exc:
         raise FetchError(f"could not reach Pexels: {exc.reason}") from None
+    except (OSError, http.client.HTTPException) as exc:
+        raise FetchError(f"connection to Pexels failed: {type(exc).__name__}") from None
+
+
+def use_utf8_output() -> None:
+    """Windows pipes and consoles default to a legacy code page that cannot print
+    many creators' names. Force UTF-8 so printing never crashes."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):
+            pass
 
 
 def download(url: str, target: Path, limit: int) -> int:
@@ -138,6 +156,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--max-seconds", type=int, default=40, help="skip videos longer than this")
     parser.add_argument("--list-only", action="store_true", help="show matches without downloading")
     args = parser.parse_args(argv)
+    use_utf8_output()
 
     key = os.environ.get("PEXELS_API_KEY", "").strip()
     if not key:

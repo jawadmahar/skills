@@ -19,7 +19,9 @@ Usage:
 from __future__ import annotations
 
 import argparse
+import functools
 import hashlib
+import http.client
 import json
 import math
 import os
@@ -37,7 +39,7 @@ from pathlib import Path
 from xml.sax.saxutils import escape as xml_escape
 from xml.sax.saxutils import quoteattr
 
-VERSION = "1.0.0"
+VERSION = "1.1.0"
 
 ASPECTS = {
     "9:16": (1080, 1920),
@@ -69,6 +71,14 @@ LANG_RE = re.compile(r"^[A-Za-z]{2,3}-[A-Za-z]{2,4}$")
 REGION_RE = re.compile(r"^[a-z0-9]{3,30}$")
 HEX_RE = re.compile(r"^#?[0-9A-Fa-f]{6}$")
 PROTOCOLS = ["-protocol_whitelist", "file"]
+# Phones (recent iPhones by default) record HDR video. Converted naively it comes
+# out dull and muddy, so HDR clips are tone-mapped to standard colour.
+HDR_TRANSFERS = {"arib-std-b67", "smpte2084"}
+TONEMAP = (
+    "zscale=t=linear:npl=100,format=gbrpf32le,zscale=p=bt709,"
+    "tonemap=tonemap=mobius:desat=0,zscale=t=bt709:m=bt709:r=tv"
+)
+WARNINGS: list[str] = []
 ASS_NEWLINE = "\\N"
 
 
@@ -82,6 +92,45 @@ class RenderError(Exception):
 
 def log(message: str) -> None:
     print(f"[safe-short-video] {message}", file=sys.stderr, flush=True)
+
+
+def warn(message: str) -> None:
+    """Record something the user should check. Shown at the end and kept in the manifest."""
+    if message not in WARNINGS:
+        WARNINGS.append(message)
+        log(f"WARNING: {message}")
+
+
+def use_utf8_output() -> None:
+    """Windows pipes and consoles default to a legacy code page that cannot print
+    emoji or non-Latin names. Force UTF-8 so printing never crashes."""
+    for stream in (sys.stdout, sys.stderr):
+        try:
+            stream.reconfigure(encoding="utf-8", errors="replace")
+        except (AttributeError, ValueError):
+            pass
+
+
+@functools.lru_cache(maxsize=None)
+def has_filter(name: str) -> bool:
+    listing = subprocess.run([tool("ffmpeg"), "-hide_banner", "-filters"],
+                             capture_output=True, text=True, encoding="utf-8",
+                             errors="replace", check=False).stdout
+    return re.search(rf"\s{re.escape(name)}\s", listing) is not None
+
+
+def has_emoji(text: str) -> bool:
+    return any(ord(ch) > 0xFFFF or 0x2600 <= ord(ch) <= 0x27BF or ord(ch) == 0xFE0F for ch in text)
+
+
+class _NoRedirects(urllib.request.HTTPRedirectHandler):
+    """A redirect would forward the API key to another host, so refuse them all."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        raise RenderError("refusing an unexpected redirect from the speech service")
+
+
+OPENER = urllib.request.build_opener(_NoRedirects)
 
 
 def tool(name: str) -> str:
@@ -160,23 +209,33 @@ def srt_time(seconds: float) -> str:
 
 
 def _balanced(words: list[str], max_chars: int) -> list[str]:
-    """Split words into the fewest roughly equal chunks that each fit max_chars."""
-    total = len(" ".join(words))
-    parts = max(1, math.ceil(total / max_chars))
-    while True:
-        target = total / parts
-        chunks: list[str] = []
-        current: list[str] = []
+    """Split words into the fewest lines that fit max_chars, with the longest
+    line as short as possible, so no word is left stranded on a line of its own."""
+    if not words:
+        return []
+
+    def fill(limit: int) -> list[str]:
+        lines, current = [], ""
         for word in words:
-            if current and len(chunks) < parts - 1 and len(" ".join(current + [word])) > target + 3:
-                chunks.append(" ".join(current))
-                current = [word]
+            candidate = f"{current} {word}" if current else word
+            if current and len(candidate) > limit:
+                lines.append(current)
+                current = word
             else:
-                current.append(word)
-        chunks.append(" ".join(current))
-        if all(len(c) <= max_chars for c in chunks) or parts >= len(words):
-            return chunks
-        parts += 1
+                current = candidate
+        lines.append(current)
+        return lines
+
+    longest_word = max(len(word) for word in words)
+    fewest = len(fill(max(max_chars, longest_word)))
+    low, high = longest_word, max(max_chars, longest_word)
+    while low < high:
+        mid = (low + high) // 2
+        if len(fill(mid)) <= fewest:
+            high = mid
+        else:
+            low = mid + 1
+    return fill(low)
 
 
 def chunk_caption(text: str, max_chars: int = 44) -> list[str]:
@@ -213,6 +272,7 @@ class MediaInfo:
     duration: float
     width: int = 0
     height: int = 0
+    hdr: bool = False
 
 
 def probe(path: Path, expected: str) -> MediaInfo:
@@ -224,7 +284,7 @@ def probe(path: Path, expected: str) -> MediaInfo:
         raise RenderError(f"unsupported file type {ext} for {expected}: {path.name}")
     raw = run([
         tool("ffprobe"), "-v", "error", *PROTOCOLS,
-        "-show_entries", "format=format_name,duration:stream=codec_type,width,height",
+        "-show_entries", "format=format_name,duration:stream=codec_type,width,height,color_transfer",
         "-of", "json", str(path),
     ])
     data = json.loads(raw or "{}")
@@ -253,7 +313,8 @@ def probe(path: Path, expected: str) -> MediaInfo:
         raise RenderError(f"{path.name} has no video stream")
     if duration <= 0.2:
         raise RenderError(f"{path.name} is too short to use")
-    return MediaInfo(path, "video", duration, int(video.get("width", 0)), int(video.get("height", 0)))
+    return MediaInfo(path, "video", duration, int(video.get("width", 0)), int(video.get("height", 0)),
+                     hdr=video.get("color_transfer") in HDR_TRANSFERS)
 
 
 # --------------------------------------------------------------------------
@@ -313,7 +374,9 @@ def load_storyboard(path: Path, max_seconds: float) -> Storyboard:
     if path.stat().st_size > MAX_STORYBOARD_BYTES:
         raise RenderError("storyboard is larger than 256 KB; something is wrong")
     try:
-        data = json.loads(path.read_text(encoding="utf-8"))
+        data = json.loads(path.read_text(encoding="utf-8-sig"))
+    except UnicodeDecodeError:
+        raise RenderError("storyboard must be saved as UTF-8 text") from None
     except json.JSONDecodeError as exc:
         raise RenderError(f"storyboard is not valid JSON: {exc}") from exc
     if not isinstance(data, dict):
@@ -405,6 +468,10 @@ def load_storyboard(path: Path, max_seconds: float) -> Storyboard:
             raise RenderError(f"scene {number + 1} overlay is over 60 characters; keep headlines short")
         if "\u2014" in (scene.narration + (scene.caption or "") + scene.overlay):
             raise RenderError(f"scene {number + 1} contains an em dash; house style forbids them")
+        burned_in = scene.overlay + (scene.caption if scene.caption is not None else scene.narration)
+        if has_emoji(burned_in):
+            warn(f"scene {number + 1} has emoji in its on-screen text. They often show as empty "
+                 "boxes in burned-in captions. Put emoji in the post caption instead.")
         scenes.append(scene)
 
     board = Storyboard(
@@ -428,7 +495,7 @@ def load_credits(media: Path) -> dict | None:
     if not credits_file.is_file():
         return None
     try:
-        entries = json.loads(credits_file.read_text(encoding="utf-8"))
+        entries = json.loads(credits_file.read_text(encoding="utf-8-sig"))
     except (json.JSONDecodeError, OSError):
         return None
     if isinstance(entries, list):
@@ -469,7 +536,7 @@ def tts_azure(text: str, voice: dict, out: Path) -> None:
         "User-Agent": f"safe-short-video/{VERSION}",
     })
     try:
-        with urllib.request.urlopen(request, timeout=60) as response:
+        with OPENER.open(request, timeout=60) as response:
             if not response.headers.get("Content-Type", "").startswith("audio/"):
                 raise RenderError("Azure Speech returned something other than audio")
             out.write_bytes(response.read(50 * 1024 * 1024))
@@ -478,6 +545,8 @@ def tts_azure(text: str, voice: dict, out: Path) -> None:
         raise RenderError(f"Azure Speech error {exc.code}: {hint.get(exc.code, exc.reason)}") from None
     except urllib.error.URLError as exc:
         raise RenderError(f"could not reach Azure Speech: {exc.reason}") from None
+    except (OSError, http.client.HTTPException) as exc:
+        raise RenderError(f"Azure Speech connection failed: {type(exc).__name__}") from None
 
 
 def tts_edge(text: str, voice: dict, out: Path) -> None:
@@ -494,17 +563,31 @@ def tts_edge(text: str, voice: dict, out: Path) -> None:
 # Rendering
 # --------------------------------------------------------------------------
 
-def normalise_image(src: Path, work: Path) -> Path:
-    """Apply EXIF rotation if Pillow is available (phone photos are often sideways)."""
+def prepare_image(src: Path, work: Path, cover_w: int, cover_h: int) -> Path:
+    """Rotate a photo upright and shrink it to just cover the frame, once.
+
+    Full-size phone photos (12 megapixels and up) were being decoded again for
+    every frame, which made photo scenes render about four times slower than
+    real time. ffmpeg applies the EXIF rotation itself; Pillow, when installed,
+    covers older ffmpeg builds that do not.
+    """
+    key = hashlib.sha1(f"{src}|{cover_w}x{cover_h}".encode()).hexdigest()[:10]
+    target = work / f"img_{key}.png"
+    if target.exists():
+        return target
     try:
         from PIL import Image, ImageOps  # type: ignore
     except ImportError:
-        return src
-    target = work / f"img_{hashlib.sha1(str(src).encode()).hexdigest()[:10]}.png"
-    if target.exists():
+        run([tool("ffmpeg"), "-y", "-hide_banner", "-loglevel", "error", *PROTOCOLS, "-i", str(src),
+             "-vf", f"scale={cover_w}:{cover_h}:force_original_aspect_ratio=increase:flags=lanczos",
+             "-frames:v", "1", str(target)])
         return target
     with Image.open(src) as image:
         fixed = ImageOps.exif_transpose(image).convert("RGB")
+        scale = max(cover_w / fixed.width, cover_h / fixed.height)
+        if scale < 1:
+            size = (math.ceil(fixed.width * scale), math.ceil(fixed.height * scale))
+            fixed = fixed.resize(size, Image.LANCZOS)
         fixed.save(target)
     return target
 
@@ -518,27 +601,47 @@ def render_segment(scene: Scene, board: Storyboard, work: Path, out: Path) -> No
     ffmpeg = tool("ffmpeg")
     assert scene.info is not None
     if scene.info.kind == "image":
-        source = normalise_image(scene.media, work)
         big_w, big_h = even(width * 1.12), even(height * 1.12)
+        source = prepare_image(scene.media, work, big_w, big_h)
         travel = "(in_w-out_w)*t/{d}".format(d=max(scene.length, 0.1))
         x_expr = travel if scene.index % 2 == 0 else f"(in_w-out_w)-{travel}"
         vf = (
             f"scale={big_w}:{big_h}:force_original_aspect_ratio=increase,"
             f"crop={width}:{height}:x='{x_expr}':y='(in_h-out_h)/2',setsar=1,format=yuv420p"
         )
-        cmd = [ffmpeg, "-y", "-hide_banner", "-loglevel", "error", *PROTOCOLS,
-               "-loop", "1", "-framerate", str(fps), "-t", length, "-i", str(source),
-               "-vf", vf, *encode]
-    else:
-        loops = ["-stream_loop", "-1"] if scene.info.duration - scene.start < scene.length else []
-        start = ["-ss", f"{scene.start:.3f}"] if scene.start > 0 else []
+        run([ffmpeg, "-y", "-hide_banner", "-loglevel", "error", *PROTOCOLS,
+             "-loop", "1", "-framerate", str(fps), "-t", length, "-i", str(source),
+             "-vf", vf, *encode])
+        return
+
+    loops = ["-stream_loop", "-1"] if scene.info.duration - scene.start < scene.length else []
+    start = ["-ss", f"{scene.start:.3f}"] if scene.start > 0 else []
+
+    def command(tonemap: str) -> list[str]:
+        # Shrink first, then tone-map: tone-mapping 4K frames is very slow.
         vf = (
             f"scale={width}:{height}:force_original_aspect_ratio=increase,"
-            f"crop={width}:{height},setsar=1,fps={fps},format=yuv420p"
+            f"crop={width}:{height},{tonemap}setsar=1,fps={fps},format=yuv420p"
         )
-        cmd = [ffmpeg, "-y", "-hide_banner", "-loglevel", "error", *PROTOCOLS,
-               *loops, *start, "-i", str(scene.media), "-vf", vf, *encode]
-    run(cmd)
+        return [ffmpeg, "-y", "-hide_banner", "-loglevel", "error", *PROTOCOLS,
+                *loops, *start, "-i", str(scene.media), "-vf", vf, *encode]
+
+    flat = (f"{scene.media.name} is an HDR clip and could not be converted to standard colour, so it "
+            "may look dull. On the phone, re-export it as standard (SDR) video, or on iPhone turn off "
+            "Settings > Camera > Record Video > HDR Video.")
+    if not scene.info.hdr:
+        run(command(""))
+    elif not (has_filter("zscale") and has_filter("tonemap")):
+        warn(flat)
+        run(command(""))
+    else:
+        try:
+            run(command(TONEMAP + ","))
+            warn(f"{scene.media.name} is an HDR clip and was converted to standard colour. "
+                 "Check its colours and brightness when you review the video.")
+        except RenderError:
+            warn(flat)
+            run(command(""))
 
 
 def pad_audio(source: Path | None, seconds: float, out: Path) -> None:
@@ -650,7 +753,7 @@ def write_captions(board: Storyboard, ass_path: Path, srt_path: Path) -> int:
     for scene in board.scenes:
         start, end = scene.offset, scene.offset + scene.length
         if scene.overlay:
-            lines = textwrap.wrap(ass_text(scene.overlay), width=max(10, int(line_chars * 0.85)))
+            lines = _balanced(ass_text(scene.overlay).split(), max(10, int(line_chars * 0.85)))
             events.append(f"Dialogue: 1,{ass_time(start)},{ass_time(end)},Headline,,0,0,0,,{ASS_NEWLINE.join(lines)}")
         text = scene.caption if scene.caption is not None else scene.narration
         if not style.get("enabled", True) or not text:
@@ -663,7 +766,7 @@ def write_captions(board: Storyboard, ass_path: Path, srt_path: Path) -> int:
         for cue in cues:
             span = window * len(cue) / total_chars
             cue_end = min(cursor + span, end - 0.02)
-            lines = textwrap.wrap(ass_text(cue), width=line_chars)
+            lines = _balanced(ass_text(cue).split(), line_chars)  # no orphan words
             events.append(f"Dialogue: 0,{ass_time(cursor)},{ass_time(cue_end)},Caption,,0,0,0,,{ASS_NEWLINE.join(lines)}")
             cue_number += 1
             srt.append(f"{cue_number}\n{srt_time(cursor)} --> {srt_time(cue_end)}\n{chr(10).join(lines)}\n")
@@ -842,7 +945,8 @@ def render(board: Storyboard, out_dir: Path | None, keep_work: bool) -> dict:
                 "captions_srt": str(out_dir / "captions.srt"),
             },
             "sha256": digest,
-            "approval_code": digest[:12],
+            "video_fingerprint": digest[:12],
+            "warnings": list(WARNINGS),
             "size_bytes": final.stat().st_size,
         }
         (out_dir / "manifest.json").write_text(json.dumps(manifest, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -879,6 +983,8 @@ def check() -> int:
         present = "libx264" in encoders
         rows.append(("ffmpeg encoder libx264", "ok" if present else "MISSING"))
         ok &= present
+        hdr_ok = all(re.search(rf"\s{name}\s", filters) for name in ("zscale", "tonemap"))
+        rows.append(("HDR phone clips (zscale, tonemap)", "ok" if hdr_ok else "not available (optional)"))
     try:
         import PIL  # type: ignore  # noqa: F401
         rows.append(("Pillow (photo rotation fix)", "ok"))
@@ -913,6 +1019,11 @@ def plan(board: Storyboard) -> int:
         if scene.narration:
             print(f"      says: {scene.narration}")
     print(f"Estimated length: ~{total:.0f}s (synthetic voices can vary by a few seconds)")
+    for scene in board.scenes:
+        if scene.info and scene.info.hdr:
+            print(f"NOTE: {scene.media.name} is an HDR clip and will be converted to standard colour.")
+    for message in WARNINGS:
+        print(f"WARNING: {message}")
     if total > board.max_seconds:
         print(f"WARNING: over the {board.max_seconds:.0f}s limit")
         return 1
@@ -928,6 +1039,7 @@ def main(argv: list[str] | None = None) -> int:
     parser.add_argument("--keep-work", action="store_true", help="keep intermediate files")
     parser.add_argument("--max-seconds", type=float, default=DEFAULT_MAX_SECONDS)
     args = parser.parse_args(argv)
+    use_utf8_output()
     try:
         if args.check:
             return check()
@@ -948,7 +1060,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"COVER={manifest['files']['cover']}")
     print(f"CAPTIONS_SRT={manifest['files']['captions_srt']}")
     print(f"DURATION={manifest['duration_seconds']}s")
-    print(f"APPROVAL_CODE={manifest['approval_code']}")
+    print(f"VIDEO_FINGERPRINT={manifest['video_fingerprint']}")
+    for message in manifest["warnings"]:
+        print(f"WARNING: {message}")
     return 0
 
 

@@ -48,12 +48,17 @@ $env:IG_ACCESS_TOKEN = Read-Host -MaskInput 'Token'
 
 They disappear when the terminal closes. Optional: `IG_GRAPH_API_VERSION` (default `v26.0`).
 
+Each business has its own Instagram account and its own `IG_USER_ID`. Set the pair for one business per terminal session, and close the terminal when you have finished, so a later video cannot go to the wrong account.
+
 ## How the publisher protects you
 
-- Dry run unless you pass `--confirm-publish` with the approval code of the exact file you reviewed.
-- Talks only to `graph.facebook.com` and `rupload.facebook.com`.
+- Dry run unless you pass `--confirm-publish` with the publish code from a dry run you approved.
+- The dry run shows the account name (for example `@explorazone`) that the post would go to. It reads this from Meta, which is the only request a dry run makes.
+- The publish code covers the video, the caption, the settings (AI label, feed, cover frame) and the account. Change any of them and the code no longer matches.
+- Talks only to `graph.facebook.com` and `rupload.facebook.com`, and refuses redirects, so the token cannot be passed to another site.
 - Sends the token in a request header, never in a URL, and never prints it.
-- Writes `final.published.json` after posting and refuses to post the same file again.
+- Refuses a synthetic-voice video without the AI label, and a video file that was altered after it was rendered.
+- Writes `final.published.json` and refuses to post the same file again. If the connection drops at the moment of publishing, it records the attempt and refuses to retry until you have checked the account, so a post cannot go out twice by accident.
 - Meta allows a limited number of API-published posts per account per 24 hours. If you hit it, wait.
 
 ## If a token leaks
