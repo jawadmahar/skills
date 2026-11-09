@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>__STUDIO_TITLE__</title>
+<meta name="description" content="__STUDIO_DESC__">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="__FONTS_HREF__" rel="stylesheet">
+<style>
+  :root { --bg:#0b1222; --panel:#121b31; --panel-2:#18233f; --line:#26324f; --text:#f5efe2; --muted:#a9b3c9; --red:#ef4720; --lime:#b6f542; --teal:#00ddb4; --navy:#16223f; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; }
+  body { background: var(--bg); color: var(--text); font: 15px/1.5 Inter, system-ui, sans-serif; }
+  .app { display: grid; grid-template-columns: minmax(0,1fr) 420px; gap: 24px; padding: 24px; max-width: 1320px; margin: 0 auto; }
+  .stage { position: relative; justify-self: center; height: calc(100vh - 48px); max-height: 1100px; aspect-ratio: 9/16; max-width: 100%; border-radius: 18px; overflow: hidden; background: var(--navy); box-shadow: 0 30px 80px rgba(0,0,0,.45); }
+  .stage canvas { display: block; width: 100%; height: 100%; }
+  .loading { position: absolute; inset: 0; display: grid; place-items: center; color: var(--muted); font-weight: 600; background: var(--navy); }
+  .safe { position: absolute; inset: 0; pointer-events: none; display: none; }
+  .safe.on { display: block; }
+  .safe div { position: absolute; left: 0; right: 0; background: repeating-linear-gradient(135deg, rgba(239,71,32,.28) 0 10px, rgba(239,71,32,.14) 10px 20px); border: 1px dashed rgba(255,255,255,.5); font: 600 11px/1 Inter, sans-serif; color: #fff; display: flex; align-items: center; justify-content: center; text-transform: uppercase; letter-spacing: .04em; }
+  .safe .top { top: 0; height: 14%; } .safe .bottom { bottom: 0; height: 35%; }
+  .panel { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 20px; align-self: start; position: sticky; top: 24px; }
+  .eyebrow { margin: 0 0 6px; color: var(--teal); font-weight: 700; font-size: 12px; letter-spacing: .08em; text-transform: uppercase; }
+  h1 { margin: 0 0 4px; font: 800 26px/1.1 "Bricolage Grotesque", Inter, sans-serif; }
+  .sub { margin: 0 0 14px; color: var(--muted); font-size: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 6px; margin-bottom: 14px; }
+  .grid a { display: block; text-align: center; padding: 8px 0; border-radius: 10px; border: 1px solid var(--line); background: var(--panel-2); color: var(--text); text-decoration: none; font-weight: 800; font-size: 13px; }
+  .grid a.on { border-color: var(--lime); color: var(--lime); }
+  .controls { display: flex; gap: 8px; align-items: center; margin-bottom: 8px; }
+  button { font: 700 14px/1 Inter, sans-serif; border: 1px solid var(--line); background: var(--panel-2); color: var(--text); border-radius: 999px; padding: 10px 16px; cursor: pointer; }
+  button.primary { background: var(--red); border-color: var(--red); color: #fff; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--lime); outline-offset: 2px; }
+  .time { margin-left: auto; color: var(--muted); font-weight: 600; font-variant-numeric: tabular-nums; }
+  input[type=range] { width: 100%; accent-color: var(--lime); margin: 4px 0 14px; }
+  dl { margin: 0 0 14px; display: grid; grid-template-columns: 92px 1fr; gap: 6px 10px; font-size: 13px; }
+  dt { color: var(--muted); font-weight: 600; } dd { margin: 0; }
+  .copy { background: var(--panel-2); border: 1px solid var(--line); border-radius: 12px; padding: 10px 12px; font-size: 13px; white-space: pre-wrap; margin-bottom: 12px; }
+  .toggle { display: flex; gap: 8px; align-items: center; font-size: 13px; color: var(--muted); margin: 0 0 12px; cursor: pointer; }
+  .status { font-size: 12px; color: var(--muted); min-height: 18px; margin: 6px 0 0; }
+  @media (max-width: 900px) { .app { grid-template-columns: 1fr; padding: 16px; } .stage { height: auto; width: 100%; max-height: none; } .panel { position: static; } }
+</style>
+<script type="importmap">
+{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js" } }
+</script>
+</head>
+<body>
+<main class="app">
+  <section class="stage" aria-label="Video preview">
+    <canvas id="out" width="1080" height="1920"></canvas>
+    <div class="safe" id="safe" aria-hidden="true"><div class="top">Reels UI area</div><div class="bottom">Reels UI area</div></div>
+    <div class="loading" id="loading">Loading...</div>
+  </section>
+  <aside class="panel">
+    <p class="eyebrow">__EYEBROW__</p>
+    <h1 id="title">Video</h1>
+    <p class="sub" id="persona"></p>
+    <nav class="grid" id="grid" aria-label="Choose video"></nav>
+    <div class="controls">
+      <button id="play" type="button">Pause</button>
+      <button id="restart" type="button">Restart</button>
+      <span class="time" id="time"></span>
+    </div>
+    <input id="scrub" type="range" min="0" max="10" step="0.01" value="0" aria-label="Scrub timeline">
+    <dl id="facts"></dl>
+    <div class="copy" id="copy"></div>
+    <label class="toggle"><input type="checkbox" id="safeToggle"> Show Reels safe zones (preview only)</label>
+    <button id="record" class="primary" type="button">Record video</button>
+    <p class="status" id="status"></p>
+  </aside>
+</main>
+<script type="module">
