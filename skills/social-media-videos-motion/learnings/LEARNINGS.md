@@ -1,6 +1,6 @@
 # Learnings
 
-Last consolidated: 9 November 2026 (version 1.3.0)
+Last consolidated: 9 November 2026 (version 1.3.1)
 
 Read Global plus the section for the brand you are working on before planning. Brand guidelines and the campaign brief override anything here. Confidence: **Director** (the director said so), **Proven** (Meta data across campaigns), **Hypothesis** (test it on purpose), **Firm** (learned the hard way in production). How rules are added, promoted and retired: `references/feedback-loop.md`.
 
@@ -26,6 +26,8 @@ Read Global plus the section for the brand you are working on before planning. B
 | G16 | Pick new effects for what the photos can carry: venue stills suit 2D devices (magazine cover, checklist, phone mockup, paper cutout, chart, chat takeover, snap and zoom-through cuts, liquid glass). Skip effects that need filmed people, depth or a moving camera (green screen, B-roll overlay, orbit, dolly zoom, frame break). | Director's effects list, Oct 2026; judged against what still photos can do | Hypothesis | Oct 2026 |
 | G17 | Reference-led formats work: take one strong film's hook mechanism, beat order and signature transition, and rebuild it in 15 to 20 seconds with the brand's own photos, copy and offer (`references/reference-led.md`). Copy structure, never assets. | Director on R01 and R02: "quite good... we would like to have many videos like these" | Director (not yet tested on Meta) | Nov 2026 |
 | G18 | Reference tools: start with the free card; pay for one month of the full plan only when blueprints and frames will be used straight away, and never bulk-export. Tokens live in environment secrets or a connector, never in chat or the repository. | Refs terms and pricing checked 9 Nov 2026; a token was pasted into chat and had to be flagged for regeneration | Firm | Nov 2026 |
+| G19 | Put the offer on screen in the first two seconds (a badge or the opening line), not only on the end card, and default to 8 to 10 seconds. | Explorazone winter, first nine days in reach campaigns: about one viewer in a hundred reached the end card; stills, which always show the offer, drew about three times the link-click rate of videos; 8-second videos held about twice the share of viewers of 15-second ones | Hypothesis (one campaign, reach objective) | Nov 2026 |
+| G20 | Before reading results, check which campaign objective the creatives went into and what the ads were actually named. Reach campaigns rank attention, not sales; ask for the best creatives to go into the lead or sales campaign. Match ads to creatives by their id number, because teams rename ads. Where 3-second plays are missing, use 25% plays over impressions and compare within one length. | Winter videos were launched in reach campaigns under different names from the sheet; the lead campaign beside them produced the sign-ups | Firm | Nov 2026 |
 
 ## Explorazone
 
@@ -40,6 +42,7 @@ Read Global plus the section for the brand you are working on before planning. B
 | E7 | Make more grandparent-led stories with a nostalgic or playful-mission twist; the director's favourites are W11 "In my day" and W31 "Operation: Wrapping". | Director feedback on the winter set | Director | Oct 2026 |
 | E8 | Norwich winters are grey, cloudy and dark, not frozen: no frost, ice, sub-zero or snow hooks (snow as Christmas decoration is fine). | Director: "Norwich doesn't get sub zero winter temperatures or snow" | Director | Oct 2026 |
 | E9 | From November to January use the location: the city centre is busy with traffic and crowds, and Explorazone is outside the ring road. | Director, winter feedback | Director | Oct 2026 |
+| E10 | Formats that read at a glance hold attention best (forecast, lock-screen notifications, stopwatch, storm warning, POV captions, then and now); slow builds trail (quiz cards, search typing, map, letters, fog). The director's favourites sat mid-table, so keep them but test shorter cuts. | First nine days of the winter set and a week of the half-term set, reach campaigns, a few thousand impressions per ad (`campaigns/explorazone/2026-11-winter/RESULTS.md`) | Hypothesis | Nov 2026 |
 
 ## STEMEX
 No learnings yet.

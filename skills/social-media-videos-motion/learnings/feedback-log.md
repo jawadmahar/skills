@@ -127,3 +127,9 @@ What: "The 2 videos which have been created are actually not bad. They're quite 
 Applies to: R01, R02; the next batches for all brands
 Meaning: reference-led formats are a direction to grow; spend on tools must earn its place; posting should run without manual uploads
 Outcome: rule G17 (reference-led formats) and G18 (reference tools and tokens); posting plan proposed (GHL Social Planner API, approval step first)
+
+### 2026-11-09 · Explorazone · winter 2026-27 · passive · Meta results
+What: First nine days of period 1 (38 videos, 20 stills) in four reach campaigns, read beside the lead campaign and the week of half-term videos. Attention ranked; no sales signal available from reach campaigns.
+Applies to: W01 to W18, W51 to W70, S51 to S70, V01 to V20
+Meaning: objective outweighs creative; viewers leave before the end card; short, glanceable formats lead; stills out-click videos
+Outcome: rules G19, G20 and E10; RESULTS.md written; proposed moving the best creatives into the lead campaign

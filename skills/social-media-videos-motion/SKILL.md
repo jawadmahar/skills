@@ -3,7 +3,7 @@ name: social-media-videos-motion
 description: "Social Media Videos Motion, also called SMVM (aliases: smvm, /smvm, social videos, motion ads, reels maker). Plans, builds, renders and delivers 9:16 motion videos with licensed music for Instagram and Facebook Reels and Stories, for any brand: Explorazone, STEMEX, Muffin Break, Cafe UFO or a new one. It finds and follows the brand's own guidelines and campaign brief first, runs a short multiple-choice interview, designs a creatively diverse set for Meta's Andromeda ad delivery, renders MP4s with a code-driven motion engine, makes matching 4:5 and 9:16 stills, writes the ad copy, zips everything for the team and improves itself from feedback and Meta results. Use it whenever someone wants social media videos, Reels, Stories, motion graphics or animated ads, video ad variations, a creative refresh, or promo videos for an offer, season or holiday, or says any alias, even without the word skill. Also use it to log feedback on past videos or to review how posted videos performed on Meta."
 compatibility: "Rendering needs Node 18+, Playwright with Chromium, ffmpeg and Python 3 with numpy and Pillow, plus internet for fonts and music (Claude Code on the web has all of these). Planning, copy and feedback work anywhere. Optional connectors: Meta Ads, Google Drive."
 metadata:
-  version: "1.3.0"
+  version: "1.3.1"
   updated: "2026-11-09"
   aliases: "smvm, social-videos, motion-ads, reels-maker"
   owner: "Mahar Group Operations"

@@ -30,7 +30,7 @@ Outcome is one of: promoted to rule X, supports rule X, contradicts rule X, logg
 ## Pulling Meta results
 
 1. Find the ad account (`ads_get_ad_accounts`) and the campaign or ads by name prefix (`ads_get_ad_entities`).
-2. Get ad-level results since launch: ad name, spend, impressions, reach, link clicks, results and cost per result, leads and purchases, 3-second video plays, ThruPlays and the 25/50/75/100% video plays. Field names vary; `ads_get_field_context` finds the right ones. Placement (publisher_platform, platform_position) and age breakdowns help explain why.
+2. Get ad-level results since launch: ad name, spend, impressions, reach, link clicks, results and cost per result, leads and purchases, 3-second video plays, ThruPlays and the 25/50/75/100% video plays. Field names vary; `ads_get_field_context` finds the right ones. If there is no 3-second plays field, use 25% plays divided by impressions as the hook and compare only within one video length. Ads are often renamed at upload, so find them by campaign and match on the id number (W56), and note each campaign's objective first: a reach campaign cannot show sales (rule G20). Placement (publisher_platform, platform_position) and age breakdowns help explain why.
 3. Save the rows as JSON and score them:
    `python3 scripts/score_ads.py out/insights.json --spots out/spots.json --campaign campaign.json --out out/scorecard.tsv`
 4. Write `RESULTS.md` in the campaign folder: dates, spend band, top and bottom three, patterns by series, audience, hook, look, music and length, and the decisions taken. Keep exact money figures out of anything stored in a public repository.

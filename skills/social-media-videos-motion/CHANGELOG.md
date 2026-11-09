@@ -2,6 +2,9 @@
 
 Versions: patch for learnings and concept statuses, minor for new concepts, libraries, scripts and workflow changes, major for brand.json or campaign.json changes that break old campaigns.
 
+## 1.3.1 (9 November 2026)
+- First Meta results for the Explorazone winter set logged (`campaigns/explorazone/2026-11-winter/RESULTS.md`, no money figures): rules G19 (offer in the first two seconds, 8 to 10 seconds by default), G20 (check the objective and the ad names before reading results) and E10 (glanceable formats lead).
+
 ## 1.3.0 (9 November 2026)
 - Reference-led videos: new `references/reference-led.md` (how to turn a reference film into an original 15 to 20 second format, what the Refs plans give, its terms and token handling) and two worked formats in the winter campaign, `13-refs.js`: R01 "Launch sequence" (`launchFmt`, with `hudFrame` and `glitchCut`) and R02 "Ask the robot" (`halftoneFmt`, with `drawHalftone`). The kit gains a whole-season run window.
 - New `scripts/seek_check.mjs`: seeks every frame of each spot on its own page and reports runtime errors before a render (replaces the ad hoc checks that hung twice in October).
