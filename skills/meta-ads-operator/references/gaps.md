@@ -1,6 +1,6 @@
 # What the connector cannot do yet, and who covers it
 
-Checked October 2026. The Meta Ads connector covers paid ads: accounts, Pages for ads, audiences, media uploads, campaigns, ad sets, ads, budgets, statuses, tests, insights, previews and change history. Everything below needs a person or another tool. Re-check when the connector list changes.
+Checked October 2026, re-checked 9 November 2026 (the Instagram list is still empty). The Meta Ads connector covers paid ads: accounts, Pages for ads, audiences, media uploads, campaigns, ad sets, ads, budgets, statuses, tests, insights, previews and change history. Everything below needs a person or another tool. Re-check when the connector list changes.
 
 | Gap | Who covers it now | How to close it |
 |---|---|---|
@@ -8,6 +8,7 @@ Checked October 2026. The Meta Ads connector covers paid ads: accounts, Pages fo
 | **Comments and DMs** on ads and posts | Musa (Business Suite inbox) | Connect Facebook and Instagram in GHL (Settings > Integrations) so messages arrive in GHL Conversations, where a Claude session with the GHL connector can read them and draft replies; until then Claude drafts replies for Musa to paste |
 | **Instagram account list** (`ads_get_ig_accounts` returns nothing, for every brand) | Nobody needed for ads: creatives carry the Page's Instagram account (Explorazone: @explorazonelab, confirmed 21 Oct 2026). Musa boosts existing Instagram posts in Ads Manager | Still empty after reconnecting with every Instagram account ticked and linking the account to the ad account, in a new session too, so the connector does not have the permission yet; re-test when the connector changes |
 | **Lead form ads** | Solved for Explorazone on 21 Oct 2026 (terms accepted) | For another Page, check `leadgen_tos_accepted` with `ads_get_ad_account_pages`; if false, a Page admin accepts at facebook.com/legal/leadgen/tos |
+| **Editing a published ad's text, link or button** | Claude: a corrected copy of the ad as a draft, published with the director's yes, then the old ad paused (`meta-recipes.md`). Musa can edit in place in Ads Manager | Nothing to close: published creatives cannot be edited by anyone through the API |
 | **Publishing that stops at the campaign** | Director or Musa: Ads Manager, open the campaign, Review and publish | Report it; the drafts are complete and validated, so it is one click |
 | **Business Settings**: people, roles, partners, payment methods | Director | Make sure at least two trusted people have full control of the Business portfolio, the ad account and the Page, so no one person is a single point of failure |
 | **Billing problems** (an unsettled account, a failed card) | Director | Settle in Billing and payments; Claude can only report what it sees |

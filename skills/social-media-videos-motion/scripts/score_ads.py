@@ -30,7 +30,8 @@ ALIASES = {
     'impressions': ['impressions', 'impr'],
     'reach': ['reach'],
     'clicks': ['inline_link_clicks', 'link clicks', 'link_clicks', 'clicks', 'lc'],
-    'video_3s': ['video_3s', '3-second video plays', 'video_play_actions', 'video_3_sec_watched_actions', 'video_view', 'three_second_views'],
+    # video_play_actions counts every play, not 3-second plays, so it is deliberately not an alias here
+    'video_3s': ['video_3s', '3-second video plays', '3_second_video_plays', 'video_3_sec_watched_actions', 'video_view', 'three_second_views'],
     'thruplays': ['thruplays', 'thruplay', 'video_thruplay_watched_actions', 'thruplay_actions'],
     'p75': ['video_p75', 'video_p75_watched_actions', 'video plays at 75%'],
     'leads': ['leads', 'lead', 'onsite_conversion.lead_grouped', 'leadgen.other', 'results (leads)'],

@@ -15,16 +15,22 @@ Set them up as soon as the campaign is live:
 ## Every check, in this order
 
 1. Budget gate (`SKILL.md`). On a scheduled run with an expired budget and nobody to ask, do not extend anything.
-2. Read live status: campaigns, ad sets and ads, effective status, delivery issues (`ads_get_errors`) and anything disapproved.
-3. Pull ad-level results for the period and score them (SMVM `score_ads.py`): spend, impressions, reach, frequency, hook rate (3-second plays / impressions), hold rate (ThruPlays / 3-second plays), CTR (link), CPM, and results such as leads or sign-ups.
-4. Apply the pause rules below; pause, then tell.
-5. Report.
+2. Read live status: campaigns, ad sets and ads, delivery status, delivery issues (`ads_get_errors`), anything disapproved, and the activity log for other people's changes.
+3. Read the whole account's money for the last 30 days at campaign level (spend, link clicks, leads, objective), not only the campaign being watched. The question that matters is what each pound buys: compare the cost of a lead in the lead campaigns with the cost of a link click in the awareness campaigns, and say so when one is far better value.
+4. Pull ad-level results since launch (impressions, plays at 25%, ThruPlays, link clicks, spend, created time) and run `scripts/score_live_ads.py` on them. Do not work the rates out by hand: a typed number or a misread quartile pauses the wrong ad.
+5. Apply the pause rule below; pause, read back, then tell.
+6. On someone else's launch, and on the first check of any launch: read one ad per ad set in full (`meta-recipes.md`, "Read what a live ad really contains") and confirm where the button goes, which text options it carries and that the copy matches the copy sheet.
+7. Report.
 
-## Pause rules (awareness video ads)
+## Pause rule (awareness video ads)
 
-Judge only ads with at least about 1,000 impressions and 3 days live. Pause an ad when both hold:
-- its hook rate is in the bottom quarter of its ad set, and
-- its link CTR is under half the ad set median, or its CPM is more than twice the median with no link clicks.
+3-second plays are not reported per ad through the connector (only per ad set and above), so ads are compared on two rates that are: quarter-watched (plays at 25% / impressions) and ThruPlay (ThruPlays / impressions). `score_live_ads.py` applies the rule. An ad is a clear loser only when all of these hold:
+- it is delivering, has at least 1,000 impressions and has been live 3 days;
+- both rates are in the bottom quarter of the ads in its ad set that have enough data;
+- both rates are clearly below the rest of the ad set (a binomial test, so a small sample cannot condemn an ad by chance);
+- it is not out-clicking the ad set (3 or more link clicks at 1.5 times the ad set's click rate keeps an ad alive).
+
+Before trusting the table, check the script's impressions and spend totals against the ad set read for the same dates. With many ads on a small budget most ads never reach 1,000 impressions; say so, and recommend fewer ads per ad set rather than waiting weeks for data.
 
 For lead or sign-up campaigns, pause when cost per result is more than twice the ad set median after spending at least three times the target cost per result.
 
@@ -40,13 +46,18 @@ Pausing protects money, so it does not need approval first, but it always needs 
 ```
 <date and time>
 <Brand> <campaign>: day <n> of <m>. Spend £<x> of £<y> so far (net of VAT), reach <r>.
-Top 3: <ad> (hook <h>%, CTR <c>%), ...
+Top 3: <ad> (quarter-watched <q>%, ThruPlay <t>%, <n> link clicks), ...
 Paused: <ad> (why), or "nothing paused".
+Value: a lead costs £<a> in <lead campaign>; a link click costs £<b> in <this campaign>.
 Tests: <test> leading <cell> (not yet significant / significant).
 Needs you: <decision>, or "nothing".
 ```
 
 Then one line for Musa when he needs to act, ready to paste.
+
+## When a check finds a fault in live ads
+
+Report it once. If it is still there at the next check, do not report it a third time: stage the corrected ads as drafts (`meta-recipes.md`, "Fix a live ad's copy or link"), attach a paste-ready copy sheet, and ask the director one question: publish the fix, or hand it to Musa. A wrong link or garbled text in a live ad is public every day it waits.
 
 ## End of campaign
 

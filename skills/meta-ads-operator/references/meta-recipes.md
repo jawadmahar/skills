@@ -72,13 +72,36 @@ Draft mode stages everything in Ads Manager's draft. `ads_get_ad_entities` with 
 - Budget: `ads_update_entity` with `{"daily_budget": <pence>}` on the ad set, only with approval. If the answer says `is_draft: true`, publish that one object alone.
 - Check with `ads_get_ad_entities` after every change.
 
+## Read what a live ad really contains
+
+`ads_get_creatives` and ad previews leave out the things that go wrong most: the real button destination, the extra text options, the original video ID and the thumbnail hash. To see them, duplicate the ad as a draft: `ads_create_ad` with the live ad's `ad_set_id`, a clear new `ad_name`, `source_ad_id` set to the live ad, `hide_ui: true` and no `creative`. Nothing goes live. The returned `spec` holds the full creative:
+- `creative.object_story_spec.video_data.call_to_action`: the button type and the link it really opens. The display link (`link_caption`) can show the offer page while the link itself goes somewhere else, such as map directions;
+- `creative.asset_feed_spec.bodies` and `titles`: every text option Meta rotates, not just the first;
+- `video_data.video_id` (the library video, not the Page post copy) and `video_data.image_hash` (the cover).
+
+Each of these results is long (about 9,000 tokens). For more than two or three ads, write a specs file and give the job to a helper agent, then check its work from a draft listing with a script. Afterwards either turn the duplicate into the corrected ad (next section) or discard it; never leave an unedited duplicate in the draft.
+
+## Fix a live ad's copy or link
+
+Published creatives cannot be edited, so a fix is a new ad:
+1. Duplicate the live ad as a draft (above) and note its `video_id` and `image_hash`.
+2. Replace the draft's creative: `ads_update_entity` with `entity_type: ad` and `fields` of `{"creative": {"object_story_spec": {"page_id": ..., "instagram_user_id": ..., "video_data": {"video_id": ..., "image_hash": ..., "title": ..., "message": ..., "call_to_action": {"type": "SIGN_UP", "value": {"link": "<tested link>"}}}}, "url_tags": "<the account's usual tags>"}}`. The answer must show `active_errors: []`.
+3. Check every staged ad's title and message against the copy sheet with a script, character for character.
+4. With the director's yes, publish the new ads, read them back live, then pause the old ones. The ad set and its budget do not change, so spend does not rise.
+
+Take the copy from the campaign's source files or the latest copy sheet, and check the sheet is newer than the last re-render: a sheet made before director feedback still carries the old text.
+
+## Clear stale drafts
+
+A superseded build left in the draft is a hazard: every read comes back with a reminder about it, and one click on Review and publish in Ads Manager could send it live. Discard it once the director agrees: `ads_update_entity` with `discard_draft_changes: true` on each draft ad set (a published campaign has nothing to discard; its unpublished ad sets do). The first call only previews and returns a `confirmation_token`; show the list, get the yes, then repeat the call with the token.
+
 ## A/B tests
 
 `ads_experiment_check_eligibility` with the ad IDs, then `ads_experiment_abtest_create_test`: cells `[{"name":"Thumbnail A","ad_entity_ids":["<ad>"]},{"name":"Thumbnail B","ad_entity_ids":["<ad>"]}]`, `start_time` tomorrow or later (YYYY-MM-DD), `end_time` the campaign's last day, and a `primary_kpi` that suits the objective: `cost_per_action_type:link_click` or `cost_per_action_type:video_view` for awareness video, `cost_per_action_type:lead` for leads. Ads must be live first.
 
 ## Results
 
-`ads_get_ad_entities` at level `ad` with fields checked through `ads_get_field_context` (spend, impressions, reach, 3-second plays, ThruPlays, link clicks, CTR, CPM, results) and a `date_preset` or `time_range`. Save the rows and score them with SMVM's `scripts/score_ads.py`. `ads_get_ad_preview` returns a preview link: give it to the user exactly as returned.
+`ads_get_ad_entities` at level `ad` with `name`, `adset_name`, `delivery`, `created_time`, `amount_spent`, `impressions`, `video_p25_watched_actions`, `video_thruplay_watched_actions` and `link_click`, a `date_preset` or `time_range`, and `include_additional_context: false` to keep the answer small. `3_second_video_plays` exists only at ad set level and above, and `video_play_actions` counts every play, so neither gives a per-ad hook rate. Score live ads with `scripts/score_live_ads.py` (it takes the saved result, or a small tab-separated file when the result came back inline) and whole campaigns after they end with SMVM's `scripts/score_ads.py`. At campaign level add `objective`, `lead` and `link_click` for the money picture. `ads_get_ad_preview` returns a preview link to give to the user exactly as returned, but its result is very long and does not show the real link; use it for one ad the user wants to see, not for checks.
 
 ## Pitfalls we have hit
 
@@ -92,5 +115,10 @@ Draft mode stages everything in Ads Manager's draft. `ads_get_ad_entities` with 
 | The auto-mode safety check blocked a single write as a real-world transaction | Do not loop. Finish the rest, then explain to the director and let them decide |
 | Draft listings over about 100 KB could not be shown | Read the saved file with `check_drafts.py` |
 | A campaign past its end date still read ACTIVE, and was reported as running three days after it completed | Check `delivery` and `end_time`, and re-read before any report |
-| `ads_get_creatives` returned no link for video ads that do have one | Check the link in an ad preview or Ads Manager |
+| `ads_get_creatives` returned no link for video ads that do have one, and the preview showed an empty link too | Duplicate the ad as a draft and read the spec ("Read what a live ad really contains") |
+| Live ads showed a "See details" button and the offer page as the display link, but the click opened map directions | Read the real `call_to_action` link on one ad per ad set at the first check of every launch |
 | Someone else rebuilt or paused the campaign outside the connector | Read the activity log before reporting, and say who did what |
+| Rates typed and ranked by hand missed a clear loser and used the wrong comparison group | `scripts/score_live_ads.py` does the sums and the rule |
+| A whole Google Sheet, an ad preview or a duplicate's spec flooded the conversation (9,000 to 20,000 tokens each) | Ask for named fields only, search rather than read whole sheets, and hand bulk reads to a helper agent |
+| A write's result was lost when the session restarted | Read the object back before sending the write again |
+| An old build left in the draft triggered a "staged but not published" reminder on every read | Clear stale drafts ("Clear stale drafts") |

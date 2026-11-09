@@ -1,6 +1,6 @@
 # Operator learnings
 
-Last consolidated: 6 November 2026 (version 1.0.3)
+Last consolidated: 9 November 2026 (version 1.1.0)
 
 Rules learned while running real launches. Read them before building. Confidence: **Director** (the director said so), **Firm** (learned the hard way in production), **Hypothesis** (believed, not yet proven). Creative lessons (hooks, series, music) belong in the SMVM learnings, not here.
 
@@ -18,9 +18,17 @@ Rules learned while running real launches. Read them before building. Confidence
 | O10 | When the auto-mode safety check blocks a Meta write, do not loop. Finish everything else, then explain and let the director decide. | Two single calls blocked as real-world transactions on 21 Oct; one retry each succeeded | Firm | Oct 2026 |
 | O11 | Prefer media routes that need no clean-up: cloud sessions could not delete the temporary GitHub branch (HTTP 403), so the director had to. | 21 Oct 2026 | Firm | Oct 2026 |
 | O12 | Call a campaign or ad "running" only from its delivery status and end date, and re-check before reporting. Status and effective status stay ACTIVE after an end date has passed. | 21 Oct report flagged the B1G1 reactivation campaign as still running from 17 Oct data; it had completed at its end date, midday Sun 18 Oct | Firm | Oct 2026 |
-| O13 | `ads_get_creatives` shows no link for video ads even when the button has one, so never report a video ad as having no link from that field; check an ad preview or Ads Manager. | Our own Sign up video creative read back with no link on 6 Nov; a 27 Oct report had overstated "no web link" on Musa's ads | Firm | Nov 2026 |
+| O13 | `ads_get_creatives` shows no link for video ads even when the button has one, so never report a video ad as having no link from that field; read the real link as in O16. | Our own Sign up video creative read back with no link on 6 Nov; a 27 Oct report had overstated "no web link" on Musa's ads | Firm | Nov 2026 |
 | O14 | Before reporting on a launch or a pause, read the activity log for other people's work and say who did what. | Musa built his own version on 25 Oct and switched ours off; his team stopped it at 12:15 on 1 Nov, before our pause | Firm | Nov 2026 |
 | O15 | When someone else builds ads from a pack, check every ad's headline and primary text against the copy sheet. | 1 Nov: one text pasted into all 25 family video ads, and a garbled text into all 13 grandparent ads | Firm | Nov 2026 |
+| O16 | To see what a live ad really contains (the real button link, every text option, the library video ID and the cover hash), duplicate it as a draft and read the returned spec. Do this for one ad per ad set at the first check of every launch. Replaces the method in O13. | 9 Nov: the winter video ads showed "See details" and the offer page as the display link, but every click opened map directions, so nobody could sign up from the ad. The creative list and the preview both showed no link | Firm | Nov 2026 |
+| O17 | Score live ads with `score_live_ads.py`, on quarter-watched and ThruPlay rates. 3-second plays are not reported per ad, and sums done by hand go wrong. | 9 Nov: hand scoring compared against the wrong group and missed a clear loser that was taking the largest share of its ad set's budget | Firm | Nov 2026 |
+| O18 | Look at the whole account's money on every check and say what each pound buys: cost per lead in lead campaigns against cost per link click in awareness campaigns. | 9 Nov review: three weeks of reports covered the video campaigns only, while the account's lead form campaign was producing sign-ups for a small fraction of what the awareness campaigns paid per click | Firm | Nov 2026 |
+| O19 | A fault in live ads is reported once. At the next check, stage the corrected ads as drafts with a paste-ready sheet and ask one question: publish, or hand to Musa. | Garbled grandparent text was reported on 6 Nov and again on 9 Nov and was still live | Firm | Nov 2026 |
+| O20 | Clear a superseded build from the draft as soon as the director agrees. Discard works on the draft ad sets, not on the published campaign, and needs a yes. | The unpublished half-term build sat in the draft for three weeks, added a reminder to every read and could have been published by one click | Firm | Nov 2026 |
+| O21 | Many ads on a small budget cannot be judged: recommend about six to eight ads per ad set on a small daily budget, and rotate, instead of running a whole drop at once. | 9 Nov: 25 ads shared one small daily budget; after eight days 9 of them were still under 1,000 impressions | Hypothesis | Nov 2026 |
+| O22 | Take ad copy from the campaign's source or the newest copy sheet, and check it is newer than the last re-render. | The winter copy sheet in Drive was made before director feedback changed several videos, so it no longer matched them | Firm | Nov 2026 |
+| O23 | After a session restart, read an object back before re-sending a write; and keep long tool results (previews, duplicated specs, whole sheets) out of the main conversation by using a helper agent with a specs file. | 9 Nov: a pause call's result was lost in a restart; one preview and one sheet read cost about 30,000 tokens between them | Firm | Nov 2026 |
 
 ## Retired
 None yet.

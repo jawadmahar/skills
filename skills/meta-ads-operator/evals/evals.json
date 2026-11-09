@@ -18,6 +18,12 @@
       "prompt": "Can you also reply to the comments on our Muffin Break ads and post the new menu photo on Instagram?",
       "expected_output": "Explains plainly that the Meta Ads connector cannot publish organic posts or answer comments, offers to draft replies and the caption for Musa to paste, notes the Foodco approval and less healthy food advertising checks for Muffin Break, and points to the gaps reference for how to close the gap (Graph API connector or an n8n workflow).",
       "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "mao weekly check. Musa launched the new drop himself last week. The ad-level results came back inline, not as a file. Tell me what to pause and whether the ads are set up right.",
+      "expected_output": "Runs the budget gate; reads the account's last 30 days at campaign level and states what a lead and a link click cost; writes the ad rows to a tab-separated file and runs scripts/score_live_ads.py instead of working rates out by hand, checking its totals against the ad set read; pauses only ads the script marks LOSER, reads them back, then reports; duplicates one ad per ad set as a draft to read the real button link and text options, compares copy with the copy sheet, and either turns the duplicate into a corrected draft or discards it; never publishes or raises spend without a yes.",
+      "files": []
     }
   ]
 }
