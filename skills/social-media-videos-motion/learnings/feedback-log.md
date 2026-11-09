@@ -115,3 +115,15 @@ What: A list of effects (Orbit, Chat Takeover, Frame Escape, Snap Zoom, Zoom Por
 Applies to: W93 to W150 and the stills
 Meaning: the director wants fresher looks, but judged on results, not novelty
 Outcome: used Magazine Cover, Checklist, Phone Mockup, Paper Cutout, Growth Curve and Chat Takeover as new formats, Snap Zoom and Zoom Through as cuts between photos, Liquid Glass in the stills; skipped effects that need filmed people, depth or a moving camera (Green Screen, B-roll Overlay, Orbit, Dolly Zoom, Studio Reveal, Frame Escape, Frame Break, Digital Zoom). Rule G16
+
+### 2026-11-05 · Explorazone · winter 2026-27 · active · director
+What: Asked for one 15 to 20 second Explorazone video based on a Refs reference (REF-2831, a sci-fi fashion film), then a second based on REF-0015 (a halftone mascot launch spot).
+Applies to: R01 "Launch sequence" (18 s), R02 "Ask the robot" (16 s)
+Meaning: the director wants looks borrowed from strong reference films, rebuilt short for Reels
+Outcome: two new formats (`launchFmt`, `halftoneFmt`) built from the free reference cards; `references/reference-led.md` written
+
+### 2026-11-09 · Explorazone · winter 2026-27 · active · director
+What: "The 2 videos which have been created are actually not bad. They're quite good, and we would like to actually have many videos like these." Also: keep tool subscriptions cheap (a small one-off, or the cheapest plan that does the job), and automate organic posting to Instagram, TikTok and Facebook through GHL for every brand, starting with Explorazone or STEMEX; ads stay with a person.
+Applies to: R01, R02; the next batches for all brands
+Meaning: reference-led formats are a direction to grow; spend on tools must earn its place; posting should run without manual uploads
+Outcome: rule G17 (reference-led formats) and G18 (reference tools and tokens); posting plan proposed (GHL Social Planner API, approval step first)

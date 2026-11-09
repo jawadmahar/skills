@@ -7,10 +7,10 @@ function primary(lead, more) { return `${lead}${more ? ' ' + more : ''}\n\n${OFF
 // when each video should run (start and end dates go into the ad copy sheet)
 const RUN = {
   nov: ['2026-11-02', '2026-11-29'], xmas: ['2026-11-30', '2026-12-20'], hols: ['2026-12-19', '2027-01-04'],
-  post: ['2026-12-26', '2027-01-04'], jan: ['2027-01-01', '2027-01-10'], winter: ['2026-12-19', '2027-01-10'],
+  post: ['2026-12-26', '2027-01-04'], jan: ['2027-01-01', '2027-01-10'], winter: ['2026-12-19', '2027-01-10'], season: ['2026-11-02', '2027-02-12'],
   latejan: ['2027-01-11', '2027-01-31'], feb: ['2027-02-01', '2027-02-12'],
 };
-const PERIOD = { nov: 'November', xmas: 'Christmas run-up', hols: 'Christmas holidays', post: 'Christmas holidays', jan: 'New Year and back to school', winter: 'Christmas holidays and January', latejan: 'Late January', feb: 'February, last chance' };
+const PERIOD = { nov: 'November', xmas: 'Christmas run-up', hols: 'Christmas holidays', post: 'Christmas holidays', jan: 'New Year and back to school', winter: 'Christmas holidays and January', season: 'Whole season', latejan: 'Late January', feb: 'February, last chance' };
 // director, Oct 2026: Norwich city centre is busy from November to January and Explorazone is outside the ring road
 const RING = 'Skip the city-centre traffic and crowds: we are outside the ring road, in Bowthorpe.';
 const SPOT_CFG = (window.__spotCfg = {}); // format name and settings per spot, read by the stills builder

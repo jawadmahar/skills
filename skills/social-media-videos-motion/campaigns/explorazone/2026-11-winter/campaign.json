@@ -27,7 +27,8 @@
   "spots/09-p3-hols.js",
   "spots/10-p4-jan.js",
   "spots/11-p5-latejan.js",
-  "spots/12-p6-feb.js"
+  "spots/12-p6-feb.js",
+  "spots/13-refs.js"
  ],
  "copy": {
   "offer": "Buy 2, get the 3rd free",

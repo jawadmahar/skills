@@ -2,6 +2,11 @@
 
 Versions: patch for learnings and concept statuses, minor for new concepts, libraries, scripts and workflow changes, major for brand.json or campaign.json changes that break old campaigns.
 
+## 1.3.0 (9 November 2026)
+- Reference-led videos: new `references/reference-led.md` (how to turn a reference film into an original 15 to 20 second format, what the Refs plans give, its terms and token handling) and two worked formats in the winter campaign, `13-refs.js`: R01 "Launch sequence" (`launchFmt`, with `hudFrame` and `glitchCut`) and R02 "Ask the robot" (`halftoneFmt`, with `drawHalftone`). The kit gains a whole-season run window.
+- New `scripts/seek_check.mjs`: seeks every frame of each spot on its own page and reports runtime errors before a render (replaces the ad hoc checks that hung twice in October).
+- Learnings: G17 (reference-led formats, director liked R01 and R02) and G18 (reference tools, costs and tokens). Feedback log updated.
+
 ## 1.2.0 (20 October 2026)
 - Explorazone winter batch 2: 100 more videos (W51 to W150) for 2 Nov 2026 to Fri 12 Feb 2027, 31 for the grandparents ad set, each with its own licensed track (100 new Mixkit tracks), plus 200 stills (S51 to S150, 4:5 feed and 9:16 story).
 - New formats: `06-formats2.js` (paint swatch, ring-road map, crossword, bingo, then and now, boarding pass, banking app, calendar) and `06b-formats3.js` (magazine cover, checklist, phone mockup, paper cutout, growth curve, chat takeover, with `snapSeq`, `zoomThrough` and `zoomTail` cuts), chosen from the director's effects list (rule G16).

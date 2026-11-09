@@ -1,6 +1,6 @@
 # Learnings
 
-Last consolidated: 20 October 2026 (version 1.2.0)
+Last consolidated: 9 November 2026 (version 1.3.0)
 
 Read Global plus the section for the brand you are working on before planning. Brand guidelines and the campaign brief override anything here. Confidence: **Director** (the director said so), **Proven** (Meta data across campaigns), **Hypothesis** (test it on purpose), **Firm** (learned the hard way in production). How rules are added, promoted and retired: `references/feedback-loop.md`.
 
@@ -24,6 +24,8 @@ Read Global plus the section for the brand you are working on before planning. B
 | G14 | Read each photo's manifest notes before using it: some photos carry another season's décor or an unconfirmed room name; keep those out of labels, copy and seasonal sets. | Winter batch 2: the UV room photo shows Halloween decorations and its name is unconfirmed; swapped out of five videos before render | Firm | Oct 2026 |
 | G15 | Give every video a 4:5 feed still and a 9:16 story still built from the same spot config (same hook, photos, period, ad set and copy), so one ad can carry all three. | Director asked for 200 statics alongside 100 videos | Director | Oct 2026 |
 | G16 | Pick new effects for what the photos can carry: venue stills suit 2D devices (magazine cover, checklist, phone mockup, paper cutout, chart, chat takeover, snap and zoom-through cuts, liquid glass). Skip effects that need filmed people, depth or a moving camera (green screen, B-roll overlay, orbit, dolly zoom, frame break). | Director's effects list, Oct 2026; judged against what still photos can do | Hypothesis | Oct 2026 |
+| G17 | Reference-led formats work: take one strong film's hook mechanism, beat order and signature transition, and rebuild it in 15 to 20 seconds with the brand's own photos, copy and offer (`references/reference-led.md`). Copy structure, never assets. | Director on R01 and R02: "quite good... we would like to have many videos like these" | Director (not yet tested on Meta) | Nov 2026 |
+| G18 | Reference tools: start with the free card; pay for one month of the full plan only when blueprints and frames will be used straight away, and never bulk-export. Tokens live in environment secrets or a connector, never in chat or the repository. | Refs terms and pricing checked 9 Nov 2026; a token was pasted into chat and had to be flagged for regeneration | Firm | Nov 2026 |
 
 ## Explorazone
 

@@ -187,7 +187,7 @@ For more than about 15 videos, write each look once as a format function and mak
 - A format is `function nameFmt(c) { return { setup() {...}, frame(t) {...} }; }`. It reads everything from `c` (copy lines, photo keys, timings, `c.dur`) and ends with `endScene`, so the end card starts at `endAt(dur)` (3.6 seconds before the end).
 - `noteFmt` (`02-notebook.js`) is a generic page player: a paper kind (`lined`, `santa`, `diary`, `squared`, `notepad`, `planner`, `report`, `postcard`, `card`, `fridge`) plus a timed list of items (`w` handwriting, `strike`, `circle`, `tick`, `pol`, `corners`, `star`, `heart`, `stamp`, `sticky`, `magnet`, `card`, `pic`, `print`) and optional `flip` with a `front` drawer.
 - `build_studio.py` counts `spot({ id: ... })` calls as well as `defineSpot`, so the duplicate-id check still works.
-- Before a long render, seek every frame once to catch runtime errors: an exception at an unsampled moment otherwise shows up only as a failed render after an hour.
+- Before a long render, seek every frame once to catch runtime errors: `node scripts/seek_check.mjs out/studio.html [--spots A,B]` opens one page per spot, so a hung spot cannot stall the rest, and exits 1 if any fails. An exception at an unsampled moment otherwise shows up only as a failed render after an hour.
 
 Group the campaign's `series` by when the videos run (for example one group per month) when the person posting needs a schedule; each spot keeps its creative series in its own `series` field, and the ad copy sheet shows both (Group and Series columns).
 

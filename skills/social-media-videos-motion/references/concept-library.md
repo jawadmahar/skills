@@ -142,6 +142,15 @@ Cuts: `snapSeq` (each photo snaps in from 122% with a white flash) and `zoomThro
 
 Next ideas in the favourites' vein (rule E7): Grandad's toolbox of old gadgets, a 1970s school report next to today's, Nan's recipe card for "a good day out", Mission: half term, a spy-gadget briefing for the grandchildren.
 
+## Reference-led formats (Nov 2026, Director liked both; Untested on Meta)
+
+Built from Refs reference cards (`references/reference-led.md`). Code: `campaigns/explorazone/2026-11-winter/spots/13-refs.js`.
+
+| Id | Title | Format | Look |
+|---|---|---|---|
+| R01 | Launch sequence (18 s) | `launchFmt` | "T-minus" countdown with a heads-up display, six numbered looks with glitch cuts (`hudFrame`, `glitchCut`), a three-frame white flash into a white editorial page, end card |
+| R02 | Ask the robot (16 s) | `halftoneFmt` | A venue photo redrawn as halftone dots (`drawHalftone`) slides in as a mascot with speech bubbles, the field flips to the accent colour for the offer maths, a continuous reframe into a 3x3 room grid, a dark beat, end card |
+
 ## Making a variant well
 
 1. Change at least three of: audience, hook, look, photos, music, length (`creative-playbook.md`). A headline swap alone is not a new concept.
