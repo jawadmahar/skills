@@ -2,6 +2,10 @@
 
 Versions: patch for learnings and wording, minor for new recipes, scripts and workflow steps, major for changes that break saved launch settings.
 
+## 1.1.1 (11 November 2026)
+- Learnings O24 to O26: new ads publish into a live ad set through the connector; scheduled checks need Auto mode to run unattended; the Drive connector cannot add rows to a Sheet.
+- Recipes: publishing ads into a live ad set.
+
 ## 1.1.0 (9 November 2026)
 From a full review of the first three weeks.
 - New script `score_live_ads.py`: scores live video ads on quarter-watched and ThruPlay rates and applies the pause rule (enough data, bottom quarter on both, clearly below the rest of the ad set, not out-clicking it, never below the floor of live ads). Replaces sums done by hand.

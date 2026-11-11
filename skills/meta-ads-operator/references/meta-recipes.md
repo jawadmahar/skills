@@ -64,7 +64,8 @@ Draft mode stages everything in Ads Manager's draft. `ads_get_ad_entities` with 
 
 1. `ads_activate_entity` with `entity_id` and `entity_type` of the top object, `object_ids` listing the campaign, every ad set and every ad, and `publish_as_active: true`.
 2. The answer `PUBLISHING` means handed over. Read back live objects (`ads_get_ad_entities` level `adset` filtered on `campaign.id`, then level `ad`) and the activity log.
-3. If the campaign appears but its ad sets and ads do not, retry once with the ad sets and ads only. If they are still missing a few minutes later, stop: ask the director or Musa to open the campaign in Ads Manager, check the drafts and click Review and publish. Ads Manager shows any blocking message that the connector does not.
+3. Adding ads to an ad set that is already live is the easy case: pass one of the new ads as `entity_id` with `entity_type: ad`, list only the new ads in `object_ids`, and read them back by name. They appear live at once, in review.
+4. If a new campaign appears but its ad sets and ads do not, retry once with the ad sets and ads only. If they are still missing a few minutes later, stop: ask the director or Musa to open the campaign in Ads Manager, check the drafts and click Review and publish. Ads Manager shows any blocking message that the connector does not.
 
 ## Change running campaigns
 

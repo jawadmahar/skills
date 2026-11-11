@@ -1,6 +1,6 @@
 # Operator learnings
 
-Last consolidated: 9 November 2026 (version 1.1.0)
+Last consolidated: 11 November 2026 (version 1.1.1)
 
 Rules learned while running real launches. Read them before building. Confidence: **Director** (the director said so), **Firm** (learned the hard way in production), **Hypothesis** (believed, not yet proven). Creative lessons (hooks, series, music) belong in the SMVM learnings, not here.
 
@@ -28,6 +28,9 @@ Rules learned while running real launches. Read them before building. Confidence
 | O20 | Clear a superseded build from the draft as soon as the director agrees. Discard works on the draft ad sets, not on the published campaign, and needs a yes. | The unpublished half-term build sat in the draft for three weeks, added a reminder to every read and could have been published by one click | Firm | Nov 2026 |
 | O21 | Many ads on a small budget cannot be judged: recommend about six to eight ads per ad set on a small daily budget, and rotate, instead of running a whole drop at once. | 9 Nov: 25 ads shared one small daily budget; after eight days 9 of them were still under 1,000 impressions | Hypothesis | Nov 2026 |
 | O22 | Take ad copy from the campaign's source or the newest copy sheet, and check it is newer than the last re-render. | The winter copy sheet in Drive was made before director feedback changed several videos, so it no longer matched them | Firm | Nov 2026 |
+| O24 | New ads staged under an ad set that is already live publish through the connector: list only those ads in `object_ids`, then read them back live. The stall in O6 was a whole new campaign with new ad sets. | 11 Nov: 11 corrected ads published into two live ad sets in one call and appeared live, in review, straight away | Firm | Nov 2026 |
+| O25 | Scheduled checks only run unattended in Auto mode. Outside it every script run and every write waits for someone to approve it, so say so when a routine is set up, and keep read-only tools on the repository's allow list. | 11 Nov: the session had left Auto mode and the director was asked to approve each call of a routine run | Firm | Nov 2026 |
+| O26 | The Drive connection cannot add a row to an existing Sheet. Give the director the new budget row as tab-separated text to paste, and write the agreed budget and its end date into the routine's prompt. | 11 Nov budget review | Firm | Nov 2026 |
 | O23 | After a session restart, read an object back before re-sending a write; and keep long tool results (previews, duplicated specs, whole sheets) out of the main conversation by using a helper agent with a specs file. | 9 Nov: a pause call's result was lost in a restart; one preview and one sheet read cost about 30,000 tokens between them | Firm | Nov 2026 |
 
 ## Retired

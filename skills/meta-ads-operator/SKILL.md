@@ -3,8 +3,8 @@ name: meta-ads-operator
 description: "Meta Ads Operator, also called MAO (aliases: mao, /mao, ads operator, ads-operator). Runs Mahar Group's paid Facebook and Instagram advertising end to end through the Meta Ads connector, so the business does not depend on one person: uploads videos and images, builds campaigns, ad sets and ads from a creative pack, puts each creative in the right audience's ad set, asks for the daily budget whenever none is agreed, publishes only with explicit approval and checks it went live, sets up A/B tests, monitors on a schedule, pauses clear losers and then reports, and hands what the connector cannot do to the right person. Use it whenever someone wants Facebook or Instagram ads posted, launched, paused, budgeted, tested, checked or reported, wants Claude to do Musa's Ads Manager work, or says 'launch the drop', 'post these videos as ads', 'how are the ads doing' or any alias, even without the word skill. Pairs with social-media-videos-motion (smvm), which makes the videos."
 compatibility: "Needs the Meta Ads connector (draft mode is fine). Optional: GitHub for a temporary media link, Google Drive for the budget log, Claude Code routines (send_later, create_trigger) for scheduled checks, Python 3 with Pillow and numpy for the helper scripts."
 metadata:
-  version: "1.1.0"
-  updated: "2026-11-09"
+  version: "1.1.1"
+  updated: "2026-11-11"
   aliases: "mao, ads-operator"
   owner: "Mahar Group Operations"
   pairs-with: "social-media-videos-motion"
@@ -26,7 +26,7 @@ Everything a media buyer does in Ads Manager, done through the Meta Ads connecto
 
 Run this first, every time the skill is called and every time a scheduled check fires:
 - Find the agreed daily budget for the campaign and period: the conversation, the routine prompt, or the "Meta ads budget log" Google Sheet (private, in the director's Drive).
-- If there is none, or the agreed period has ended, ask with the multiple-choice tool before anything else (`references/interview.md`, budget round). Record the answer in the budget log: date, campaign, ad set split, amount per day (net of VAT), until when, who agreed. Without the Drive connector, repeat it back in chat and put it in any routine prompt you create.
+- If there is none, or the agreed period has ended, ask with the multiple-choice tool before anything else (`references/interview.md`, budget round). Record the answer in the budget log: date, campaign, ad set split, amount per day (net of VAT), until when, who agreed. Without the Drive connector, repeat it back in chat and put it in any routine prompt you create. The Drive connector cannot add a row to an existing Sheet either: give the director the row as tab-separated text to paste, and write the agreed budget and its end date into the routine's prompt.
 - On a scheduled run with nobody to ask: never extend or raise anything. Let ad sets end on their date, pause only to protect money, and report.
 
 ## Workflow
