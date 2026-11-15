@@ -3,7 +3,7 @@
 Versions: patch for learnings and wording, minor for new recipes, scripts and workflow steps, major for changes that break saved launch settings.
 
 ## 1.1.1 (11 November 2026)
-- Learnings O24 to O26: new ads publish into a live ad set through the connector; scheduled checks need Auto mode to run unattended; the Drive connector cannot add rows to a Sheet.
+- Learnings O24 to O28: new ads publish into a live ad set through the connector; scheduled checks need Auto mode to run unattended; the Drive connector cannot add rows to a Sheet; the activity log cannot tell one Claude session from another; bulk switches belong in Ads Manager outside Auto mode.
 - Recipes: publishing ads into a live ad set.
 
 ## 1.1.0 (9 November 2026)
