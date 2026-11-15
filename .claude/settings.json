@@ -1,0 +1,22 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__META_FACEBOOK__ads_get_ad_entities",
+      "mcp__META_FACEBOOK__ads_account_get_activity_logs",
+      "mcp__META_FACEBOOK__ads_get_creatives",
+      "mcp__META_FACEBOOK__ads_get_ig_accounts",
+      "mcp__META_FACEBOOK__ads_get_field_context",
+      "mcp__META_FACEBOOK__ads_get_ad_images",
+      "mcp__META_FACEBOOK__ads_get_ad_accounts",
+      "mcp__META_FACEBOOK__ads_get_ad_videos",
+      "mcp__META_FACEBOOK__ads_get_ad_account_pages",
+      "mcp__META_FACEBOOK__ads_get_errors",
+      "mcp__META_FACEBOOK__ads_experiment_list_tests",
+      "mcp__github__pull_request_read",
+      "mcp__claude-code-remote__read_documentation",
+      "mcp__Google_Drive__search_files",
+      "Bash(pdfinfo *)",
+      "Bash(ffprobe *)"
+    ]
+  }
+}

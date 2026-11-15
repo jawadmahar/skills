@@ -1,0 +1,45 @@
+{
+  "name": "Brand name",
+  "website": "example.co.uk",
+  "palette": {
+    "dark": "#1b1b1b",
+    "primary": "#e63946",
+    "accent": "#ffd400",
+    "light": "#ffffff",
+    "ink": "#111111"
+  },
+  "roles": {
+    "accent": "accent",
+    "light": "light",
+    "ink": "ink",
+    "cta": "primary",
+    "ctaText": "#ffffff",
+    "dark": "dark",
+    "paper": "#f5f2ea"
+  },
+  "fonts": {
+    "head": "\"Brand Heading Font\", \"Arial Black\", sans-serif",
+    "body": "Inter, system-ui, Arial, sans-serif",
+    "hand": "Caveat, \"Comic Sans MS\", cursive",
+    "google": [
+      "Inter:wght@500;600;700;800",
+      "Caveat:wght@600;700"
+    ],
+    "preload": [
+      "800 100px \"Brand Heading Font\"",
+      "500 40px Inter",
+      "700 40px Inter",
+      "800 40px Inter",
+      "700 80px Caveat"
+    ]
+  },
+  "copy": {
+    "footer": "TOWN · CITY"
+  },
+  "labels": {
+    "photo_key": "WHAT IT SHOWS"
+  },
+  "photoPool": [
+    "photo_key"
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "skill_name": "social-media-videos-motion",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "smvm: we need 6 Reels for STEMEX's February half-term robotics club (Mon 15 to Fri 19 Feb 2027, £35 a day, ages 7 to 12). Mostly parents in Norwich. Can you make them?",
+      "expected_output": "Looks for STEMEX brand guidelines first (Drive, project files, brands/stemex), flags the provisional profile, runs a multiple-choice interview covering offer wording, audience and consent for photos of children, then plans six diverse videos with a matrix before building.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "Muffin Break wants a couple of rainy-day motion ads for Instagram Stories, can you do the rain one like Explorazone had but for coffee and muffins?",
+      "expected_output": "Recognises Muffin Break as a franchise, looks for Foodco franchisor guidelines and approval rules before designing, raises the less healthy food advertising check, adapts the rain series concept with Muffin Break's look, and asks the interview questions.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "smvm feedback: the half-term videos have been live for 8 days. Pull the results for the EXZ_HT26 ads and tell me what to make more of.",
+      "expected_output": "Pulls ad-level results via the Meta Ads connector, runs score_ads.py, reports winners and losers by series, audience, hook and music, logs entries in feedback-log.md, updates LEARNINGS.md only where patterns hold across two or more ads, and bumps the version.",
+      "files": []
+    }
+  ]
+}
