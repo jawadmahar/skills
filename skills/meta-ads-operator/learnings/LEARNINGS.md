@@ -1,6 +1,6 @@
 # Operator learnings
 
-Last consolidated: 11 November 2026 (version 1.1.1)
+Last consolidated: 22 November 2026 (version 1.2.0)
 
 Rules learned while running real launches. Read them before building. Confidence: **Director** (the director said so), **Firm** (learned the hard way in production), **Hypothesis** (believed, not yet proven). Creative lessons (hooks, series, music) belong in the SMVM learnings, not here.
 
@@ -33,6 +33,13 @@ Rules learned while running real launches. Read them before building. Confidence
 | O26 | The Drive connection cannot add a row to an existing Sheet. Give the director the new budget row as tab-separated text to paste, and write the agreed budget and its end date into the routine's prompt. | 11 Nov budget review | Firm | Nov 2026 |
 | O27 | The activity log names the connection, not the session: every Claude session on the same Meta login shows as the same person through "ads MCP server". Before reporting a change as yours, match it to a call this session made; anything else was another session or person, and is reported as such, never undone. | 13 Nov: five awareness campaigns were switched off through the connection while this session was only pausing single ads | Firm | Nov 2026 |
 | O28 | Many single switches (pausing dozens of ads) stall when each one waits for approval. Outside Auto mode, hand a bulk switch to Ads Manager, where it is one tick-all and one toggle, or ask for Auto mode first. | 11 to 15 Nov: 35 pauses took four days and ten got through | Firm | Nov 2026 |
+| O29 | Meta's `ctr` field counts all clicks. Link click rate is `link_click` divided by `impressions`; work it out rather than quoting `ctr`. | 21 Nov: stills' click rates were overstated by quoting `ctr`; the independent review caught it | Firm | Nov 2026 |
+| O30 | Read every rotating text option of a live ad, not just the primary text. Ads built in Ads Manager can carry unedited Meta AI suggestions. | 21 Nov: the account's best lead ad rotated "SUMMER SALE ALERT ... Shop now!" lines and "Only 200 spots available" alongside its own text | Firm | Nov 2026 |
+| O31 | Check the picture as well as the text before re-using an image: conditions are often printed in the small print. Fix the picture, not only the caption. | 21 Nov: the best lead image had "first 200" in its small print; a corrected copy was made and uploaded | Firm | Nov 2026 |
+| O32 | Before switching a paused campaign back on, pause the old ads inside it that are still set to on, or they run again with it. | 22 Nov: 15 old grandparent ads without offer terms were still set to on inside the paused campaign | Firm | Nov 2026 |
+| O33 | For the director's money, the lead form campaigns are the measure: compare cost per lead, and treat awareness spend as unproven until it can be tied to sign-ups. | 90 days to 20 Nov: most of the spend went to awareness campaigns that produced almost no sign-ups, while the lead form campaigns produced nearly all of them | Firm | Nov 2026 |
+| O34 | For a big recommendation, get an independent second opinion from a separate review agent given the raw numbers, and correct the report before acting. | 21 Nov: the review corrected the click rates, the count of live ads, and an over-confident cause (half term ended the same day the best ad was switched off) | Firm | Nov 2026 |
+| O35 | The local-file upload tools were not yet available for this account in Nov 2026; a temporary public link worked. | 21 Nov | Firm | Nov 2026 |
 | O23 | After a session restart, read an object back before re-sending a write; and keep long tool results (previews, duplicated specs, whole sheets) out of the main conversation by using a helper agent with a specs file. | 9 Nov: a pause call's result was lost in a restart; one preview and one sheet read cost about 30,000 tokens between them | Firm | Nov 2026 |
 
 ## Retired

@@ -96,6 +96,22 @@ Take the copy from the campaign's source files or the latest copy sheet, and che
 
 A superseded build left in the draft is a hazard: every read comes back with a reminder about it, and one click on Review and publish in Ads Manager could send it live. Discard it once the director agrees: `ads_update_entity` with `discard_draft_changes: true` on each draft ad set (a published campaign has nothing to discard; its unpublished ad sets do). The first call only previews and returns a `confirmation_token`; show the list, get the yes, then repeat the call with the token.
 
+## Lead form ads (instant form)
+
+The account's sign-ups come from lead form ads. A new still lead ad is an inline creative with `link_data`:
+
+```json
+{"object_story_spec": {"page_id": "<page>", "instagram_user_id": "<instagram>",
+  "link_data": {"link": "http://fb.me/", "image_hash": "<hash>", "name": "<headline>",
+    "message": "<primary text with every offer term>", "description": "Sign up first, pay at the door",
+    "call_to_action": {"type": "SIGN_UP", "value": {"lead_gen_form_id": "<form id>"}}}}}
+```
+
+- Find the form ID by duplicating a working lead ad as a draft and reading `call_to_action.value.lead_gen_form_id` ("Read what a live ad really contains").
+- Lead ads only go in a campaign with the LEADS objective and an ad set optimising for leads.
+- Before switching a paused lead campaign back on, pause its old ads that are still set to on, then publish the new ads and the campaign together (`object_ids` with the campaign, which holds any staged budget change, and the new ads; `publish_as_active: true`).
+- Judge new lead ads after 14 days or about 50 leads, not after a few days.
+
 ## A/B tests
 
 `ads_experiment_check_eligibility` with the ad IDs, then `ads_experiment_abtest_create_test`: cells `[{"name":"Thumbnail A","ad_entity_ids":["<ad>"]},{"name":"Thumbnail B","ad_entity_ids":["<ad>"]}]`, `start_time` tomorrow or later (YYYY-MM-DD), `end_time` the campaign's last day, and a `primary_kpi` that suits the objective: `cost_per_action_type:link_click` or `cost_per_action_type:video_view` for awareness video, `cost_per_action_type:lead` for leads. Ads must be live first.
@@ -120,6 +136,7 @@ A superseded build left in the draft is a hazard: every read comes back with a r
 | Live ads showed a "See details" button and the offer page as the display link, but the click opened map directions | Read the real `call_to_action` link on one ad per ad set at the first check of every launch |
 | Someone else rebuilt or paused the campaign outside the connector | Read the activity log before reporting, and say who did what |
 | Rates typed and ranked by hand missed a clear loser and used the wrong comparison group | `scripts/score_live_ads.py` does the sums and the rule |
+| Rotating text options held unedited Meta AI lines ("SUMMER SALE ALERT ... Shop now!") that the creative list never shows | Duplicate the ad as a draft and read every body, title and description |
 | A whole Google Sheet, an ad preview or a duplicate's spec flooded the conversation (9,000 to 20,000 tokens each) | Ask for named fields only, search rather than read whole sheets, and hand bulk reads to a helper agent |
 | A write's result was lost when the session restarted | Read the object back before sending the write again |
 | An old build left in the draft triggered a "staged but not published" reminder on every read | Clear stale drafts ("Clear stale drafts") |

@@ -3,8 +3,8 @@ name: meta-ads-operator
 description: "Meta Ads Operator, also called MAO (aliases: mao, /mao, ads operator, ads-operator). Runs Mahar Group's paid Facebook and Instagram advertising end to end through the Meta Ads connector, so the business does not depend on one person: uploads videos and images, builds campaigns, ad sets and ads from a creative pack, puts each creative in the right audience's ad set, asks for the daily budget whenever none is agreed, publishes only with explicit approval and checks it went live, sets up A/B tests, monitors on a schedule, pauses clear losers and then reports, and hands what the connector cannot do to the right person. Use it whenever someone wants Facebook or Instagram ads posted, launched, paused, budgeted, tested, checked or reported, wants Claude to do Musa's Ads Manager work, or says 'launch the drop', 'post these videos as ads', 'how are the ads doing' or any alias, even without the word skill. Pairs with social-media-videos-motion (smvm), which makes the videos."
 compatibility: "Needs the Meta Ads connector (draft mode is fine). Optional: GitHub for a temporary media link, Google Drive for the budget log, Claude Code routines (send_later, create_trigger) for scheduled checks, Python 3 with Pillow and numpy for the helper scripts."
 metadata:
-  version: "1.1.1"
-  updated: "2026-11-11"
+  version: "1.2.0"
+  updated: "2026-11-22"
   aliases: "mao, ads-operator"
   owner: "Mahar Group Operations"
   pairs-with: "social-media-videos-motion"
@@ -35,7 +35,7 @@ Run this first, every time the skill is called and every time a scheduled check 
 - Read `learnings/LEARNINGS.md` and the brand's notes in `references/brands.md`. For anything about the creative itself, also read the SMVM learnings.
 - Find the ad account and Page with `ads_get_ad_accounts` and `ads_get_ad_account_pages` rather than from memory. Check the account is queryable, and note its currency and time zone.
 - List what is live now (campaigns and ad sets with delivery status, budget and end date; status alone still says ACTIVE after an end date) so new work does not collide with or duplicate someone else's, such as Musa's campaigns. Mention anything odd you notice, for example an old offer still running.
-- Read the account's last 30 days at campaign level (objective, spend, link clicks, leads). It shows what each pound buys and which kind of campaign is earning sign-ups, which is what the director is paying for.
+- Read the account's last 30 and 90 days at campaign level (objective, spend, link clicks, leads). It shows what each pound buys and which kind of campaign is earning sign-ups, which is what the director is paying for.
 
 ### 2. Intake
 - The usual input is an SMVM delivery: videos, the pack PDF and the ad copy sheet (ad name, audience, headline, primary text, button, dates). Other creatives work too, with the same columns.
@@ -65,6 +65,8 @@ Creative A/B tests with `ads_experiment_check_eligibility` then `ads_experiment_
 When a check finds a fault in live ads (wrong link, garbled or mismatched text), report it once; if it is still there next time, stage the corrected ads as drafts and ask one question: publish the fix, or hand it to Musa (`references/meta-recipes.md`, "Fix a live ad's copy or link").
 
 ### 10. Report and learn
+Before a big recommendation (switching campaigns on or off, moving budget between them), give the raw numbers to a separate review agent for an independent second opinion, and correct the report before acting.
+
 A short report to the director (what is live, spend pace, top three, what you paused, what needs a decision) and a ready-to-paste note for Musa when he needs to act. Log operator lessons in `learnings/LEARNINGS.md`; send creative lessons to the SMVM feedback log.
 
 ## What stays with people for now

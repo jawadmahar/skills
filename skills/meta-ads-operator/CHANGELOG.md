@@ -2,6 +2,12 @@
 
 Versions: patch for learnings and wording, minor for new recipes, scripts and workflow steps, major for changes that break saved launch settings.
 
+## 1.2.0 (22 November 2026)
+From a full account check with an independent second-opinion review.
+- Recipes: lead form ads (instant form) built inline from still images, finding the form ID, switching a paused lead campaign back on safely.
+- Monitoring and workflow: lead campaigns are judged on cost per lead; link click rate is worked out, not taken from `ctr`; big recommendations get an independent review first.
+- Learnings O29 to O35.
+
 ## 1.1.1 (11 November 2026)
 - Learnings O24 to O28: new ads publish into a live ad set through the connector; scheduled checks need Auto mode to run unattended; the Drive connector cannot add rows to a Sheet; the activity log cannot tell one Claude session from another; bulk switches belong in Ads Manager outside Auto mode.
 - Recipes: publishing ads into a live ad set.

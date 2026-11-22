@@ -30,6 +30,8 @@ Set them up as soon as the campaign is live:
 - both rates are clearly below the rest of the ad set (a binomial test, so a small sample cannot condemn an ad by chance);
 - it is not out-clicking the ad set (3 or more link clicks at 1.5 times the ad set's click rate keeps an ad alive).
 
+For lead form campaigns, compare cost per lead per ad and per week, and work out link click rate from link clicks and impressions (Meta's `ctr` counts all clicks).
+
 Before trusting the table, check the script's impressions and spend totals against the ad set read for the same dates. With many ads on a small budget most ads never reach 1,000 impressions; say so, and recommend fewer ads per ad set rather than waiting weeks for data.
 
 For lead or sign-up campaigns, pause when cost per result is more than twice the ad set median after spending at least three times the target cost per result.
