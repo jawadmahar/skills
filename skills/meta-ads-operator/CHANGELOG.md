@@ -2,6 +2,10 @@
 
 Versions: patch for learnings and wording, minor for new recipes, scripts and workflow steps, major for changes that break saved launch settings.
 
+## 1.2.1 (23 November 2026)
+- Recipes: read a live ad's texts from its own creative and look at its picture; duplicates are only for the button link and video ID, and their copies must be cleared from the draft.
+- Learnings O36 and O37; O30 corrected (the summer lines were in an older version of the creative, not the live ad).
+
 ## 1.2.0 (22 November 2026)
 From a full account check with an independent second-opinion review.
 - Recipes: lead form ads (instant form) built inline from still images, finding the form ID, switching a paused lead campaign back on safely.

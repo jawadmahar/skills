@@ -75,12 +75,14 @@ Draft mode stages everything in Ads Manager's draft. `ads_get_ad_entities` with 
 
 ## Read what a live ad really contains
 
-`ads_get_creatives` and ad previews leave out the things that go wrong most: the real button destination, the extra text options, the original video ID and the thumbnail hash. To see them, duplicate the ad as a draft: `ads_create_ad` with the live ad's `ad_set_id`, a clear new `ad_name`, `source_ad_id` set to the live ad, `hide_ui: true` and no `creative`. Nothing goes live. The returned `spec` holds the full creative:
+**Texts and pictures: read the ad's own creative.** Take `creative_id` from `ads_get_ad_entities` (level ad), then `ads_get_creatives` with `creative_ids` and `fields: ["asset_feed_spec","object_story_spec","image_hash"]`. `asset_feed_spec.bodies`, `titles` and `descriptions` are every text option Meta rotates on the live ad. Fetch the picture (`ads_get_ad_images` with the hash, field `url`) and look at it too, since conditions and seasons are often printed on it. Never judge an ad's texts from a duplicate: a duplicate can come back with an older version of the creative, with lines that were removed long ago.
+
+**Button link, library video ID and cover hash:** if `object_story_spec` does not show them (video ads often hide the link), duplicate the ad as a draft: `ads_create_ad` with the live ad's `ad_set_id`, a clear new `ad_name`, `source_ad_id` set to the live ad, `hide_ui: true` and no `creative`. Nothing goes live. The returned `spec` holds the full creative:
 - `creative.object_story_spec.video_data.call_to_action`: the button type and the link it really opens. The display link (`link_caption`) can show the offer page while the link itself goes somewhere else, such as map directions;
 - `creative.asset_feed_spec.bodies` and `titles`: every text option Meta rotates, not just the first;
 - `video_data.video_id` (the library video, not the Page post copy) and `video_data.image_hash` (the cover).
 
-Each of these results is long (about 9,000 tokens). For more than two or three ads, write a specs file and give the job to a helper agent, then check its work from a draft listing with a script. Afterwards either turn the duplicate into the corrected ad (next section) or discard it; never leave an unedited duplicate in the draft.
+Each of these results is long (about 9,000 tokens). For more than two or three ads, write a specs file and give the job to a helper agent, then check its work from a draft listing with a script. Afterwards either turn the duplicate into the corrected ad (next section) or discard it; never leave an unedited duplicate in the draft. Setting a duplicate to DELETED does not remove it from the draft, and duplicating can also stage a pending change on the live ad itself, so check the draft listing afterwards and discard what is left (with a yes).
 
 ## Fix a live ad's copy or link
 
@@ -136,7 +138,8 @@ The account's sign-ups come from lead form ads. A new still lead ad is an inline
 | Live ads showed a "See details" button and the offer page as the display link, but the click opened map directions | Read the real `call_to_action` link on one ad per ad set at the first check of every launch |
 | Someone else rebuilt or paused the campaign outside the connector | Read the activity log before reporting, and say who did what |
 | Rates typed and ranked by hand missed a clear loser and used the wrong comparison group | `scripts/score_live_ads.py` does the sums and the rule |
-| Rotating text options held unedited Meta AI lines ("SUMMER SALE ALERT ... Shop now!") that the creative list never shows | Duplicate the ad as a draft and read every body, title and description |
+| Rotating text options can hold unedited Meta AI lines ("SUMMER SALE ALERT ... Shop now!") | Read `asset_feed_spec` of the ad's own `creative_id`, and look at the picture |
+| A duplicate showed summer lines that had already been removed from the live ads, so seven ads looked faulty when none were | Judge texts only from the live ad's own creative, never from a duplicate |
 | A whole Google Sheet, an ad preview or a duplicate's spec flooded the conversation (9,000 to 20,000 tokens each) | Ask for named fields only, search rather than read whole sheets, and hand bulk reads to a helper agent |
 | A write's result was lost when the session restarted | Read the object back before sending the write again |
 | An old build left in the draft triggered a "staged but not published" reminder on every read | Clear stale drafts ("Clear stale drafts") |
