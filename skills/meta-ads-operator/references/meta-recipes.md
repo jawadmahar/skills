@@ -86,13 +86,19 @@ Each of these results is long (about 9,000 tokens). For more than two or three a
 
 ## Fix a live ad's copy or link
 
-Published creatives cannot be edited, so a fix is a new ad:
+**Simplest, in place (draft mode):** stage the corrected creative straight onto the live ad with `ads_update_entity` (`entity_type: ad`, `fields` `{"creative": {<complete inline creative, same shape as below>}}`), check `active_errors: []`, then publish only those ads: `ads_activate_entity` with `object_ids` listing them and `publish_as_active: false`. The ad keeps its ID, results and learning history, gets a new `creative_id` and goes back to review. Read back the new `creative_id` to confirm. For a lead ad keep `call_to_action` `{"type": "SIGN_UP", "value": {"lead_gen_form_id": "<form>"}}` and `link` `http://fb.me/`. A new picture first goes up by public URL (`ads_creative_upload_media`).
+
+If an in-place edit is rejected, a fix is a new ad:
 1. Duplicate the live ad as a draft (above) and note its `video_id` and `image_hash`.
 2. Replace the draft's creative: `ads_update_entity` with `entity_type: ad` and `fields` of `{"creative": {"object_story_spec": {"page_id": ..., "instagram_user_id": ..., "video_data": {"video_id": ..., "image_hash": ..., "title": ..., "message": ..., "call_to_action": {"type": "SIGN_UP", "value": {"link": "<tested link>"}}}}, "url_tags": "<the account's usual tags>"}}`. The answer must show `active_errors: []`.
 3. Check every staged ad's title and message against the copy sheet with a script, character for character.
 4. With the director's yes, publish the new ads, read them back live, then pause the old ones. The ad set and its budget do not change, so spend does not rise.
 
 Take the copy from the campaign's source files or the latest copy sheet, and check the sheet is newer than the last re-render: a sheet made before director feedback still carries the old text.
+
+## Exclude people who already signed up
+
+Make an engagement audience of instant-form submitters: `ads_create_custom_audience`, subtype `ENGAGEMENT`, rule with one `lead` and one `ig_lead_generation` event source per form (`id` the form, `owner_id` the Page), `retention_seconds` 7776000 (90 days) and filter `event eq lead_generation_submitted`. List every form the Page has used; an older audience may miss the current form. Add it to each lead ad set's `excluded_custom_audiences` with a full targeting update (see pitfalls: no `effective_*` or placement lists), then publish the ad sets. Error 1870090 means the custom audience terms must first be accepted for the connector's login.
 
 ## Clear stale drafts
 

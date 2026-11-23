@@ -15,6 +15,10 @@ Audiences, links, terms and cautions per brand. No IDs, budgets or results here:
 - Required terms in every primary text for buy 2, get the 3rd free: the ticket price, "New customers only", "Sign up to claim" (or "Sign up first at explorazone.co.uk"), "Max 9 per group", "T&Cs apply", and the dates. Add the early-end wording when the director has approved it.
 - Instagram: @explorazonelab, connected to the Page (confirmed in an ad preview on 21 Oct 2026). Meta attaches it to every creative made with the Page.
 - Seasonal windows: launch each drop only inside its own dates (half term, Christmas, January, February). Later drops wait.
+- Place name: call out **Norwich**, not Bowthorpe, in headlines, text and pictures (director, 23 Nov 2026: few people know Bowthorpe). Bowthorpe may stay in a small address line only.
+- Leads are not phoned; do not suggest call-back speed as a measure (director, 23 Nov 2026).
+- Walk-ins sign up at the door with a QR code and land in the GHL pipeline at "Buy Ticket". Meta cannot see these, so judge awareness campaigns by weekly door sign-ups in GHL with the campaigns on against off, never by Meta-counted leads alone.
+- Exclusions: the lead ad sets exclude the attended customer list and the "EXCL - Lead form submitters 90d" engagement audience (every instant form on the Page). People who signed up can be reminded through a separate small awareness campaign aimed only at that audience, where a directions button does suit.
 
 ## STEMEX (STEM Centre Ltd)
 

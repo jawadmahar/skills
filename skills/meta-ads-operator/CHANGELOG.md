@@ -2,6 +2,11 @@
 
 Versions: patch for learnings and wording, minor for new recipes, scripts and workflow steps, major for changes that break saved launch settings.
 
+## 1.3.0 (23 November 2026)
+- Recipes: change a live ad's text or picture in place (draft mode, keeps the ad ID); exclude people who already signed up through an instant form.
+- Brand notes: call out Norwich, not Bowthorpe; leads are not phoned; door QR sign-ups in GHL are how awareness is judged; reminder campaigns for people who signed up.
+- Learnings O38 to O41; O33 rewritten after the director pointed out door sign-ups that Meta cannot see.
+
 ## 1.2.1 (23 November 2026)
 - Recipes: read a live ad's texts from its own creative and look at its picture; duplicates are only for the button link and video ID, and their copies must be cleared from the draft.
 - Learnings O36 and O37; O30 corrected (the summer lines were in an older version of the creative, not the live ad).
