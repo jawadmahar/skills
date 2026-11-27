@@ -1,0 +1,91 @@
+{
+  "brand": "../../../brands/explorazone/brand.json",
+  "name": "Explorazone October half term 2026: buy 2, get the 3rd free",
+  "slug": "explorazone-half-term",
+  "adPrefix": "EXZ_HT26",
+  "dates": {
+    "start": "2026-10-23",
+    "end": "2026-11-01"
+  },
+  "requiredTerms": ["£18", "New customers only", "Max 9 per group", "T&Cs apply"],
+  "assets": "assets",
+  "copy": {
+    "offer": "Buy 2, get the 3rd free",
+    "maths": [
+      "3 for £36",
+      "6 for £72",
+      "9 for £108"
+    ],
+    "dates": "Half term · Fri 23 Oct to Sun 1 Nov",
+    "terms": "£18 tickets. New customers only. Sign-up required at explorazone.co.uk or scan the QR in store. Claim at time of booking. Max 9 per group. T&Cs apply.",
+    "cta": "Claim your free 3rd ticket",
+    "ticker": "HALF TERM · FRI 23 OCT TO SUN 1 NOV · BUY 2, GET THE 3RD FREE · 3 FOR £36 · ",
+    "ticket": {
+      "price": "£18",
+      "label": "Half term",
+      "freeLine": "The 3rd walks in free"
+    }
+  },
+  "fonts": {
+    "google": [
+      "Dancing+Script:wght@700",
+      "Kalam:wght@700",
+      "Patrick+Hand"
+    ],
+    "preload": [
+      "700 80px \"Dancing Script\"",
+      "700 80px Kalam",
+      "400 80px \"Patrick Hand\""
+    ]
+  },
+  "studio": {
+    "title": "Half Term Video Studio",
+    "eyebrow": "Half term · Buy 2, get the 3rd free",
+    "description": "Explorazone half-term Reels and Stories videos for the buy 2, get the 3rd free offer."
+  },
+  "series": {
+    "Rain series": [
+      "V02",
+      "V11",
+      "V12",
+      "V13",
+      "V14",
+      "V15"
+    ],
+    "Notebook series": [
+      "V04",
+      "V16",
+      "V17",
+      "V18",
+      "V19",
+      "V20"
+    ],
+    "More concepts": [
+      "V01",
+      "V03",
+      "V05",
+      "V06",
+      "V07",
+      "V08",
+      "V09",
+      "V10"
+    ]
+  },
+  "slugs": {
+    "V08": "12-pounds-each",
+    "V03": "leaves-outside-lasers-inside",
+    "V07": "pov-half-term",
+    "V09": "old-fashioned-day-out"
+  },
+  "libs": [
+    "weather",
+    "paper",
+    "fx3d"
+  ],
+  "spots": [
+    "spots/01-classic-2d.js",
+    "spots/02-classic-3d.js",
+    "spots/03-rain-series.js",
+    "spots/04-notebook-series.js"
+  ]
+}
